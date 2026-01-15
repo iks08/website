@@ -735,6 +735,11 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+/* PCでは改行し、スマホでは改行しない */
+.pc-br { display: block; }
+.sp-br { display: none; }
+
+/* スマホの時だけ切り替える設定 */
 /* === レスポンシブ対応 (スマホ・タブレット) === */
 @media (max-width: 768px) {
     #splash-logo { transform: translate(-50%, -50%) scale(2.5); }
@@ -744,6 +749,8 @@ footer {
     .hero-video-container { opacity: 1; }
     .menu-btn { display: block; }
 
+    .pc-br { display: none; }   /* スマホでは改行無効 */
+    .sp-br { display: block; }  /* スマホでは改行有効 */
     .pc-nav {
         position: fixed;
         top: 70px; right: -100%; width: 70%; height: calc(100vh - 70px);
