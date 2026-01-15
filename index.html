@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社iK</title>
+    <!-- ファビコン -->
+    <link rel="icon" href="picmov/iK-logo.png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- オープニングアニメーション -->
+    <div id="opening-splash">
+        <div id="splash-logo">iK相談支援センター</div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="logo">
+            <a href="#">
+                iK相談支援センター
+            </a>
+        </div>
+        
+        <nav class="pc-nav" id="nav-menu">
+            <ul>
+                <li><a href="#services">相談内容</a></li>
+                <li><a href="#flow">相談の流れ</a></li>
+                <li><a href="#about">私たちについて</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+        <div class="menu-btn" id="menu-toggle">☰</div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero">
+        <div class="hero-video-container">
+            <!-- loop属性を追加して、1本の動画を延々と繰り返す設定にします -->
+            <video id="bg-video" autoplay loop muted playsinline>
+                <!-- ▼ 新しい結合した動画ファイルを指定 ▼ -->
+                <source src="picmov/hero-movie.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-content">
+            <h1>障がいのある方も<br>ご家族にも</h1>
+            <p>相談支援事業では、障がいのある方だけではなく、ご家族や関係期間の</p>
+            <p>さまざまなお悩みやお困りごとについて、ご相談を受け付けております。</p>
+            <p>誰もが より豊かな生活を送れるように支援させていただきます。</p>
+            <a href="#contact" class="btn-main">お問い合わせはこちら</a>
+        </div>
+    </section>
+
+    <!-- サービス案内 -->
+    <section id="services" class="services-bg fade-in">
+        <div class="section-title">
+            <h2>お困りではありませんか？</h2>
+            <span>相談内容</span>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="picmov/health.png" alt="健康">
+                <h3>健康に暮らしたい</h3>
+            </div>
+            <div class="service-card">
+                <img src="picmov/illness.png" alt="病気">
+                <h3>病気のことが心配</h3>
+            </div>
+            <div class="service-card">
+                <img src="picmov/house.png" alt="住まい">
+                <h3>住むところを探してほしい</h3>
+            </div>
+            <div class="service-card">
+                <img src="picmov/counseling.png" alt="相談">
+                <h3>悩みや相談を聞いてほしい</h3>
+            </div>
+            <div class="service-card">
+                <img src="picmov/hikky.png" alt="引きこもり">
+                <h3>引きこもりから脱出したい</h3>
+            </div>
+            <div class="service-card">
+                <img src="picmov/cityoffice.png" alt="手続き">
+                <h3>役所などの手続きが分からない</h3>
+            </div>
+            <div class="service-card">
+                <img src="picmov/job.png" alt="就職">
+                <h3>就職のことや将来のことを相談したい</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- 流れ -->
+    <section id="flow" class="fade-in">
+        <div class="section-title">
+            <h2>Flow</h2> <!-- 英語にしておしゃれに -->
+            <span>支援開始までの流れ</span>
+        </div>
+
+        <div class="flow-container">
+            
+            <!-- STEP 1 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <span class="step-num">STEP.01</span>
+                    <h3 class="step-name">相談</h3>
+                </div>
+                <div class="step-body">
+                    <p class="step-desc">
+                        お電話、来所、訪問などにより<br>
+                        ご相談を受け付けております。
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <span class="step-num">STEP.02</span>
+                    <h3 class="step-name">面談</h3>
+                </div>
+                <div class="step-body">
+                    <p class="step-desc">
+                        直接お会いして面談をおこない、<br>
+                        ご相談内容を詳しくお伺いします。
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <span class="step-num">STEP.03</span>
+                    <h3 class="step-name">計画作成</h3>
+                </div>
+                <div class="step-body">
+                    <p class="step-desc">
+                        面談の内容をもとに計画書を作成、<br>
+                        あわせて関係機関への申請手続きを<br>
+                        おこないます。
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <span class="step-num">STEP.04</span>
+                    <h3 class="step-name">利用開始</h3>
+                </div>
+                <div class="step-body">
+                    <p class="step-desc">
+                        区役所より受給者証が届き、<br>
+                        サービス利用開始となります。
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="flow-step">
+                <div class="step-header">
+                    <span class="step-num">STEP.05</span>
+                    <h3 class="step-name">定期訪問</h3>
+                </div>
+                <div class="step-body">
+                    <p class="step-desc">
+                        ご自宅や関係先に定期的に訪問し、<br>
+                        安心した日常生活が送れるように<br>
+                        継続して支援いたします。
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<!-- 私たちについて -->
+    <section id="about" class="fade-in">
+        <div class="section-title">
+            <h2>About Us</h2>
+            <span>私たちについて</span>
+        </div>
+
+        <!-- ① 上部：想いとイメージ画像 -->
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>ご利用者様お一人おひとりに<br>寄り添うケアを</h3>
+                <p>
+                    相談支援事業では、障がいのある方だけではなく、<br>
+                    ご家族や関係機関のさまざまなお悩みやお困りごとについて、<br>
+                    ご相談を受け付けております。
+                </p>
+                <p>
+                    誰もがより豊かな生活を送れるように支援させていただきます。<br>
+                    まずはお気軽にご相談ください。
+                </p>
+            </div>
+            <div class="about-img">
+                <img src="picmov/alone.png" alt="一人で悩む必要はありません">
+            </div>
+        </div>
+
+        <!-- ▼▼▼ ② 追加：会社情報と地図 ▼▼▼ -->
+        <div class="company-info-area">
+            <!-- ▼▼▼ Company Info のタイトル部分を書き換え ▼▼▼ -->
+            <div class="company-header">
+                <h3 class="company-title">Company Info</h3>
+                <span class="company-subtitle">会社概要</span>
+            </div>
+            <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ -->
+            
+            <div class="company-grid">
+                <!-- 左側：会社情報リスト -->
+                <div class="company-details">
+                    <dl>
+                        <dt>社名</dt>
+                        <dd>株式会社iK</dd>
+                        
+                        <dt>所在地</dt>
+                        <dd>〒802-0831<br>北九州市小倉南区八重洲町11-20 2階</dd>
+                        
+                        <dt>連絡先</dt>
+                        <dd>
+                            TEL: 093-383-1327<br>
+                            FAX: 093-383-1328
+                        </dd>
+                        
+                        <dt>メール</dt>
+                        <dd>iks.080101.iks@gmail.com</dd>
+                    </dl>
+                </div>
+
+                <!-- 右側：地図画像 -->
+                <div class="company-map">
+                    <img src="picmov/地図.png" alt="アクセスマップ">
+                </div>
+            </div>
+        </div>
+        <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ -->
+
+    </section>
+
+    <!-- フォーム部分 -->
+    <section id="contact" class="fade-in">
+        <div class="section-title">
+            <h2>CONTACT</h2>
+            <span>お問い合わせ</span>
+        </div>
+        <!-- ▼ actionのURLはご自身のFormspreeのものに書き換えてください ▼ -->
+        <form class="contact-form" action="https://formspree.io/f/xbddrwlj" method="POST">
+            <div class="form-group">
+                <label>お名前</label>
+                <input type="text" name="name" placeholder="例：山田 太郎" required>
+            </div>
+            <div class="form-group">
+                <label>電話番号</label>
+                <input type="tel" name="phone" placeholder="例：090-1234-5678">
+            </div>
+            <div class="form-group">
+                <label>メールアドレス</label>
+                <input type="email" name="email" placeholder="例：example@mail.com" required>
+            </div>
+            <div class="form-group">
+                <label>お問い合わせ内容</label>
+                <textarea name="message" rows="5" placeholder="ご質問やご相談内容をご記入ください" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">送信する</button>
+        </form>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-container">
+            <!-- 1. ロゴ・住所エリア -->
+            <div class="footer-logo-area">
+                <h3>株式会社iK</h3>
+                <p class="footer-address">
+                    〒802-0831 北九州市小倉南区八重洲町11-20 2階
+                </p>
+            </div>
+
+            <!-- 2. 連絡先エリア -->
+            <div class="footer-contact-area">
+                <div class="contact-row">
+                    <span class="contact-label">TEL</span>
+                    <a href="tel:093-383-1327" class="tel-number">093-383-1327</a>
+                    <span class="divider">/</span>
+                    <span class="contact-label">FAX</span>
+                    <span class="fax-number">093-383-1328</span>
+                </div>
+                <div class="contact-row">
+                    <span class="contact-label">Mail</span>
+                    <a href="mailto:iks.080101.iks@gmail.com">iks.080101.iks@gmail.com</a>
+                </div>
+            </div>
+
+            <!-- 3. コピーライト -->
+            <p class="copyright">&copy; 2026 株式会社iK All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.body.classList.add('start-animation');
+            }, 3000);
+        });
+
+        const menuBtn = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.pc-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuBtn.textContent = '☰';
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
