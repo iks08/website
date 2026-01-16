@@ -689,4 +689,10 @@ footer {
         text-align: left;
         width: auto; /* 幅をなりゆきにする */
     }
+    /* === 許認可（数字）を右揃えにする設定 === */
+    .company-details dd.license-text {
+    text-align: right !important; /* 強制的に右揃え */
+    display: block !important;    /* 横幅いっぱいに広げる */
+    width: 100%;
+}
 }
