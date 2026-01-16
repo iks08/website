@@ -400,7 +400,7 @@ section {
     border-bottom: 1px solid #f0f0f0;
     padding-bottom: 5px;
 }
-.company-map { text-align: center; }
+/* .company-map { text-align: center; } */
 .company-map img {
     width: 100%;
     max-width: 300px; 
@@ -597,6 +597,19 @@ footer {
     .alone-container img { width: 90%; }
 
     .company-grid { grid-template-columns: 1fr; gap: 30px; }
+        /* ... 他のスマホ用設定 ... */
+
+    /* ▼▼▼ 追加：スマホの時だけ地図を中央にする ▼▼▼ */
+    .company-map {
+        text-align: center; /* 親要素で中央揃え */
+        margin-top: 20px;   /* 上に少し隙間をあける */
+    }
+    
+    .company-map img {
+        display: block;     /* ブロック要素にする */
+        margin: 0 auto;     /* 左右の余白を自動にして中央へ */
+    }
+    /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
     .company-details dl { grid-template-columns: 1fr; gap: 5px; }
     .company-details dt { border-bottom: none; margin-top: 15px; }
 
