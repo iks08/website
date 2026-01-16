@@ -624,7 +624,9 @@ footer {
 /* === オープニングアニメーション === */
 #opening-splash {
     position: fixed; 
-    top: 0; left: 0; width: 100%; height: 100vh;
+    top: 0; left: 0; width: 100%; 
+    height: 100vh;  /* 古いスマホ用 */
+    height: 100dvh; /* 新しいスマホ用（アドレスバーを除いた高さを取得） */
     background-color: var(--primary-color); 
     z-index: 9999;
     transition: background-color 0.8s ease 0.5s, visibility 0s linear 1.5s;  
