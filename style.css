@@ -487,11 +487,12 @@ section {
   min-width: 0;
 }
 
-.company-details dd.license .license-num{
-  margin-left: auto;               /* 右側に固定 */
-  white-space: nowrap;             /* 数字は折り返さない */
-  text-align: left;                /* 数字ブロック内は左揃え（あなたの要件） */
+.license-num{
+  display:inline-flex;      /* 1行のまま */
+  justify-content:flex-end; /* 末尾揃え */
+  gap: .5em;                /* 4桁と6桁の間隔統一 */
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 
