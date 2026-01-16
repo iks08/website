@@ -747,6 +747,7 @@ footer {
 
     /* --- ヒーローエリア --- */
     .hero-content { padding: 40px 20px; }
+    .hero-content p { text-align: justify; } 
     .hero h1 { font-size: 1.8rem; margin-bottom: 30px; }
     .btn-main { margin-top: 50px; }
     .hero-video-container { opacity: 1; }
