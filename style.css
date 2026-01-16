@@ -310,11 +310,9 @@ section {
     color: #666;
     margin: 0;
 }
-/* ▼▼▼ 修正：矢印は消す（タイムラインと重複するため） ▼▼▼ */
 .flow-arrow {
-    display: none;
+    display: none; /* 矢印は消す */
 }
-/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
 /* === Alone === */
 #alone {
@@ -356,7 +354,7 @@ section {
     width: 100%;
 }
 
-/* --- Company Info --- */
+/* === Company Info === */
 .company-info-area {
     max-width: 1000px;
     margin: 0 auto;
@@ -548,23 +546,29 @@ footer {
 
 /* === レスポンシブ対応 (スマホ・タブレット) === */
 @media (max-width: 768px) {
-    #splash-logo { transform: translate3d(-50%, -50%, 0) scale(1.5); }
+    /* ▼▼▼ スマホのロゴサイズ：1.5倍に設定 ▼▼▼ */
+    #splash-logo { 
+        transform: translate3d(-50%, -50%, 0) scale(1.5); 
+    }
+    /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
     /* --- ヒーローエリア --- */
     .hero {
-        text-align: center; /* 中央に戻す */
+        text-align: left; /* スマホでは左揃え */
     }
     .hero-content { 
         padding: 40px 20px; 
-        text-align: center; /* 中央に戻す */
+        /* h1とボタンは親の設定（center）を引き継いで中央のまま */
     }
+    
+    .hero-content p {
+        text-align: left; 
+        display: inline-block; 
+    }
+    
     .hero h1 { 
         font-size: 1.8rem; 
         margin-bottom: 30px; 
-    }
-    .hero-content p {
-        text-align: left; /* 文章だけ左揃え */
-        display: inline-block; 
     }
     
     /* 改行の切り替え設定 */
@@ -586,7 +590,7 @@ footer {
     .pc-nav a { color: var(--text-color); border-bottom: none; }
     .pc-nav a:hover { color: var(--primary-color); }
 
-    /* --- Flow (スマホ版修正) --- */
+    /* Flow スマホ対応 */
     .flow-container::before { left: 20px; }
     .flow-step { flex-direction: column; align-items: flex-start; margin-bottom: 40px; padding-left: 50px; }
     .flow-step::after { left: 20px; top: 25px; }
@@ -611,7 +615,7 @@ footer {
     .company-map img { display: block; margin: 0 auto; }
 }
 
-/* === オープニングアニメーション === */
+/* === オープニングアニメーション (ブレ防止設定込み) === */
 #opening-splash {
     position: fixed; 
     top: 0; left: 0; width: 100%; 
@@ -619,12 +623,18 @@ footer {
     height: 100dvh;
     background-color: var(--primary-color); 
     z-index: 9999;
+    
+    /* ▼▼▼ ブレ防止のためのGPU設定 ▼▼▼ */
+    transform: translate3d(-50%, -50%, 0) scale(1.5); 
     transition: background-color 0.8s ease 0.5s, visibility 0s linear 1.5s;  
 }
 #splash-logo {
     position: absolute; 
     top: 50%; left: 50%;
+    
+    /* ▼▼▼ PC初期サイズ：5.0倍（スマホはmedia queryで上書き） ▼▼▼ */
     transform: translate3d(-50%, -50%, 0) scale(5.0);
+    
     color: var(--white); 
     font-weight: 700; 
     font-size: 1.5rem; 
@@ -635,6 +645,7 @@ footer {
     opacity: 0; 
     animation: logoAppear 2.0s ease forwards;
     
+    /* ▼▼▼ ブレ防止の強力な設定 ▼▼▼ */
     will-change: transform, top, left, opacity;
     backface-visibility: hidden;
     
@@ -650,6 +661,8 @@ body.start-animation #opening-splash {
     background-color: transparent; 
     pointer-events: none; 
     visibility: hidden; }
+
+/* アニメーション終了時の位置（3Dで指定） */
 body.start-animation #splash-logo { 
     top: 35px; 
     left: 5%; 
