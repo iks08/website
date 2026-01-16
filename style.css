@@ -130,7 +130,7 @@ header {
 
     /* all を避け、transformだけ遷移 */
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    
+
   -webkit-transform: translateZ(0); /* iOS向け：合成レイヤー固定 */
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
@@ -620,13 +620,16 @@ footer {
 
     /* スプラッシュ：スマホは最初の拡大率を下げる + 最終位置をpx固定（ブレ低減） */
     #splash-logo{
-        transform: translate3d(50vw, 50vh, 0) translate3d(-50%, -50%, 0) scale(1.5);
-    }
-    body.start-animation #splash-logo{
-        /* vwが端末でブレる場合があるためpx固定 */
-        transform: translate3d(20px, 35px, 0) translate3d(0, -50%, 0) scale(1.0);
-    }
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0) scale(1.5);
+  }
 
+  body.start-animation #splash-logo{
+    left: 20px;
+    top: 35px;
+    transform: translate3d(0, -50%, 0) scale(1.0);
+  }
     .hero { text-align: left; }
     .hero-content {
         padding: 40px 20px;
