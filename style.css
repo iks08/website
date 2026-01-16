@@ -476,7 +476,11 @@ section {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border: 1px solid #eee;
 }
-
+.license-no {
+    font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", monospace;
+    text-align: right;
+    width: 240px;
+}
 /* === Contact (フォーム) === */
 .contact-form {
     max-width: 600px;
