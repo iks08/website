@@ -104,55 +104,38 @@ header {
     transition: background-color 0.8s ease 0.5s, visibility 0s linear 1.5s;  
 }
 
-#splash-logo {
-    position: absolute; 
-    top: 50%; left: 50%;
-    
-    /* PCの初期サイズ：5.0倍 */
-    transform: translate3d(-50%, -50%, 0) scale(5.0);
-    
-    color: var(--white); 
-    font-weight: 700; 
-    font-size: 1.5rem; 
-    white-space: nowrap;
-    font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-    
-    opacity: 0; 
-    animation: logoAppear 2.0s ease forwards;
-    
-    /* ブレ防止設定 */
-    will-change: transform, top, left, opacity;
-    backface-visibility: hidden;
-    
-    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+/* ▼ 修正：top/leftを動かさず、transformだけで「中央→左上」へ移動 ▼ */
+#splash-logo{
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* 初期：画面中央（50vw, 50vh）に配置して、要素自身の中央に合わせる */
+  transform: translate3d(50vw, 50vh, 0) translate3d(-50%, -50%, 0) scale(5.0);
+
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.5rem;
+  white-space: nowrap;
+  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+
+  opacity: 0;
+  animation: logoAppear 2.0s ease forwards;
+
+  /* ブレ防止 */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+
+  /* ★ all はやめる：transform/opacity だけ遷移 */
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-@keyframes logoAppear { 
-    0% { opacity: 0; } 
-    100% { opacity: 1; } 
+/* 終了：左上(5%)、縦位置35pxへ（Yは-50%でテキストの中央合わせ） */
+body.start-animation #splash-logo{
+  transform: translate3d(5vw, 35px, 0) translate3d(0, -50%, 0) scale(1.0);
 }
 
-body.start-animation #opening-splash { 
-    background-color: transparent; 
-    pointer-events: none; 
-    visibility: hidden; 
-}
-
-/* アニメーション終了時の位置 */
-body.start-animation #splash-logo { 
-    top: 35px; 
-    left: 5%; 
-    transform: translate3d(0, -50%, 0) scale(1.0); 
-}
-
-.logo.hide-initial { 
-    opacity: 0; 
-    transition: opacity 0.1s ease 0.8s; 
-}
-body.start-animation .logo.hide-initial { 
-    opacity: 1; 
-}
-/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
 
 /* === ヒーローエリア === */
@@ -476,24 +459,45 @@ section {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border: 1px solid #eee;
 }
-.company-details dd.license {
-  display: flex;
+/* 許認可：ddの中で2行を作る（dlのgridを壊さない） */
+.company-details dd.license-list{
+  margin: 0;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 5px;
+
+  /* ★ここが重要：中身の幅に合わせて縮める（無駄な空白を消す） */
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  justify-self: start; /* dl が grid のため念のため */
+}
+
+.company-details dd.license-list .license-row{
+  display: grid;
+
+  /* ★数字カラムを固定→左端も右端も揃う */
+  grid-template-columns: 1fr 12ch;
+
+  /* ★ここで「間」を調整 */
+  column-gap: 10px;
+
   align-items: baseline;
-  gap: 16px;
 }
 
-.company-details dd.license .license-name{
-  flex: 1;
-  min-width: 0;
+.company-details dd.license-list .license-num{
+  text-align: right;                  /* 右端揃え */
+  white-space: nowrap;               /* 改行させない */
+  font-variant-numeric: tabular-nums;/* 数字幅を揃える */
+}
+.company-details dd.license-list{
+  width: fit-content;
+  max-width: 100%;
 }
 
-.license-num{
-  display:inline-flex;      /* 1行のまま */
-  justify-content:flex-end; /* 末尾揃え */
-  gap: .5em;                /* 4桁と6桁の間隔統一 */
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+.company-details dd.license-list .license-name{
+  min-width: 0; /* 長文時にレイアウト破綻しにくくする */
 }
+
 
 
 /* === Contact (フォーム) === */
