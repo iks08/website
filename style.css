@@ -476,37 +476,24 @@ section {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border: 1px solid #eee;
 }
-/* 許認可：ddの中で2行を作る（dlのgridを壊さない） */
-.company-details dd.license-list{
-  margin: 0;
-  border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 5px;
-
-  /* ★ここが重要：中身の幅に合わせて縮める（無駄な空白を消す） */
-  display: inline-block;
-  width: fit-content;
-  max-width: 100%;
-  justify-self: start; /* dl が grid のため念のため */
-}
-
-.company-details dd.license-list .license-row{
-  display: grid;
-
-  /* ★数字カラムを固定→左端も右端も揃う */
-  grid-template-columns: 1fr 12ch;
-
-  /* ★ここで「間」を調整 */
-  column-gap: 10px;
-
+.company-details dd.license {
+  display: flex;
   align-items: baseline;
+  gap: 16px;
 }
 
-.company-details dd.license-list .license-num{
-  text-align: right;                  /* 右端揃え */
-  white-space: nowrap;               /* 改行させない */
-  font-variant-numeric: tabular-nums;/* 数字幅を揃える */
+.company-details dd.license .license-name{
+  flex: 1;
+  min-width: 0;
 }
 
+.license-num{
+  display:inline-flex;      /* 1行のまま */
+  justify-content:flex-end; /* 末尾揃え */
+  gap: .5em;                /* 4桁と6桁の間隔統一 */
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 
 
 /* === Contact (フォーム) === */
