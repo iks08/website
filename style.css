@@ -126,6 +126,9 @@ header {
     padding: 60px 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    
+    /* 基本（PC）はすべて中央揃え */
+    text-align: center;
 }
 
 .hero-content h1 {
@@ -146,7 +149,12 @@ header {
     margin-bottom: 10px;
     margin-top: 0;
     text-shadow: none;
+    
+    /* PCでは中央揃え */
+    text-align: center;
+    display: block;
 }
+
 
 .btn-main {
     background-color: var(--primary-color);
@@ -534,11 +542,10 @@ footer {
 
 .pc-br { display: block; }
 .sp-br { display: none; }
+
 /* === レスポンシブ対応 (スマホ・タブレット) === */
 @media (max-width: 768px) {
     #splash-logo { transform: translate(-50%, -50%) scale(2.5); }
-    .pc-br { display: none; }
-    .sp-br { display: block; }
 
     /* ▼▼▼ スマホのヒーローセクション調整 ▼▼▼ */
     .hero {
@@ -546,15 +553,23 @@ footer {
     }
     .hero-content { 
         padding: 40px 20px; 
-        text-align: left; /* 中身も左揃え */
+        /* h1とボタンは親の設定（center）を引き継いで中央のまま */
     }
+    
+    .hero-content p {
+        /* スマホだけ文章を左揃えにする */
+        text-align: left; 
+        /* 文章の「塊」としては画面中央に居座るようにする */
+        display: inline-block; 
+    }
+    
     .hero h1 { 
         font-size: 1.8rem; 
         margin-bottom: 30px; 
     }
-    .hero-content p {
-        text-align: left; /* 文章も左揃え */
-    }
+    
+    .pc-br { display: none; }
+    .sp-br { display: block; }
     /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
     .btn-main { margin-top: 50px; }
