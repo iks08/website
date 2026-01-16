@@ -484,16 +484,16 @@ section {
 }
 
 .company-details dd.license-list .license-row{
-  display: grid;
-  grid-template-columns: auto 12ch; /* 数字側固定で右端が揃う */
-  column-gap: 10px;
+  display: inline-grid;              /* ← gridではなく inline-grid */
+  grid-template-columns: auto auto;  /* 左も右も必要最小幅 */
+  column-gap: 12px;                  /* 好みで調整 */
   align-items: baseline;
 }
 
 .company-details dd.license-list .license-num{
-  text-align: right;                  /* 右端揃え */
-  white-space: nowrap;               /* 折り返さない */
-  font-variant-numeric: tabular-nums;/* 数字幅を揃える */
+  text-align: left;                  /* 右寄せをやめる */
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 /* === Contact (フォーム) === */
