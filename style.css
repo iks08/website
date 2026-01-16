@@ -532,10 +532,14 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+.pc-br { display: block; }
+.sp-br { display: none; }
 /* === レスポンシブ対応 (スマホ・タブレット) === */
 @media (max-width: 768px) {
     #splash-logo { transform: translate(-50%, -50%) scale(2.5); }
-    
+    .pc-br { display: none; }
+    .sp-br { display: block; }
+
     /* ▼▼▼ スマホのヒーローセクション調整 ▼▼▼ */
     .hero {
         text-align: left; /* スマホでは左揃え */
