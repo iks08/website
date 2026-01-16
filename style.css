@@ -130,6 +130,15 @@ header {
 
     /* all を避け、transformだけ遷移 */
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    
+  -webkit-transform: translateZ(0); /* iOS向け：合成レイヤー固定 */
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  /* 文字のにじみ/揺れ対策（効く端末が多い） */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
 }
 
 @keyframes logoAppear {
