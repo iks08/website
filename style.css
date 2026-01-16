@@ -130,7 +130,7 @@ header {
     padding: 60px 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    text-align: center; /* コンテンツ内も中央揃え */
+    text-align: center;
 }
 
 .hero-content h1 {
@@ -310,16 +310,13 @@ section {
     color: #666;
     margin: 0;
 }
+/* ▼▼▼ 修正：矢印は消す（タイムラインと重複するため） ▼▼▼ */
 .flow-arrow {
-    width: 30px;
-    height: 30px;
-    border-bottom: 5px solid #888;
-    border-right: 5px solid #888;
-    transform: rotate(45deg);
-    margin: 30px auto;
+    display: none;
 }
+/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
-/* === Alone (画像) === */
+/* === Alone === */
 #alone {
     padding: 60px 0;
     text-align: center;
@@ -351,7 +348,7 @@ section {
 .about-text p {
     font-size: 1.1rem;
     line-height: 1.9;
-    margin-bottom: 10px; /* 箇条書きも見やすく */
+    margin-bottom: 10px;
 }
 .about-img img {
     border-radius: 10px;
@@ -359,7 +356,7 @@ section {
     width: 100%;
 }
 
-/* === Company Info === */
+/* --- Company Info --- */
 .company-info-area {
     max-width: 1000px;
     margin: 0 auto;
@@ -481,7 +478,6 @@ footer {
     margin-bottom: 5px;
     letter-spacing: 0.05em;
     color: #fff;
-    /* 社名だけは標準フォント */
     font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
 
@@ -556,11 +552,11 @@ footer {
 
     /* --- ヒーローエリア --- */
     .hero {
-        text-align: center; /* 修正: 中央に戻す */
+        text-align: center; /* 中央に戻す */
     }
     .hero-content { 
         padding: 40px 20px; 
-        text-align: center; /* 修正: 中央に戻す */
+        text-align: center; /* 中央に戻す */
     }
     .hero h1 { 
         font-size: 1.8rem; 
@@ -590,6 +586,7 @@ footer {
     .pc-nav a { color: var(--text-color); border-bottom: none; }
     .pc-nav a:hover { color: var(--primary-color); }
 
+    /* --- Flow (スマホ版修正) --- */
     .flow-container::before { left: 20px; }
     .flow-step { flex-direction: column; align-items: flex-start; margin-bottom: 40px; padding-left: 50px; }
     .flow-step::after { left: 20px; top: 25px; }
@@ -610,7 +607,6 @@ footer {
     .divider { display: none; }
     .tel-number { font-size: 1.2rem; }
     
-    /* マップのスマホ中央揃え */
     .company-map { text-align: center; margin-top: 20px; }
     .company-map img { display: block; margin: 0 auto; }
 }
@@ -623,7 +619,7 @@ footer {
     height: 100dvh;
     background-color: var(--primary-color); 
     z-index: 9999;
-    transform: translate3d(-50%, -50%, 0) scale(1.5); 
+    transition: background-color 0.8s ease 0.5s, visibility 0s linear 1.5s;  
 }
 #splash-logo {
     position: absolute; 
