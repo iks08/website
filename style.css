@@ -104,38 +104,55 @@ header {
     transition: background-color 0.8s ease 0.5s, visibility 0s linear 1.5s;  
 }
 
-/* ▼ 修正：top/leftを動かさず、transformだけで「中央→左上」へ移動 ▼ */
-#splash-logo{
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  /* 初期：画面中央（50vw, 50vh）に配置して、要素自身の中央に合わせる */
-  transform: translate3d(50vw, 50vh, 0) translate3d(-50%, -50%, 0) scale(5.0);
-
-  color: var(--white);
-  font-weight: 700;
-  font-size: 1.5rem;
-  white-space: nowrap;
-  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-
-  opacity: 0;
-  animation: logoAppear 2.0s ease forwards;
-
-  /* ブレ防止 */
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
-
-  /* ★ all はやめる：transform/opacity だけ遷移 */
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+#splash-logo {
+    position: absolute; 
+    top: 50%; left: 50%;
+    
+    /* PCの初期サイズ：5.0倍 */
+    transform: translate3d(-50%, -50%, 0) scale(5.0);
+    
+    color: var(--white); 
+    font-weight: 700; 
+    font-size: 1.5rem; 
+    white-space: nowrap;
+    font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    
+    opacity: 0; 
+    animation: logoAppear 2.0s ease forwards;
+    
+    /* ブレ防止設定 */
+    will-change: transform, top, left, opacity;
+    backface-visibility: hidden;
+    
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* 終了：左上(5%)、縦位置35pxへ（Yは-50%でテキストの中央合わせ） */
-body.start-animation #splash-logo{
-  transform: translate3d(5vw, 35px, 0) translate3d(0, -50%, 0) scale(1.0);
+@keyframes logoAppear { 
+    0% { opacity: 0; } 
+    100% { opacity: 1; } 
 }
 
+body.start-animation #opening-splash { 
+    background-color: transparent; 
+    pointer-events: none; 
+    visibility: hidden; 
+}
+
+/* アニメーション終了時の位置 */
+body.start-animation #splash-logo { 
+    top: 35px; 
+    left: 5%; 
+    transform: translate3d(0, -50%, 0) scale(1.0); 
+}
+
+.logo.hide-initial { 
+    opacity: 0; 
+    transition: opacity 0.1s ease 0.8s; 
+}
+body.start-animation .logo.hide-initial { 
+    opacity: 1; 
+}
+/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
 
 /* === ヒーローエリア === */
