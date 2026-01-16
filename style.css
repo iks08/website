@@ -485,8 +485,8 @@ section {
 
 .company-details dd.license-list .license-row{
   display: grid;
-  grid-template-columns: 1fr 12ch; /* 数字側固定で右端が揃う */
-  column-gap: 20px;
+  grid-template-columns: auto 12ch; /* 数字側固定で右端が揃う */
+  column-gap: 10px;
   align-items: baseline;
 }
 
