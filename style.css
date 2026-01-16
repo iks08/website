@@ -476,11 +476,25 @@ section {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border: 1px solid #eee;
 }
-.license-no {
-    font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", monospace;
-    text-align: right;
-    width: 240px;
+.company-details dd.license {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
 }
+
+.company-details dd.license .license-name{
+  flex: 1;
+  min-width: 0;
+}
+
+.company-details dd.license .license-num{
+  margin-left: auto;               /* 右側に固定 */
+  white-space: nowrap;             /* 数字は折り返さない */
+  text-align: left;                /* 数字ブロック内は左揃え（あなたの要件） */
+  font-variant-numeric: tabular-nums;
+}
+
+
 /* === Contact (フォーム) === */
 .contact-form {
     max-width: 600px;
