@@ -607,6 +607,12 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+/* === 許認可の文字揃え（左揃えにする設定） === */
+.license-text {
+    text-align: left;      /* 文字を左に揃える */
+    display: inline-block; /* 文字の長さに合わせて箱を作る */
+}
+
 /* ========================================= */
 /* === レスポンシブ対応 (スマホ・タブレット) === */
 /* ========================================= */
@@ -675,4 +681,12 @@ footer {
     
     .company-map { text-align: center; margin-top: 20px; }
     .company-map img { display: block; margin: 0 auto; }
+
+    .company-details dd.license-text {
+        /* 親要素(dd)に対してインラインブロック化することで、
+           スマホの「全体中央揃え」の中で「文字だけ左揃え」が実現します */
+        display: inline-block;
+        text-align: left;
+        width: auto; /* 幅をなりゆきにする */
+    }
 }
