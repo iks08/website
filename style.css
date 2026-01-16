@@ -677,4 +677,18 @@ footer {
 
     .company-map { text-align: center; margin-top: 20px; }
     .company-map img { display: block; margin: 0 auto; }
+
+    /* PCでヒーロー本文とボタンが横並びになるのを防ぐ */
+.hero-content p{
+  display: block;          /* ← inline-block をやめる */
+  max-width: 42em;         /* 読みやすい行幅（好みで調整） */
+  margin: 0 auto 10px;     /* 中央に寄せたブロックのまま */
+  text-align: left;        /* 文章は左揃え */
+}
+
+.btn-main{
+  display: inline-block;   /* ボタン自体はそのまま */
+  margin-top: 30px;        /* pの下に落ちた後の余白（好みで調整） */
+}
+
 }
