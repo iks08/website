@@ -739,19 +739,20 @@ footer {
 .pc-br { display: block; }
 .sp-br { display: none; }
 
-/* スマホの時だけ切り替える設定 */
 /* === レスポンシブ対応 (スマホ・タブレット) === */
 @media (max-width: 768px) {
+    
+    /* --- オープニングロゴ --- */
     #splash-logo { transform: translate(-50%, -50%) scale(2.5); }
+
+    /* --- ヒーローエリア --- */
     .hero-content { padding: 40px 20px; }
-    .hero-content p { text-align: justify; } 
     .hero h1 { font-size: 1.8rem; margin-bottom: 30px; }
     .btn-main { margin-top: 50px; }
     .hero-video-container { opacity: 1; }
+    
+    /* --- メニュー --- */
     .menu-btn { display: block; }
-
-    .pc-br { display: none; }   /* スマホでは改行無効 */
-    .sp-br { display: block; }  /* スマホでは改行有効 */
     .pc-nav {
         position: fixed;
         top: 70px; right: -100%; width: 70%; height: calc(100vh - 70px);
@@ -763,48 +764,57 @@ footer {
     .pc-nav a { color: var(--text-color); border-bottom: none; }
     .pc-nav a:hover { color: var(--primary-color); }
 
-    .flow-step { flex-direction: column; gap: 15px; text-align: center; }
-    .step-title { width: 100%; text-align: center; font-size: 1.6rem; }
-    .step-desc { width: 100%; text-align: center; font-size: 1rem; }
-    .flow-arrow { width: 20px; height: 20px; margin: 25px auto; border-width: 4px; }
-    .about-grid { grid-template-columns: 1fr; }
+    /* --- Flow（ここを修正！） --- */
+    /* 縦線を左端に移動 */
+    .flow-container::before {
+        left: 20px; 
+    }
     
+    .flow-step {
+        flex-direction: column; /* 縦並び */
+        align-items: flex-start; /* 左揃え */
+        margin-bottom: 40px;
+        padding-left: 50px; /* 左側に線が入るスペースを空ける */
+        position: relative;
+    }
+
+    /* 丸ポチの位置を左端に合わせる */
+    .flow-step::after {
+        left: 20px;
+        top: 25px; /* タイトルの横に来るように微調整 */
+    }
+
+    /* ヘッダー（番号とタイトル） */
+    .step-header {
+        width: 100%;
+        text-align: left; /* 左揃え */
+        margin-bottom: 10px;
+    }
+
+    /* 説明文 */
+    .step-body {
+        width: 100%;
+        text-align: left; /* 左揃え */
+    }
+    
+    .step-name {
+        font-size: 1.4rem;
+    }
+    /* -------------------------- */
+
+    /* --- About --- */
+    .about-grid { grid-template-columns: 1fr; }
     .alone-container img { width: 90%; }
 
-    /* ▼▼▼ 会社情報もスマホでは縦積みに戻す ▼▼▼ */
-    .company-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    .company-details dl {
-        grid-template-columns: 1fr; /* 項目名と内容も縦積み */
-        gap: 5px;
-    }
-    .company-details dt {
-        border-bottom: none;
-        margin-top: 15px;
-    }
-    /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
+    /* --- Company & Footer --- */
+    .company-grid { grid-template-columns: 1fr; gap: 30px; }
+    .company-details dl { grid-template-columns: 1fr; gap: 5px; }
+    .company-details dt { border-bottom: none; margin-top: 15px; }
 
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .footer-logo-area, .footer-contact-area {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px; 
-    }
-    .contact-row {
-        justify-content: center;
-        flex-direction: column;
-        gap: 5px;
-    }
-    .footer-address {
-        font-size: 0.85rem;
-        line-height: 1.5;
-        width: 100%;
-    }
+    .footer-container { flex-direction: column; text-align: center; }
+    .footer-logo-area, .footer-contact-area { width: 100%; text-align: center; margin-bottom: 20px; }
+    .contact-row { justify-content: center; flex-direction: column; gap: 5px; }
+    .footer-address { font-size: 0.85rem; line-height: 1.5; width: 100%; }
     .divider { display: none; }
     .tel-number { font-size: 1.2rem; }
 }
