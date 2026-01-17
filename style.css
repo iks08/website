@@ -481,27 +481,35 @@ section {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border: 1px solid #eee;
 }
+/* 許認可：2行を「左：名称」「右：番号」で“揃えて”かつ“離れすぎない” */
 .company-details dd.license-list{
   margin: 0;
   border-bottom: 1px solid #f0f0f0;
   padding-bottom: 5px;
-  width: 100%;
+
+  /* ← 右端に飛びすぎ防止（ここが肝） */
+  max-width: 720px;
 }
 
 .company-details dd.license-list .license-row{
   display: grid;
-  grid-template-columns: auto auto;   /* ← 左右とも内容幅にする */
-  column-gap: 24px;                  /* ← 適度な間隔 */
+
+  /* ← 数字列を固定幅にして、2行の右端を必ず揃える */
+  grid-template-columns: 1fr 12ch;
+
+  column-gap: 24px;
   align-items: baseline;
-  justify-content: start;            /* ← 左寄せ */
+
+  /* ddの中で横いっぱいにしない（＝右端に飛ばない） */
+  width: 100%;
 }
 
-
-.company-details dd.license-list .license-num{           /* ← 右揃え */
+.company-details dd.license-list .license-num{
+  text-align: right;                  /* ← 右端揃え */
   white-space: nowrap;
-  font-variant-numeric: tabular-nums; /* ← 桁幅を揃える */
-  color: #555;
+  font-variant-numeric: tabular-nums; /* ← 数字の見た目も安定 */
 }
+
 
 
 /* === Contact (フォーム) === */
