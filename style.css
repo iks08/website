@@ -687,7 +687,10 @@ footer {
     .btn-main { margin-top: 50px; }
     .hero-video-container { opacity: 1; }
     .menu-btn { display: block; }
-
+    .section-title h2 {
+        size:1.8rem;
+    }
+    
     .pc-nav {
         position: fixed;
         top: 70px; right: -100%; width: 70%; height: calc(100vh - 70px);
