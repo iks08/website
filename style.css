@@ -220,6 +220,7 @@ body.start-animation .logo.hide-initial {
     text-align: center;       /* 既存の意図維持 */
     letter-spacing: 0.05em;
     line-height: 2.1;   /* ← 追加（PCはゆったり） */
+    font-size: 1.15rem; 
 }
 
 .btn-main {
