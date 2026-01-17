@@ -217,7 +217,7 @@ body.start-animation .logo.hide-initial {
 .hero-content p{
     display: block;         /* ← これが重要 */
     margin: 0 auto 10px;    /* 既存の余白と整合 */
-    text-align: left;       /* 既存の意図維持 */
+    text-align: center;       /* 既存の意図維持 */
 }
 
 .btn-main {
@@ -650,7 +650,7 @@ footer {
         text-align: center;
     }
     .hero-content p {
-        text-align: left;
+        text-align: center;
         display: block;        /* ← ここも block に */
     }
     .hero h1 { font-size: 1.8rem; margin-bottom: 30px; }
