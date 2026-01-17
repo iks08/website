@@ -672,7 +672,7 @@ footer {
     .sp-br { display: block; }
 
     .section-title h2 {
-        font-size: 1.4rem !important;   /* ←必要なら 1.1rem / 1.0rem に下げてOK */
+        font-size: 1.6rem !important;   /* ←必要なら 1.1rem / 1.0rem に下げてOK */
         line-height: 1.25 !important;
         letter-spacing: 0.03em;
         white-space: nowrap;            /* 「か？」だけ改行されるのを防止 */
