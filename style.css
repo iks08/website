@@ -671,9 +671,11 @@ footer {
     .pc-br { display: none; }
     .sp-br { display: block; }
 
-    /* === タスク①：スマホは現状の半分（2rem → 1rem） === */
     .section-title h2 {
-        font-size: 1rem;
+        font-size: 1.2rem !important;   /* ←必要なら 1.1rem / 1.0rem に下げてOK */
+        line-height: 1.25 !important;
+        letter-spacing: 0.03em;
+        white-space: nowrap;            /* 「か？」だけ改行されるのを防止 */
     }
 
     .btn-main { margin-top: 50px; }
