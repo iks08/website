@@ -481,20 +481,32 @@ section {
   margin: 0;
   border-bottom: 1px solid #f0f0f0;
   padding-bottom: 5px;
+
+  /* ★ここが重要：中身の幅に合わせて縮める（無駄な空白を消す） */
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  justify-self: start; /* dl が grid のため念のため */
 }
 
-/* 行ごとに「事業名 + 数字」を詰める */
 .company-details dd.license-list .license-row{
-  display: inline-flex;   /* ← inline-gridより安全 */
-  gap: 12px;              /* ここで間隔調整 */
+  display: grid;
+
+  /* ★数字カラムを固定→左端も右端も揃う */
+  grid-template-columns: 1fr 12ch;
+
+  /* ★ここで「間」を調整 */
+  column-gap: 10px;
+
   align-items: baseline;
 }
 
-/* 数字は1塊、折り返し禁止 */
 .company-details dd.license-list .license-num{
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
+  text-align: right;                  /* 右端揃え */
+  white-space: nowrap;               /* 改行させない */
+  font-variant-numeric: tabular-nums;/* 数字幅を揃える */
 }
+
 
 
 /* === Contact (フォーム) === */
