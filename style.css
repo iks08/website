@@ -218,6 +218,8 @@ body.start-animation .logo.hide-initial {
     display: block;         /* ← これが重要 */
     margin: 0 auto 10px;    /* 既存の余白と整合 */
     text-align: center;       /* 既存の意図維持 */
+    letter-spacing: 0.05em;
+    line-height: 2.1;   /* ← 追加（PCはゆったり） */
 }
 
 .btn-main {
