@@ -506,6 +506,14 @@ section {
   white-space: nowrap;               /* 改行させない */
   font-variant-numeric: tabular-nums;/* 数字幅を揃える */
 }
+.company-details dd.license-list{
+  width: fit-content;
+  max-width: 100%;
+}
+
+.company-details dd.license-list .license-name{
+  min-width: 0; /* 長文時にレイアウト破綻しにくくする */
+}
 
 
 
