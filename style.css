@@ -14,15 +14,20 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
+    /* 本文は標準フォント */
     font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
     margin: 0;
     padding: 0;
     color: var(--text-color);
     background-color: var(--white);
     line-height: 1.8;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -55,6 +60,7 @@ header {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--white);
+    /* ロゴだけは標準フォント */
     font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
 .logo a {
@@ -77,12 +83,84 @@ header {
     border-bottom: 2px solid var(--white);
 }
 
-.menu-btn {
-    display: none;
-    cursor: pointer;
+/* === タスク②：PCのみ ヘッダー右側メニュー文字を 1.5倍 === */
+@media (min-width: 769px) {
+    .pc-nav a {
+        font-size: 1.5rem;
+    }
+}
+
+.menu-btn { 
+    display: none; 
+    cursor: pointer; 
     font-size: 1.5rem;
     color: var(--white);
 }
+
+/* === オープニングアニメーション（PC用基本設定） === */
+/* ▼▼▼ ここに移動しました ▼▼▼ */
+#opening-splash {
+    position: fixed; 
+    top: 0; left: 0; width: 100%; 
+    height: 100vh;
+    height: 100dvh;
+    background-color: var(--primary-color); 
+    z-index: 9999;
+    /* ブレ防止設定 */
+    transform: translate3d(0, 0, 0); 
+    transition: background-color 0.8s ease 0.5s, visibility 0s linear 1.5s;  
+}
+
+#splash-logo {
+    position: absolute; 
+    top: 50%; left: 50%;
+    
+    /* PCの初期サイズ：5.0倍 */
+    transform: translate3d(-50%, -50%, 0) scale(5.0);
+    
+    color: var(--white); 
+    font-weight: 700; 
+    font-size: 1.5rem; 
+    white-space: nowrap;
+    font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    
+    opacity: 0; 
+    animation: logoAppear 2.0s ease forwards;
+    
+    /* ブレ防止設定 */
+    will-change: transform, top, left, opacity;
+    backface-visibility: hidden;
+    
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes logoAppear { 
+    0% { opacity: 0; } 
+    100% { opacity: 1; } 
+}
+
+body.start-animation #opening-splash { 
+    background-color: transparent; 
+    pointer-events: none; 
+    visibility: hidden; 
+}
+
+/* アニメーション終了時の位置 */
+body.start-animation #splash-logo { 
+    top: 35px; 
+    left: 5%; 
+    transform: translate3d(0, -50%, 0) scale(1.0); 
+}
+
+.logo.hide-initial { 
+    opacity: 0; 
+    transition: opacity 0.1s ease 0.8s; 
+}
+body.start-animation .logo.hide-initial { 
+    opacity: 1; 
+}
+/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
+
 
 /* === ヒーローエリア === */
 .hero {
@@ -92,7 +170,7 @@ header {
     align-items: center;
     justify-content: center;
     position: relative;
-    text-align: center;
+    text-align: center; /* PCは中央揃え */
     padding-top: 70px;
 }
 
@@ -102,7 +180,7 @@ header {
     z-index: 0;
     overflow: hidden;
     opacity: 1;
-    background-color: #0000;
+    background-color: #000000;
 }
 .hero-video-container video {
     width: 100%;
@@ -120,10 +198,11 @@ header {
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.85); 
     padding: 60px 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
 }
 
 .hero-content h1 {
@@ -132,18 +211,20 @@ header {
     line-height: 1.4;
     letter-spacing: 0.1em;
     margin-bottom: 40px;
-    text-shadow: none;
+    text-shadow: none; 
 }
 
 .hero-content p {
     font-size: 1.1rem;
     line-height: 2.0;
     font-weight: 500;
-    color: #555;
+    color: #555; 
     letter-spacing: 0.1em;
     margin-bottom: 10px;
     margin-top: 0;
     text-shadow: none;
+    text-align: left;
+    display: inline-block;
 }
 
 .btn-main {
@@ -155,14 +236,7 @@ header {
     transition: var(--transition);
     display: inline-block;
     box-shadow: 0 5px 15px rgba(46, 134, 222, 0.4);
-    margin-top: 60px;
-}
-
-/* 重要：ヒーロー内ボタンは必ず段落の下に配置 */
-.hero-content .btn-main{
-    display: block;
-    width: fit-content;
-    margin: 60px auto 0;
+    margin-top: 60px; 
 }
 .btn-main:hover {
     background-color: var(--accent-color);
@@ -181,7 +255,7 @@ section {
     margin-bottom: 50px;
 }
 .section-title h2 {
-    /* タスク①：PCは2倍（現状2rem→4rem） */
+    /* === タスク①：PCは2倍（現状2rem → 4rem） === */
     font-size: 4rem;
     color: var(--primary-color);
     margin-bottom: 10px;
@@ -202,7 +276,7 @@ section {
     transform: translateY(0);
 }
 
-/* === Services (画像の崩れを修正) === */
+/* === Services === */
 .services-bg { background-color: var(--bg-color); }
 .services-grid {
     display: grid;
@@ -223,6 +297,7 @@ section {
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     border-bottom: 4px solid var(--primary-color);
 }
+
 .service-card img {
     width: 100%;
     max-width: 100%;
@@ -231,6 +306,7 @@ section {
     margin: 0 auto 20px;
     display: block;
 }
+
 .service-card h3 {
     font-size: 1.2rem;
     margin: 0;
@@ -238,7 +314,7 @@ section {
     font-weight: 700;
 }
 
-/* === Flow (上質タイムラインデザイン) === */
+/* === Flow (タイムライン風) === */
 .flow-container {
     width: 100%;
     max-width: 800px;
@@ -250,8 +326,7 @@ section {
 .flow-container::before {
     content: '';
     position: absolute;
-    top: 20px;
-    bottom: 20px;
+    top: 20px; bottom: 20px;
     left: 50%;
     width: 1px;
     background: #ccc;
@@ -269,11 +344,9 @@ section {
 .flow-step::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
+    width: 12px; height: 12px;
     background-color: var(--primary-color);
     border: 4px solid #fff;
     border-radius: 50%;
@@ -309,20 +382,29 @@ section {
     margin: 0;
 }
 .flow-arrow {
-    width: 30px;
-    height: 30px;
-    border-bottom: 5px solid #888;
-    border-right: 5px solid #888;
-    transform: rotate(45deg);
-    margin: 30px auto;
+    display: none;
+}
+
+/* === Alone === */
+#alone {
+    padding: 60px 0;
+    text-align: center;
+}
+.alone-container img {
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 20px;
 }
 
 /* === About === */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    max-width: 900px;
-    gap: 40px;
+    max-width: 900px; 
+    gap: 40px; 
     align-items: center;
     margin: 0 auto 60px;
 }
@@ -341,8 +423,6 @@ section {
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     width: 100%;
-    height: auto;
-    object-fit: cover;
 }
 
 /* === Company Info === */
@@ -370,9 +450,10 @@ section {
     letter-spacing: 2px;
     font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
+
 .company-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1fr; 
     gap: 40px;
     align-items: center;
 }
@@ -394,16 +475,33 @@ section {
     border-bottom: 1px solid #f0f0f0;
     padding-bottom: 5px;
 }
-.company-map {
-    text-align: center;
-}
+.company-map { text-align: center; }
 .company-map img {
     width: 100%;
-    max-width: 300px;
+    max-width: 300px; 
     height: auto;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     border: 1px solid #eee;
+}
+/* 許認可：ddの中で2行を作る（dlのgridを壊さない） */
+.company-details dd.license-list{
+  margin: 0;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 5px;
+}
+
+.company-details dd.license-list .license-row{
+  display: inline-grid;              /* ← gridではなく inline-grid */
+  grid-template-columns: auto auto;  /* 左も右も必要最小幅 */
+  column-gap: 12px;                  /* 好みで調整 */
+  align-items: baseline;
+}
+
+.company-details dd.license-list .license-num{
+  text-align: left;                  /* 右寄せをやめる */
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 /* === Contact (フォーム) === */
@@ -445,6 +543,7 @@ footer {
     padding-top: 30px;
     font-size: 0.9rem;
 }
+
 .footer-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -454,23 +553,28 @@ footer {
     align-items: center;
     flex-wrap: wrap;
 }
+
 .footer-logo-area {
     text-align: left;
     width: 45%;
-    margin-bottom: 0;
+    margin-bottom: 0; 
 }
+
 .footer-logo-area h3 {
-    font-size: 1.6rem;
+    font-size: 1.6rem; 
     font-weight: 700;
     margin-bottom: 5px;
     letter-spacing: 0.05em;
     color: #fff;
+    font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
+
 .footer-address {
     font-size: 0.95rem;
     opacity: 0.9;
     margin: 0;
 }
+
 .footer-contact-area {
     width: 50%;
     text-align: left;
@@ -479,6 +583,7 @@ footer {
     padding-bottom: 10px;
     margin-bottom: 0;
 }
+
 .contact-row {
     margin: 5px 0;
     display: flex;
@@ -487,14 +592,16 @@ footer {
     flex-wrap: wrap;
     gap: 15px;
 }
+
 .contact-label {
     background-color: rgba(255,255,255,0.2);
-    padding: 1px 6px;
+    padding: 1px 6px; 
     border-radius: 3px;
     font-size: 0.75rem;
     font-weight: bold;
     letter-spacing: 0.05em;
 }
+
 .tel-number {
     font-size: 1.2rem;
     font-weight: bold;
@@ -506,6 +613,7 @@ footer {
     font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
 .divider { margin: 0 8px; opacity: 0.5; }
+
 .footer-contact-area a {
     color: #fff;
     text-decoration: none;
@@ -515,6 +623,7 @@ footer {
     opacity: 0.7;
     text-decoration: underline;
 }
+
 .copyright {
     width: 100%;
     text-align: center;
@@ -525,23 +634,48 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-/* === タスク②：PCのみ ヘッダー右メニュー文字を1.5倍 === */
-@media (min-width: 769px) {
-    .pc-nav a {
-        font-size: 1.5rem;
-    }
+/* === 許認可の文字揃え（左揃えにする設定） === */
+.license-text {
+    text-align: left;      /* 文字を左に揃える */
+    display: inline-block; /* 文字の長さに合わせて箱を作る */
 }
 
+/* ========================================= */
 /* === レスポンシブ対応 (スマホ・タブレット) === */
+/* ========================================= */
 @media (max-width: 768px) {
-    /* === 改行の制御 (スマホ) === */
+    /* ▼▼▼ 修正：スマホのロゴサイズ (1.5倍) とブレ防止 ▼▼▼ */
+    #splash-logo { 
+        transform: translate3d(-50%, -50%, 0) scale(1.5); 
+    }
+    
+    /* アニメーション終了時の位置（スマホ用） */
+    body.start-animation #splash-logo { 
+        top: 35px; 
+        left: 5%; 
+        transform: translate3d(0, -50%, 0) scale(1.0); 
+    }
+    /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
+
+    .hero { text-align: left; }
+    .hero-content { 
+        padding: 40px 20px; 
+        text-align: center; 
+    }
+    .hero-content p {
+        text-align: left; 
+        display: inline-block; 
+    }
+    .hero h1 { font-size: 1.8rem; margin-bottom: 30px; }
+    
     .pc-br { display: none; }
     .sp-br { display: block; }
 
-    #splash-logo { transform: translate(-50%, -50%) scale(2.5); }
+    /* === タスク①：スマホは現状の半分（2rem → 1rem） === */
+    .section-title h2 {
+        font-size: 1rem;
+    }
 
-    .hero-content { padding: 40px 20px; }
-    .hero h1 { font-size: 1.8rem; margin-bottom: 30px; }
     .btn-main { margin-top: 50px; }
     .hero-video-container { opacity: 1; }
     .menu-btn { display: block; }
@@ -557,53 +691,40 @@ footer {
     .pc-nav a { color: var(--text-color); border-bottom: none; }
     .pc-nav a:hover { color: var(--primary-color); }
 
-    /* タスク①：スマホは現状の半分（2rem→1rem） */
-    .section-title h2 {
-        font-size: 1rem;
-    }
-
-    .flow-step { flex-direction: column; gap: 15px; text-align: center; }
-    .step-title { width: 100%; text-align: center; font-size: 1.6rem; }
-    .step-desc { width: 100%; text-align: center; font-size: 1rem; }
-    .flow-arrow { width: 20px; height: 20px; margin: 25px auto; border-width: 4px; }
+    .flow-container::before { left: 20px; }
+    .flow-step { flex-direction: column; align-items: flex-start; margin-bottom: 40px; padding-left: 50px; }
+    .flow-step::after { left: 20px; top: 25px; }
+    .step-header, .step-body { width: 100%; text-align: left; }
+    .step-name { font-size: 1.4rem; }
 
     .about-grid { grid-template-columns: 1fr; }
-
     .alone-container img { width: 90%; }
 
-    /* 会社情報：スマホでは縦積み */
-    .company-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    .company-details dl {
-        grid-template-columns: 1fr;
-        gap: 5px;
-    }
-    .company-details dt {
-        border-bottom: none;
-        margin-top: 15px;
-    }
+    .company-grid { grid-template-columns: 1fr; gap: 30px; }
+    .company-details dl { grid-template-columns: 1fr; gap: 5px; }
+    .company-details dt { border-bottom: none; margin-top: 15px; }
 
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .footer-logo-area, .footer-contact-area {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .contact-row {
-        justify-content: center;
-        flex-direction: column;
-        gap: 5px;
-    }
-    .footer-address {
-        font-size: 0.85rem;
-        line-height: 1.5;
-        width: 100%;
-    }
+    .footer-container { flex-direction: column; text-align: center; }
+    .footer-logo-area, .footer-contact-area { width: 100%; text-align: center; margin-bottom: 20px; }
+    .contact-row { justify-content: center; flex-direction: column; gap: 5px; }
+    .footer-address { font-size: 0.85rem; line-height: 1.5; width: 100%; }
     .divider { display: none; }
     .tel-number { font-size: 1.2rem; }
+    
+    .company-map { text-align: center; margin-top: 20px; }
+    .company-map img { display: block; margin: 0 auto; }
+
+    .company-details dd.license-text {
+        /* 親要素(dd)に対してインラインブロック化することで、
+           スマホの「全体中央揃え」の中で「文字だけ左揃え」が実現します */
+        display: inline-block;
+        text-align: left;
+        width: auto; /* 幅をなりゆきにする */
+    }
+    /* === 許認可（数字）を右揃えにする設定 === */
+    .company-details dd.license-text {
+    text-align: right !important; /* 強制的に右揃え */
+    display: block !important;    /* 横幅いっぱいに広げる */
+    width: 100%;
+}
 }
