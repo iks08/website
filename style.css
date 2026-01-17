@@ -483,19 +483,18 @@ section {
   padding-bottom: 5px;
 }
 
-/* 行ごとに「事業名 + 数字」を詰める */
 .company-details dd.license-list .license-row{
-  display: inline-flex;   /* ← inline-gridより安全 */
-  gap: 12px;              /* ここで間隔調整 */
+  display: inline-grid;              /* ← gridではなく inline-grid */
+  grid-template-columns: auto auto;  /* 左も右も必要最小幅 */
+  column-gap: 12px;                  /* 好みで調整 */
   align-items: baseline;
 }
 
-/* 数字は1塊、折り返し禁止 */
 .company-details dd.license-list .license-num{
+  text-align: left;                  /* 右寄せをやめる */
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-
 
 /* === Contact (フォーム) === */
 .contact-form {
