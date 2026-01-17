@@ -644,38 +644,36 @@ footer {
 /* === レスポンシブ対応 (スマホ・タブレット) === */
 /* ========================================= */
 @media (max-width: 768px) {
-    /* ▼▼▼ 修正：スマホのロゴサイズ (1.5倍) とブレ防止 ▼▼▼ */
-    #splash-logo { 
-        transform: translate3d(-50%, -50%, 0) scale(1.5); 
+    /* オープニングロゴ（スマホ） */
+    #splash-logo {
+        transform: translate3d(-50%, -50%, 0) scale(1.5);
     }
-    
-    /* アニメーション終了時の位置（スマホ用） */
-    body.start-animation #splash-logo { 
-        top: 35px; 
-        left: 5%; 
-        transform: translate3d(0, -50%, 0) scale(1.0); 
+    body.start-animation #splash-logo {
+        top: 35px;
+        left: 5%;
+        transform: translate3d(0, -50%, 0) scale(1.0);
     }
-    /* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */
 
     .hero { text-align: left; }
-    .hero-content { 
-        padding: 40px 20px; 
-        text-align: center; 
+    .hero-content {
+        padding: 40px 20px;
+        text-align: center;
     }
     .hero-content p {
-        text-align: left; 
-        display: inline-block; 
+        text-align: left;
+        display: inline-block;
     }
     .hero h1 { font-size: 1.8rem; margin-bottom: 30px; }
-    
+
     .pc-br { display: none; }
     .sp-br { display: block; }
 
+    /* ★ スマホのセクション見出し（ここだけ触れば調整完了） */
     .section-title h2 {
-        font-size: 1.6rem !important;   
-        line-height: 1.3 !important;
+        font-size: 1.8rem;
+        line-height: 1.3;
         letter-spacing: 0.03em;
-        white-space: nowrap;            /* 「か？」だけ改行されるのを防止 */
+        white-space: nowrap;
     }
 
     .btn-main { margin-top: 50px; }
@@ -684,8 +682,12 @@ footer {
 
     .pc-nav {
         position: fixed;
-        top: 70px; right: -100%; width: 70%; height: calc(100vh - 70px);
-        background: var(--white); transition: 0.4s;
+        top: 70px;
+        right: -100%;
+        width: 70%;
+        height: calc(100vh - 70px);
+        background: var(--white);
+        transition: 0.4s;
         box-shadow: -2px 0 10px rgba(0,0,0,0.1);
     }
     .pc-nav.active { right: 0; }
@@ -694,7 +696,12 @@ footer {
     .pc-nav a:hover { color: var(--primary-color); }
 
     .flow-container::before { left: 20px; }
-    .flow-step { flex-direction: column; align-items: flex-start; margin-bottom: 40px; padding-left: 50px; }
+    .flow-step {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 40px;
+        padding-left: 50px;
+    }
     .flow-step::after { left: 20px; top: 25px; }
     .step-header, .step-body { width: 100%; text-align: left; }
     .step-name { font-size: 1.4rem; }
@@ -706,38 +713,24 @@ footer {
     .company-details dl { grid-template-columns: 1fr; gap: 5px; }
     .company-details dt { border-bottom: none; margin-top: 15px; }
 
+    /* 許認可（スマホ）：右揃えに統一 */
+    .company-details dd.license-text {
+        text-align: right;
+        display: block;
+        width: 100%;
+    }
+
     .footer-container { flex-direction: column; text-align: center; }
-    .footer-logo-area, .footer-contact-area { width: 100%; text-align: center; margin-bottom: 20px; }
+    .footer-logo-area, .footer-contact-area {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
     .contact-row { justify-content: center; flex-direction: column; gap: 5px; }
     .footer-address { font-size: 0.85rem; line-height: 1.5; width: 100%; }
     .divider { display: none; }
     .tel-number { font-size: 1.2rem; }
-    
+
     .company-map { text-align: center; margin-top: 20px; }
     .company-map img { display: block; margin: 0 auto; }
-
-    .company-details dd.license-text {
-        /* 親要素(dd)に対してインラインブロック化することで、
-           スマホの「全体中央揃え」の中で「文字だけ左揃え」が実現します */
-        display: inline-block;
-        text-align: left;
-        width: auto; /* 幅をなりゆきにする */
-    }
-    /* === 許認可（数字）を右揃えにする設定 === */
-    .company-details dd.license-text {
-    text-align: right !important; /* 強制的に右揃え */
-    display: block !important;    /* 横幅いっぱいに広げる */
-    width: 100%;
-}
-}
-/* ================================
-   スマホ用 セクションタイトル最終調整
-================================ */
-@media screen and (max-width: 768px) {
-  .section-title h2 {
-    font-size: 1.8rem !important;   /* ← 見出しとして十分な大きさ */
-    line-height: 1.3 !important;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
-  }
 }
