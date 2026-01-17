@@ -497,10 +497,10 @@ section {
 }
 
 
-.company-details dd.license-list .license-num{
-  text-align: right;                  /* ← 右揃え */
+.company-details dd.license-list .license-num{           /* ← 右揃え */
   white-space: nowrap;
   font-variant-numeric: tabular-nums; /* ← 桁幅を揃える */
+  color: #555;
 }
 
 
