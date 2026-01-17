@@ -248,7 +248,7 @@ section {
     margin-bottom: 50px;
 }
 .section-title h2 {
-    font-size: 5rem;
+    font-size: 2rem;
     color: var(--primary-color);
     margin-bottom: 10px;
 }
@@ -687,10 +687,7 @@ footer {
     .btn-main { margin-top: 50px; }
     .hero-video-container { opacity: 1; }
     .menu-btn { display: block; }
-    .section-title h2 {
-        font-size: 2rem;
-    }
-    
+
     .pc-nav {
         position: fixed;
         top: 70px; right: -100%; width: 70%; height: calc(100vh - 70px);
