@@ -776,3 +776,25 @@ footer {
 
 /* DEBUG（確認後に消してOK） */
 #menu-toggle{ background: yellow !important; }
+/* IK-HAMBURGER-20260118-MARK */
+
+#menu-toggle{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 64px !important;
+  height: 64px !important;
+  padding: 0 !important;
+
+  font-size: 48px !important;
+  line-height: 1 !important;
+
+  font-family: system-ui, -apple-system, "Segoe UI Symbol", "Apple Color Emoji", sans-serif !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  outline: none !important;
+  color: #fff !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
