@@ -770,3 +770,5 @@ footer {
   .company-map { text-align: center; margin-top: 20px; }
   .company-map img { display: block; margin: 0 auto; }
 }
+.menu-btn { outline: 3px solid lime !important; }
+
