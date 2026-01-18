@@ -229,17 +229,17 @@ body.start-animation .logo.hide-initial {
   text-align: center;
   letter-spacing: 0.05em;
   line-height: 2.1; /* PCはゆったり */
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 
 .btn-main {
-  font-size: 1.1rem;      /* 文字を大きく */
-  letter-spacing: 0.08em; /* 詰まり解消 */
-  line-height: 1.2;       /* 行の安定 */
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
   padding: 16px 44px;
+
   background-color: var(--primary-color);
   color: var(--white);
-  padding: 15px 40px;
   border-radius: 50px;
   font-weight: bold;
   transition: var(--transition);
@@ -514,19 +514,20 @@ section {
     max-width: 380px; /* 距離が離れすぎないように制限 */
   }
 
-  .company-details dd.license-list .license-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 12ch; /* 番号列固定＝2行の右端揃えを担保 */
-    column-gap: 8px; /* 距離を詰める */
-    align-items: baseline;
-    width: 100%;
-  }
+}
 
-  .company-details dd.license-list .license-num {
-    text-align: right;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
+.company-details dd.license-list .license-row {
+display: grid;
+grid-template-columns: minmax(0, 1fr) 12ch; /* 番号列固定＝2行の右端揃えを担保 */
+column-gap: 8px; /* 距離を詰める */
+align-items: baseline;
+width: 100%;
+}
+
+.company-details dd.license-list .license-num {
+text-align: right;
+white-space: nowrap;
+font-variant-numeric: tabular-nums;
 }
 
 /* === Contact (フォーム) === */
