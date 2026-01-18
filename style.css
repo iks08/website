@@ -816,5 +816,40 @@ footer {
     outline: none !important;
     box-shadow: none !important;
   }
+  /* === 最終上書き：スマホのハンバーガーを確実に大きくする（赤枠も消す） === */
+@media (max-width: 768px) {
+  #menu-toggle.menu-btn{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 60px !important;
+    height: 60px !important;
+    padding: 0 !important;
+
+    font-size: 3.6rem !important;   /* ← ここが文字サイズの本体 */
+    line-height: 1 !important;
+
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+
+    -webkit-tap-highlight-color: transparent !important; /* iOSの赤系ハイライト対策 */
+  }
+
+  #menu-toggle.menu-btn:focus,
+  #menu-toggle.menu-btn:focus-visible{
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* 中身の描画が別要素でも潰す */
+  #menu-toggle.menu-btn,
+  #menu-toggle.menu-btn *{
+    font-size: inherit !important;
+    line-height: 1 !important;
+  }
+}
+
 }
 
