@@ -57,7 +57,7 @@ header {
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--white);
   /* ロゴだけは標準フォント */
@@ -92,7 +92,7 @@ header {
 /* === タスク②：PCのみ ヘッダー右側メニュー文字を 1.5倍（既存仕様） === */
 @media (min-width: 769px) {
   .pc-nav a {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 }
 
@@ -233,6 +233,10 @@ body.start-animation .logo.hide-initial {
 }
 
 .btn-main {
+  font-size: 1.1rem;      /* 文字を大きく */
+  letter-spacing: 0.08em; /* 詰まり解消 */
+  line-height: 1.2;       /* 行の安定 */
+  padding: 16px 44px;
   background-color: var(--primary-color);
   color: var(--white);
   padding: 15px 40px;
