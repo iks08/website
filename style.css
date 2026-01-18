@@ -507,13 +507,13 @@ section {
 /* PCのみ：右に飛びすぎ防止（距離調整） */
 @media (min-width: 769px) {
   .company-details dd.license-list {
-    max-width: 520px; /* 距離が離れすぎないように制限 */
+    max-width: 380px; /* 距離が離れすぎないように制限 */
   }
 
   .company-details dd.license-list .license-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 12ch; /* 番号列固定＝2行の右端揃えを担保 */
-    column-gap: 14px; /* 距離を詰める */
+    column-gap: 8px; /* 距離を詰める */
     align-items: baseline;
     width: 100%;
   }
