@@ -704,10 +704,21 @@ footer {
 
   .btn-main { margin-top: 50px; }
   .hero-video-container { opacity: 1; }
-  .menu-btn { display: block; 
-  font-size: 2.2rem;     /* 今より大きく */
-  padding: 10px 14px;   /* タップしやすく */}
+  .menu-btn { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    font-size: 2.8rem;     /* ← 2.2 → 2.8 にUP */
+    width: 54px;           /* ← タップ領域（大きく見える） */
+    height: 54px;
+    padding: 0;            /* ← width/heightで管理するので0 */
+    line-height: 1;        /* ← 文字の上下ズレ防止 */
+
+    cursor: pointer;
+    color: var(--white);
+    font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  }
   .pc-nav {
     position: fixed;
     top: 70px;
