@@ -718,6 +718,8 @@ footer {
     cursor: pointer;
     color: var(--white);
     font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    outline: 3px solid red;
+    background: rgba(255,0,0,0.15);
   }
   .pc-nav {
     position: fixed;
