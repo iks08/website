@@ -704,19 +704,22 @@ footer {
 
   .btn-main { margin-top: 50px; }
   .hero-video-container { opacity: 1; }
-.menu-btn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .menu-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  width: 56px;     /* 64→56：枠を少しだけ自然に */
-  height: 56px;
-  padding: 0;
-  line-height: 1;
+    width: 56px;
+    height: 56px;
+    padding: 0;
 
-  font-size: 3.4rem; /* ≡ を少しだけ強く */
-}
+    font-size: 3.4rem;
+    line-height: 1;
 
+    background: transparent;
+    border: 0;
+    outline: none;
+  }
 /* 中の要素で描画されていても確実に反映 */
 .menu-btn,
 .menu-btn *{
