@@ -773,4 +773,48 @@ footer {
   .company-map { text-align: center; margin-top: 20px; }
   .company-map img { display: block; margin: 0 auto; }
 }
+/* === Mobile hamburger: size FIX (final override) === */
+@media (max-width: 768px) {
+  .menu-btn{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 64px !important;
+    height: 64px !important;
+    padding: 0 !important;
+
+    font-size: 3.6rem !important;   /* ← ここが“見た目の大きさ” */
+    line-height: 1 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    color: var(--white) !important;
+
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 中身が文字 / span / i / svg / 疑似要素でも確実に同じサイズにする */
+  .menu-btn,
+  .menu-btn * ,
+  .menu-btn::before,
+  .menu-btn::after{
+    font-size: inherit !important;
+    line-height: 1 !important;
+  }
+
+  /* 中身がSVGアイコンの場合のサイズ固定 */
+  .menu-btn svg{
+    width: 1em !important;
+    height: 1em !important;
+    display: block !important;
+  }
+
+  /* iOSのフォーカス枠（枠線が出る/出ない）対策 */
+  .menu-btn:focus,
+  .menu-btn:focus-visible{
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
 
