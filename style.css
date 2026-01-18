@@ -704,7 +704,9 @@ footer {
 
   .btn-main { margin-top: 50px; }
   .hero-video-container { opacity: 1; }
-  .menu-btn { display: block; }
+  .menu-btn { display: block; 
+  font-size: 2.2rem;     /* 今より大きく */
+  padding: 10px 14px;   /* タップしやすく */}
 
   .pc-nav {
     position: fixed;
