@@ -212,7 +212,6 @@
             <h3 class="company-title">Company Info</h3>
             <span class="company-subtitle">会社概要</span>
         </div>
-        <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ -->
         
         <div class="company-grid">
             <!-- 左側：会社情報リスト -->
@@ -253,102 +252,101 @@
             </div>
         </div>
     </div>
-    <!-- ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ -->
 
 </section>
+
 <!-- フォーム部分 -->
-    <section id="contact" class="fade-in">
-        <div class="section-title">
-            <h2>CONTACT</h2>
-            <span>お問い合わせ</span>
+<section id="contact" class="fade-in">
+    <div class="section-title">
+        <h2>CONTACT</h2>
+        <span>お問い合わせ</span>
+    </div>
+    <form class="contact-form" action="https://formspree.io/f/xbddrwlj" method="POST">
+        <div class="form-group">
+            <label>お名前</label>
+            <input type="text" name="name" placeholder="例：山田 太郎" required>
         </div>
-        <!-- ▼ actionのURLはご自身のFormspreeのものに書き換えてください ▼ -->
-        <form class="contact-form" action="https://formspree.io/f/xbddrwlj" method="POST">
-            <div class="form-group">
-                <label>お名前</label>
-                <input type="text" name="name" placeholder="例：山田 太郎" required>
-            </div>
-            <div class="form-group">
-                <label>電話番号</label>
-                <input type="tel" name="phone" placeholder="例：090-1234-5678">
-            </div>
-            <div class="form-group">
-                <label>メールアドレス</label>
-                <input type="email" name="email" placeholder="例：example@mail.com" required>
-            </div>
-            <div class="form-group">
-                <label>お問い合わせ内容</label>
-                <textarea name="message" rows="5" placeholder="ご質問やご相談内容をご記入ください" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">送信する</button>
-        </form>
-    </section>
-
-    <!-- フッター -->
-    <footer>
-        <div class="footer-container">
-            <!-- 1. ロゴ・住所エリア -->
-            <div class="footer-logo-area">
-                <h3>株式会社iK</h3>
-                <p class="footer-address">
-                    〒802-0831 北九州市小倉南区八重洲町11-20 2階
-                </p>
-            </div>
-
-            <!-- 2. 連絡先エリア -->
-            <div class="footer-contact-area">
-                <div class="contact-row">
-                    <span class="contact-label">TEL</span>
-                    <a href="tel:093-383-1327" class="tel-number">093-383-1327</a>
-                    <span class="divider">/</span>
-                    <span class="contact-label">FAX</span>
-                    <span class="fax-number">093-383-1328</span>
-                </div>
-                <div class="contact-row">
-                    <span class="contact-label">Mail</span>
-                    <a href="mailto:iks.080101.iks@gmail.com">iks.080101.iks@gmail.com</a>
-                </div>
-            </div>
-
-            <!-- 3. コピーライト -->
-            <p class="copyright">&copy; 2026 株式会社iK All Rights Reserved.</p>
+        <div class="form-group">
+            <label>電話番号</label>
+            <input type="tel" name="phone" placeholder="例：090-1234-5678">
         </div>
-    </footer>
+        <div class="form-group">
+            <label>メールアドレス</label>
+            <input type="email" name="email" placeholder="例：example@mail.com" required>
+        </div>
+        <div class="form-group">
+            <label>お問い合わせ内容</label>
+            <textarea name="message" rows="5" placeholder="ご質問やご相談内容をご記入ください" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">送信する</button>
+    </form>
+</section>
 
-    <!-- JavaScript -->
-    <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.body.classList.add('start-animation');
-            }, 3000);
+<!-- フッター -->
+<footer>
+    <div class="footer-container">
+        <!-- 1. ロゴ・住所エリア -->
+        <div class="footer-logo-area">
+            <h3>株式会社iK</h3>
+            <p class="footer-address">
+                〒802-0831 北九州市小倉南区八重洲町11-20 2階
+            </p>
+        </div>
+
+        <!-- 2. 連絡先エリア -->
+        <div class="footer-contact-area">
+            <div class="contact-row">
+                <span class="contact-label">TEL</span>
+                <a href="tel:093-383-1327" class="tel-number">093-383-1327</a>
+                <span class="divider">/</span>
+                <span class="contact-label">FAX</span>
+                <span class="fax-number">093-383-1328</span>
+            </div>
+            <div class="contact-row">
+                <span class="contact-label">Mail</span>
+                <a href="mailto:iks.080101.iks@gmail.com">iks.080101.iks@gmail.com</a>
+            </div>
+        </div>
+
+        <!-- 3. コピーライト -->
+        <p class="copyright">&copy; 2026 株式会社iK All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.body.classList.add('start-animation');
+        }, 3000);
+    });
+
+    const menuBtn = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        menuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+    });
+
+    document.querySelectorAll('.pc-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuBtn.textContent = '☰';
         });
+    });
 
-        const menuBtn = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            menuBtn.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
         });
+    }, { threshold: 0.1 });
 
-        document.querySelectorAll('.pc-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuBtn.textContent = '☰';
-            });
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(section => {
-            observer.observe(section);
-        });
-    </script>
+    document.querySelectorAll('.fade-in').forEach(section => {
+        observer.observe(section);
+    });
+</script>
 </body>
 </html>
