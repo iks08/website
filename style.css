@@ -174,8 +174,6 @@ header {
   box-shadow: 0 5px 15px rgba(46, 134, 222, 0.3);
 }
 
-/* === 共通セクション（※正規版は末尾の統一ブロックに集約するため、ここでは定義しない） === */
-
 /* セクションタイトル */
 .section-title {
   text-align: center;
@@ -533,7 +531,6 @@ footer {
 /* PCでは表示しない */
 @media (min-width: 769px) {
   #menu-toggle { display: none !important; }
-  #splash-mark { width: 180px !important; }
 }
 
 /* スマホのみ表示＆描画 */
@@ -677,34 +674,36 @@ footer {
 /* =========================
    OPENING (A) - FINAL FIX
 ========================= */
-
 #opening-splash{
   position: fixed !important;
   inset: 0 !important;
   width: 100% !important;
+
   height: 100vh !important;
   height: 100dvh !important;
-  background: #f4f6f8 !important; /* ややグレー寄りの白 */
+
+  background: #f4f6f8 !important;
   z-index: 9999 !important;
-  display: grid !important;
-  place-items: center !important;
-  text-align: center !important;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
-  gap: 4px;      /* まず 4px に合わせる（実測gapに整合） */
-  row-gap: 4px;  /* 念のため同値 */
+
+  text-align: center !important;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+
+  gap: 4px !important;
+  row-gap: 4px !important;
 }
 
 #splash-mark{
   width: clamp(120px, 12vw, 180px) !important;
   height: auto;
   display: block;
-  margin: 0px !important; 
+  margin: 0 !important;
 }
 
 #splash-logo{
@@ -714,23 +713,25 @@ footer {
   right: auto !important;
   bottom: auto !important;
   transform: none !important;
+
   margin-top: 0 !important;
   padding: 0 !important;
+
   color: var(--primary-color) !important;
   font-weight: 700 !important;
-  letter-spacing: 0.06em !important;
+
   white-space: nowrap !important;
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif !important;
 
-  /* 体感2倍：ここだけ触ればOK */
   font-size: clamp(2.0rem, 5vw, 7.0rem) !important;
 
   opacity: 0;
   animation: splashFadeIn 0.8s ease forwards;
+
   display: block !important;
-  line-height: 1.05 !important;      /* ←ここが本丸 */
-  letter-spacing: 0.02em !important; /* ←開きすぎを抑える */
-  margin: 0 !important;              /* 念のため上下余白ゼロ */
+  line-height: 1.05 !important;
+  letter-spacing: 0.02em !important;
+  margin: 0 !important;
 }
 
 @keyframes splashFadeIn{
@@ -745,28 +746,27 @@ body.start-animation #opening-splash{
 }
 
 /* =========================================================
-   Section Spacing - Unified (PC/SP)  ※正規版：sectionはここだけ
+   Section Spacing - Unified (PC/SP)
+   ※Heroを除外（ヒーロー背景縮小事故防止）
 ========================================================= */
-section {
-  padding: 40px 5% 90px;   /* PC基準 */
+section:not(.hero) {
+  padding: 40px 5% 90px;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
-  section {
-    padding: 28px 5% 70px; /* SP基準 */
+  section:not(.hero) {
+    padding: 28px 5% 70px;
   }
 }
 
 /* =========================================================
    OVERRIDE PACK (2026-01-19)
-   1) Hamburger 0.8x + position tweak
-   2) Hero top space reduced on SP (button visible)
-   3) Services cards: remove "clickable" motion
 ========================================================= */
 
-/* 1) ハンバーガーを0.8倍（#menu-toggle）＋右寄せ（0.5cmがちょうどよかった） */
+/* 1) ハンバーガーを0.8倍＋右寄せ */
 @media (max-width: 768px) {
   #menu-toggle {
     transform: scale(0.8) translateX(5mm);
@@ -774,21 +774,15 @@ section {
   }
 }
 
-/* 3) Services：カードのhoverモーションを消して「押せそう感」を消す */
-#services .service-card {
-  cursor: default !important;
-}
-#services .service-card img {
-  cursor: default !important;
-}
+/* 3) Services：押せそう感を消す */
+#services .service-card { cursor: default !important; }
+#services .service-card img { cursor: default !important; }
 #services .service-card:hover {
   transform: none !important;
   box-shadow: none !important;
   border-bottom: 4px solid transparent !important;
 }
-#services .service-card img {
-  transition: none !important;
-}
+#services .service-card img { transition: none !important; }
 
 /* =========================================================
    To Top Button
@@ -811,20 +805,14 @@ section {
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
-/* 表示状態 */
 #to-top.visible {
   opacity: 1;
   pointer-events: auto;
 }
-
-/* ホバー効果 */
 #to-top:hover {
   background: var(--accent-color);
   transform: translateY(-4px);
 }
-
-/* スマホ調整 */
 @media (max-width: 768px) {
   #to-top {
     right: 16px;
@@ -837,8 +825,6 @@ section {
 
 /* =========================================================
    SP HERO - FINAL (unified)
-   目的：実機Safari/ChromeとPCスマホ幅の差を抑え、上下背景差を安定化
-   方針：heroはヘッダー下から開始 / 高さは1系統に統一
 ========================================================= */
 @media (max-width: 768px) {
   .hero {
@@ -922,7 +908,6 @@ html, body {
   gap: 20px;
   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
-
 .header-tel {
   color: #fff;
   font-weight: bold;
@@ -930,10 +915,9 @@ html, body {
   letter-spacing: 0.05em;
   white-space: nowrap;
 }
-
 .header-tel:hover { opacity: 0.8; }
 
-/* スマホでは非表示（電話はフッター導線を利用） */
+/* スマホでは非表示 */
 @media (max-width: 768px) {
   .header-contact { display: none; }
 }
@@ -953,84 +937,14 @@ html, body {
 .footer-address a:hover {
   text-decoration: underline;
 }
-/* DEBUG: css-loaded-check */
-body { outline: 10px solid red !important; }
-
-@media (min-width: 769px) {
-  #splash-mark { width: 80px !important; }
-}
-/* =========================================================
-   FINAL FIX PACK (2026-01-19)
-   目的：
-   1) ヒーローは常にフル幅
-   2) section共通余白はヒーローを除外
-   3) opening gapは4pxに統一
-========================================================= */
-
-
-/* =========================
-   1. HEROは常にフル幅固定
-========================= */
-
-.hero {
-  width: 100vw !important;
-  max-width: none !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
 
 /* =========================================================
-   2. Section統一レイアウト（Hero除外）
-   ※ 既存の section { ... } は無効化される
+   OPENING ロゴサイズ確定（PC 180px）
+   ※「#menu-toggleのPCブロック」に混ぜない（影響範囲を狭める）
 ========================================================= */
-
-/* PC */
-section:not(.hero) {
-  padding: 40px 5% 90px;
-  max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-/* SP */
-@media (max-width: 768px) {
-  section:not(.hero) {
-    padding: 28px 5% 70px;
-  }
-}
-
-
-/* =========================================================
-   3. OPENING gap 最終確定（4px）
-========================================================= */
-
-#opening-splash{
-  gap: 4px !important;
-  row-gap: 4px !important;
-}
-
-#splash-mark{
-  margin-bottom: 0 !important;
-}
-
-
-/* =========================================================
-   4. ロゴサイズPC確認用（必要な場合のみ有効化）
-   ※ 確認後は削除してOK
-========================================================= */
-
-/*
-@media (min-width: 769px) {
-  #splash-mark { width: 80px !important; }
-}
-*/
 @media (min-width: 769px) {
   #opening-splash #splash-mark{
     width: 180px !important;
     height: auto !important;
   }
 }
-
