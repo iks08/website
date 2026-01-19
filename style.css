@@ -175,7 +175,7 @@ header {
 
 /* === 共通セクション === */
 section {
-  padding: 80px 5%;
+  padding: 40px 5% 80px;  /* 上40 / 左右5% / 下80 */
   max-width: 1200px;
   margin: 0 auto;
 }
