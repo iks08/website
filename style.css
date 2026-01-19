@@ -1047,3 +1047,11 @@ html, body {
   scroll-margin-top: -50px;
 }
 
+.footer-address a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-address a:hover {
+  text-decoration: underline;
+}
