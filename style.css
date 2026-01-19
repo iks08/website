@@ -971,12 +971,6 @@ html, body {
     padding: 0 8px;
   }
 
-  .pc-nav .nav-logo-img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    display: block;
-  }
 }
 /* =========================================================
    Header PC: final polish for center logo
@@ -985,8 +979,8 @@ html, body {
 
   /* 中央ロゴを少しだけ大きく */
   .pc-nav .nav-logo-img{
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
   }
 
   /* ロゴに下線やホバー装飾を出さない */
