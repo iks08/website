@@ -979,8 +979,8 @@ html, body {
 
   /* 中央ロゴを少しだけ大きく */
   .pc-nav .nav-logo-img{
-    width: 52px;
-    height: 52px;
+    width: 64px;
+    height: 64px;
   }
 
   /* ロゴに下線やホバー装飾を出さない */
@@ -991,7 +991,7 @@ html, body {
     opacity: 0.9;
     border-bottom: none !important;
   }
-  .pc-nav .nav-logo-img { transform: translateX(-5px); }
+  .pc-nav .nav-logo-img { transform: translateX(-15px); }
 
 }
 
