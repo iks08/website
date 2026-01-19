@@ -771,7 +771,7 @@ section { padding: 20px 5% 60px; }
     margin-top: 24px !important;
   }
   #menu-toggle {
-    transform: scale(0.8) translateX(1cm);
+    transform: scale(0.8) translateX(5mm);
   }
 }
 
