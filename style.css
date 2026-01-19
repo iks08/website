@@ -1044,6 +1044,6 @@ html, body {
 
 /* アンカー先（各セクション）を少し下で止める */
 #services, #flow, #about, #contact {
-  scroll-margin-top: 50px;
+  scroll-margin-top: -50px;
 }
 
