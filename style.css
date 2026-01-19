@@ -1027,3 +1027,18 @@ section:not(.hero) {
   #splash-mark { width: 80px !important; }
 }
 */
+/* DEBUG: Openingを消さずに確認（確認できたら削除してOK） */
+body.start-animation #opening-splash{
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* PCは必ず180px */
+@media (min-width: 769px) {
+  #opening-splash #splash-mark{
+    width: 180px !important;
+    max-width: none !important;
+    height: auto !important;
+  }
+}
