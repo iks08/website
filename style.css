@@ -699,10 +699,10 @@ footer {
 }
 
 #splash-mark{
-  width: 124px;
+  width: clamp(88px, 12vw, 112px) !important;
   height: auto;
   display: block;
-  margin-bottom: -6px !important; /* 詰め量。-4〜-10で調整可能 */
+  margin-bottom: -6px !important;
 }
 
 #splash-logo{
@@ -950,9 +950,4 @@ html, body {
 }
 .footer-address a:hover {
   text-decoration: underline;
-}
-@media (max-width: 768px) {
-  #splash-mark{
-    width: 96px;
-  }
 }
