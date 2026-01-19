@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
   margin: 0;
   padding: 0;
   color: var(--text-color);
@@ -27,6 +27,7 @@ body {
   line-height: 1.8;
   overflow-x: hidden;
   width: 100%;
+  font-feature-settings: "palt" 1;
 }
 
 a { text-decoration: none; color: inherit; }
