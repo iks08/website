@@ -770,6 +770,9 @@ section { padding: 20px 5% 60px; }
   .btn-main {
     margin-top: 24px !important;
   }
+  #menu-toggle {
+    transform: scale(0.8) translateX(1cm);
+  }
 }
 
 /* 3) Services：カードのhoverモーションを消して「押せそう感」を消す */
