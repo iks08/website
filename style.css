@@ -958,3 +958,71 @@ body { outline: 10px solid red !important; }
 @media (min-width: 769px) {
   #splash-mark { width: 80px !important; }
 }
+/* =========================================================
+   FINAL FIX PACK (2026-01-19)
+   目的：
+   1) ヒーローは常にフル幅
+   2) section共通余白はヒーローを除外
+   3) opening gapは4pxに統一
+========================================================= */
+
+
+/* =========================
+   1. HEROは常にフル幅固定
+========================= */
+
+.hero {
+  width: 100vw !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+
+/* =========================================================
+   2. Section統一レイアウト（Hero除外）
+   ※ 既存の section { ... } は無効化される
+========================================================= */
+
+/* PC */
+section:not(.hero) {
+  padding: 40px 5% 90px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* SP */
+@media (max-width: 768px) {
+  section:not(.hero) {
+    padding: 28px 5% 70px;
+  }
+}
+
+
+/* =========================================================
+   3. OPENING gap 最終確定（4px）
+========================================================= */
+
+#opening-splash{
+  gap: 4px !important;
+  row-gap: 4px !important;
+}
+
+#splash-mark{
+  margin-bottom: 0 !important;
+}
+
+
+/* =========================================================
+   4. ロゴサイズPC確認用（必要な場合のみ有効化）
+   ※ 確認後は削除してOK
+========================================================= */
+
+/*
+@media (min-width: 769px) {
+  #splash-mark { width: 80px !important; }
+}
+*/
