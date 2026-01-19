@@ -94,51 +94,6 @@ header {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
 
-/* === オープニングアニメーション === */
-#opening-splash {
-  position: fixed;
-  top: 0; left: 0; width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  background-color: var(--primary-color);
-  z-index: 9999;
-  transform: translate3d(0, 0, 0);
-  transition: background-color 0.8s ease 0.5s, visibility 0s linear 1.5s;
-}
-
-#splash-logo {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate3d(-50%, -50%, 0) scale(5.0);
-  color: var(--white);
-  font-weight: 700;
-  font-size: 1.5rem;
-  white-space: nowrap;
-  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-  opacity: 0;
-  animation: logoAppear 2.0s ease forwards;
-  will-change: transform, top, left, opacity;
-  backface-visibility: hidden;
-  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-@keyframes logoAppear {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-body.start-animation #opening-splash {
-  background-color: transparent;
-  pointer-events: none;
-  visibility: hidden;
-}
-
-body.start-animation #splash-logo {
-  top: 35px;
-  left: 5%;
-  transform: translate3d(0, -50%, 0) scale(1.0);
-}
-
 /* === ヒーロー === */
 .hero {
   height: 100vh;
@@ -663,14 +618,6 @@ footer {
    レスポンシブ（スマホ）
    ========================================= */
 @media (max-width: 768px) {
-
-  /* オープニングロゴ（スマホ） */
-  #splash-logo { transform: translate3d(-50%, -50%, 0) scale(1.5); }
-  body.start-animation #splash-logo {
-    top: 35px; left: 5%;
-    transform: translate3d(0, -50%, 0) scale(1.0);
-  }
-
   /* 改行制御 */
   .pc-br { display: none; }
   .sp-br { display: block; }
@@ -729,65 +676,6 @@ footer {
   .tel-number { font-size: 1.2rem; }
 }
 
-/* =========================
-   OPENING (A): FADE ONLY
-   最も安定：移動・拡大縮小なし
-   ========================= */
-
-#opening-splash{
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  background-color: var(--primary-color);
-  z-index: 9999;
-
-  display: grid;
-  place-items: center;
-
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
-
-  /* 描画安定用 */
-  transform: translate3d(0,0,0);
-}
-
-#splash-logo{
-  color: var(--white);
-  font-weight: 700;
-  font-size: clamp(2.0rem, 4.5vw, 3.2rem);
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-
-  opacity: 0;
-  animation: splashFadeIn 0.8s ease forwards;
-
-  /* 動かさない（重要） */
-  transform: none;
-  will-change: opacity;
-}
-
-@keyframes splashFadeIn{
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* JSが start-animation を付けたら、スプラッシュだけ消す */
-body.start-animation #opening-splash{
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* 旧仕様の「ロゴをヘッダーへ移動」も無効化 */
-body.start-animation #splash-logo{
-  top: auto;
-  left: auto;
-  transform: none;
-}
 /* =========================
    OPENING (A) - FINAL FIX
    目的：中央固定 / 旧CSSの残骸を強制無効化 / サイズ約2倍
