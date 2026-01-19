@@ -1009,3 +1009,33 @@ html, body {
 .footer-contact-area {
   margin-top: 10px;
 }
+/* =========================================================
+   Header Contact CTA
+========================================================= */
+.header-contact {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+}
+
+.header-tel,
+.header-mail {
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.header-tel:hover,
+.header-mail:hover {
+  opacity: 0.8;
+}
+
+/* スマホでは電話を目立たせる */
+@media (max-width: 768px) {
+  .header-contact {
+    display: none; /* SPはハンバーガー内導線に集約（次工程で追加可） */
+  }
+}
