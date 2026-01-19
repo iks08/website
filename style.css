@@ -959,6 +959,6 @@ html, body {
 }
 @media (max-width: 768px) {
   #splash-mark{
-    width: 72px;
+    width: 144px;
   }
 }
