@@ -694,6 +694,25 @@ footer {
   visibility: visible;
   transition: opacity 0.6s ease, visibility 0s linear 0.6s;
 }
+/* =========================
+   Opening Logo Mark
+========================= */
+
+#opening-splash{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 24px;
+}
+
+#splash-mark{
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  animation: splashFadeIn 0.8s ease forwards;
+}
 
 /* 旧CSS（position:absolute / top/left / transform 等）を完全に潰す */
 #splash-logo{
