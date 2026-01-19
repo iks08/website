@@ -73,3 +73,18 @@ toTopBtn.addEventListener('click', () => {
     behavior: 'smooth'
   });
 });
+// ==============================
+// iOS Safari / PC の viewport差を吸収（--vh を実寸で固定）
+// ==============================
+function setVhVar() {
+  const h = (window.visualViewport ? window.visualViewport.height : window.innerHeight);
+  document.documentElement.style.setProperty('--vh', `${h * 0.01}px`);
+}
+
+setVhVar();
+window.addEventListener('resize', setVhVar);
+window.addEventListener('orientationchange', setVhVar);
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', setVhVar);
+  window.visualViewport.addEventListener('scroll', setVhVar);
+}

@@ -859,4 +859,15 @@ section { padding: 20px 5% 60px; }
     object-position: 50% 50% !important;
   }
 }
+/* =========================================================
+   FIX: hero高さを --vh（実寸viewport）基準に統一
+   目的：実機SafariとPCスマホ幅の見え方を揃える
+========================================================= */
+@media (max-width: 768px) {
+  .hero {
+    height: calc(var(--vh, 1vh) * 100 - 70px) !important; /* 70px=固定ヘッダー */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
 
