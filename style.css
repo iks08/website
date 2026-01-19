@@ -1035,3 +1035,33 @@ html, body {
     align-items: center;
   }
 }
+/* =========================================================
+   Header PC: make nav-logo larger and truly centered
+========================================================= */
+@media (min-width: 769px) {
+
+  /* ナビ全体を中央寄せ（ロゴが中央に見えるように） */
+  .pc-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .pc-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* 既存と同程度。必要なら調整 */
+  }
+
+  /* 中央ロゴ（画像）を大きく */
+  .pc-nav .nav-logo-img {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* クリック範囲も少し広げる */
+  .pc-nav .nav-logo a {
+    padding: 0 10px;
+  }
+}
+
