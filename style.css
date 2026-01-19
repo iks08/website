@@ -706,6 +706,12 @@ footer {
   gap: 24px;
 }
 
+#splash-mark{
+  width: 96px;
+  height: auto;
+  display: block;
+}
+
 /* 旧CSS（position:absolute / top/left / transform 等）を完全に潰す */
 #splash-logo{
   position: static !important;
@@ -950,4 +956,9 @@ html, body {
 }
 .footer-address a:hover {
   text-decoration: underline;
+}
+@media (max-width: 768px) {
+  #splash-mark{
+    width: 72px;
+  }
 }
