@@ -695,14 +695,15 @@ footer {
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
-  gap: 0 !important;        /* ←確実に効かせる */
+  gap: 4px;      /* まず 4px に合わせる（実測gapに整合） */
+  row-gap: 4px;  /* 念のため同値 */
 }
 
 #splash-mark{
   width: clamp(88px, 12vw, 112px) !important;
   height: auto;
   display: block;
-  margin-bottom: -10px !important; /* -6pxより強め。-8〜-14で調整 */
+  margin-bottom: 0px !important; 
 }
 
 #splash-logo{
@@ -955,5 +956,5 @@ html, body {
 body { outline: 10px solid red !important; }
 
 @media (min-width: 769px) {
-  #splash-mark { width: 96px !important; }
+  #splash-mark { width: 80px !important; }
 }
