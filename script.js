@@ -1,7 +1,7 @@
 window.addEventListener('load', () => {
     setTimeout(() => {
     document.body.classList.add('start-animation');
-    }, 1800);
+    }, 2200);
 });
 
 const menuBtn = document.getElementById('menu-toggle');
