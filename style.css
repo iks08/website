@@ -939,10 +939,21 @@ html, body {
 /* =========================================================
    Contact Form - Trust Note
 ========================================================= */
+/* フォーム注記：改行崩れ防止 */
 .form-note {
   margin-top: 20px;
   font-size: 0.85rem;
   color: #666;
   line-height: 1.7;
   text-align: center;
+  text-wrap: balance; /* 対応ブラウザでは改行バランスが良くなる */
 }
+
+.form-note-line {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .form-note { font-size: 0.82rem; }
+}
+
