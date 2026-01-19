@@ -48,3 +48,28 @@ window.addEventListener('resize', () => {
     menuBtn.classList.remove('is-open');
   }
 });
+
+// ==============================
+// To Top Button Control
+// ==============================
+const toTopBtn = document.getElementById('to-top');
+const heroSection = document.querySelector('.hero');
+
+// スクロールで表示制御
+window.addEventListener('scroll', () => {
+  const heroBottom = heroSection.getBoundingClientRect().bottom;
+
+  if (heroBottom <= 0) {
+    toTopBtn.classList.add('visible');
+  } else {
+    toTopBtn.classList.remove('visible');
+  }
+});
+
+// クリックでトップへ戻る
+toTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});

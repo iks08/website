@@ -785,3 +785,49 @@ section { padding: 20px 5% 60px; }
   box-shadow: none !important;
   border-bottom: 4px solid transparent !important;
 }
+
+/* =========================================================
+   To Top Button
+========================================================= */
+#to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 表示状態 */
+#to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ホバー効果 */
+#to-top:hover {
+  background: var(--accent-color);
+  transform: translateY(-4px);
+}
+
+/* スマホ調整 */
+@media (max-width: 768px) {
+  #to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+  }
+}
+
