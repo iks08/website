@@ -978,5 +978,30 @@ html, body {
     display: block;
   }
 }
+/* =========================================================
+   Header PC: final polish for center logo
+========================================================= */
+@media (min-width: 769px) {
+
+  /* 中央ロゴを少しだけ大きく */
+  .pc-nav .nav-logo-img{
+    width: 48px;
+    height: 48px;
+  }
+
+  /* ロゴに下線やホバー装飾を出さない */
+  .pc-nav .nav-logo a{
+    border-bottom: none !important;
+  }
+  .pc-nav .nav-logo a:hover{
+    opacity: 0.9;
+    border-bottom: none !important;
+  }
+
+  /* ナビの見た目バランスを微調整 */
+  .pc-nav ul{
+    gap: 28px;
+  }
+}
 
 
