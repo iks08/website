@@ -734,3 +734,4 @@ body.start-animation #opening-splash{
   visibility: hidden;
   pointer-events: none;
 }
+section { padding: 28px 5% 60px; }
