@@ -908,5 +908,9 @@ html, body {
     .hero { height: calc(100vh - 70px) !important; }
   }
 }
-
+@media (max-width: 768px) {
+  @supports not (height: 100dvh) {
+    .hero { height: calc(100vh - 70px) !important; }
+  }
+}
 
