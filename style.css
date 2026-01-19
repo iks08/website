@@ -700,7 +700,7 @@ footer {
 }
 
 #splash-mark{
-  width: clamp(88px, 12vw, 112px) !important;
+  width: clamp(88px, 12vw, 160px) !important;
   height: auto;
   display: block;
   margin-bottom: 0px !important; 
