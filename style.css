@@ -914,3 +914,25 @@ html, body {
   }
 }
 
+/* =========================================================
+   OVERRIDE: Services images/cards - remove clickable motion
+   目的：「クリックで遷移しそう」な見え方を消す
+========================================================= */
+
+/* カーソルを通常に */
+#services .service-card,
+#services .service-card img {
+  cursor: default !important;
+}
+
+/* hover時の動き・影・強調を無効化 */
+#services .service-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-bottom: 4px solid transparent !important;
+}
+
+/* 画像自体に付与されている可能性のあるトランジションも無効化 */
+#services .service-card img {
+  transition: none !important;
+}
