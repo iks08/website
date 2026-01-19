@@ -834,3 +834,62 @@ footer {
 #menu-toggle::after{
   top: 42px;
 }
+/* ================================
+   IK MOBILE HAMBURGER (NO TEXT)
+   ================================ */
+
+/* スマホだけ表示（PCでは非表示） */
+@media (max-width: 768px){
+  #menu-toggle{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px !important;
+    height: 64px !important;
+
+    position: relative !important;
+    cursor: pointer;
+    background: transparent !important;
+    border: 0 !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  /* 3本線 */
+  #menu-toggle::before,
+  #menu-toggle::after,
+  #menu-toggle span{
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 38px;
+    height: 4px;
+    background: #fff;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
+  }
+
+  #menu-toggle::before{ top: 20px; }
+  #menu-toggle span{ top: 30px; }
+  #menu-toggle::after{ top: 40px; }
+
+  /* メニューOPEN時：×に変形 */
+  #menu-toggle.is-open::before{
+    top: 30px;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  #menu-toggle.is-open span{
+    opacity: 0;
+  }
+  #menu-toggle.is-open::after{
+    top: 30px;
+    transform: translateX(-50%) rotate(-45deg);
+  }
+}
+
+/* PCでは表示しない */
+@media (min-width: 769px){
+  #menu-toggle{ display: none !important; }
+}
