@@ -991,7 +991,7 @@ html, body {
     opacity: 0.9;
     border-bottom: none !important;
   }
-  .pc-nav .nav-logo-img { transform: translateX(-15px); }
+  .pc-nav .nav-logo-img { transform: translateX(-10px); }
 
 }
 
