@@ -830,7 +830,7 @@ body.start-animation #splash-logo{
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif !important;
 
   /* 体感2倍：ここだけ触ればOK */
-  font-size: clamp(2.4rem, 5vw, 5.0rem) !important;
+  font-size: clamp(2.0rem, 5vw, 7.0rem) !important;
 
   opacity: 0;
   animation: splashFadeIn 0.8s ease forwards;
