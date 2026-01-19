@@ -757,7 +757,7 @@ footer {
 #splash-logo{
   color: var(--white);
   font-weight: 700;
-  font-size: clamp(1.8rem, 4vw, 5rem);
+  font-size: clamp(2.0rem, 4.5vw, 3.2rem);
   letter-spacing: 0.06em;
   white-space: nowrap;
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
