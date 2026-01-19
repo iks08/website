@@ -685,25 +685,17 @@ footer {
   height: 100dvh !important;
   background: #f4f6f8 !important; /* ややグレー寄りの白 */
   z-index: 9999 !important;
-
   display: grid !important;
   place-items: center !important;
   text-align: center !important;
-
   opacity: 1;
   visibility: visible;
   transition: opacity 0.6s ease, visibility 0s linear 0.6s;
-}
-/* =========================
-   Opening Logo Mark
-========================= */
-
-#opening-splash{
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
-  gap: 12px;
+  gap: 10px !important;           /* ←確実に効かせる */
 }
 
 #splash-mark{
@@ -712,7 +704,6 @@ footer {
   display: block;
 }
 
-/* 旧CSS（position:absolute / top/left / transform 等）を完全に潰す */
 #splash-logo{
   position: static !important;
   top: auto !important;
@@ -720,10 +711,8 @@ footer {
   right: auto !important;
   bottom: auto !important;
   transform: none !important;
-
-  margin: 0 !important;
+  margin-top: 0 !important;
   padding: 0 !important;
-
   color: var(--primary-color) !important;
   font-weight: 700 !important;
   letter-spacing: 0.06em !important;
