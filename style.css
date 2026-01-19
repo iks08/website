@@ -730,8 +730,8 @@ footer {
 }
 
 /* =========================
-   OPENING (B): FADE + SUBTLE BREATH
-   安定＋少し演出：移動なし、微小スケールのみ
+   OPENING (A): FADE ONLY
+   最も安定：移動・拡大縮小なし
    ========================= */
 
 #opening-splash{
@@ -750,27 +750,24 @@ footer {
   visibility: visible;
   transition: opacity 0.6s ease, visibility 0s linear 0.6s;
 
+  /* 描画安定用 */
   transform: translate3d(0,0,0);
 }
 
 #splash-logo{
   color: var(--white);
   font-weight: 700;
-  font-size: 1.6rem;
+  font-size: clamp(1.8rem, 4vw, 5rem);
   letter-spacing: 0.06em;
   white-space: nowrap;
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 
   opacity: 0;
-  transform: translateZ(0) scale(1);
+  animation: splashFadeIn 0.8s ease forwards;
 
-  /* フェードイン＋呼吸（微小スケール） */
-  animation:
-    splashFadeIn 0.7s ease forwards,
-    splashBreath 1.2s ease-in-out 0.7s infinite;
-
-  will-change: opacity, transform;
-  backface-visibility: hidden;
+  /* 動かさない（重要） */
+  transform: none;
+  will-change: opacity;
 }
 
 @keyframes splashFadeIn{
@@ -778,21 +775,16 @@ footer {
   to   { opacity: 1; }
 }
 
-/* 1.00 -> 1.04 -> 1.00（小さく） */
-@keyframes splashBreath{
-  0%   { transform: translateZ(0) scale(1.00); }
-  50%  { transform: translateZ(0) scale(1.04); }
-  100% { transform: translateZ(0) scale(1.00); }
-}
-
+/* JSが start-animation を付けたら、スプラッシュだけ消す */
 body.start-animation #opening-splash{
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-/* 旧仕様の移動演出は無効化 */
+/* 旧仕様の「ロゴをヘッダーへ移動」も無効化 */
 body.start-animation #splash-logo{
   top: auto;
   left: auto;
+  transform: none;
 }
