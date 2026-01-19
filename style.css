@@ -707,7 +707,7 @@ footer {
 }
 
 #splash-mark{
-  width: 96px;
+  width: 112px;
   height: auto;
   display: block;
 }
@@ -959,6 +959,6 @@ html, body {
 }
 @media (max-width: 768px) {
   #splash-mark{
-    width: 144px;
+    width: 88px;
   }
 }
