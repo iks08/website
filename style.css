@@ -975,9 +975,6 @@ html, body {
    Header: Center Logo in PC Nav
 ========================================================= */
 @media (min-width: 769px) {
-  /* 左上のロゴはPCでは非表示（中央ロゴに一本化） */
-  header .logo { display: none; }
-
   /* header全体を3列グリッド化：中央にナビ、右にTEL */
   header{
     display: grid;
@@ -1008,5 +1005,33 @@ html, body {
     white-space: nowrap;
     line-height: 1;
     font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  }
+}
+/* =========================================================
+   Header: Center logo image inside PC nav (keep left text)
+========================================================= */
+@media (min-width: 769px) {
+
+  /* 念のため：左ロゴは表示 */
+  header .logo { display: block; }
+
+  /* nav内ロゴ画像 */
+  .pc-nav .nav-logo a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+  }
+
+  .pc-nav .nav-logo-img{
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ロゴ位置がズレる場合の微調整（必要なら） */
+  .pc-nav ul{
+    align-items: center;
   }
 }
