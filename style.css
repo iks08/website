@@ -830,4 +830,26 @@ section { padding: 20px 5% 60px; }
     font-size: 1rem;
   }
 }
+/* =========================================================
+   OVERRIDE: Hero background top/bottom equal on SP (500x500)
+========================================================= */
+@media (max-width: 768px) {
+
+  /* ヘッダー分を引いた高さにして上下対称に */
+  .hero {
+    height: calc(100svh - 70px) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 背景動画の表示領域もぴったり合わせる */
+  .hero-video-container {
+    top: 0 !important;
+    height: 100% !important;
+  }
+}
 
