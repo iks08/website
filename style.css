@@ -831,25 +831,32 @@ section { padding: 20px 5% 60px; }
   }
 }
 /* =========================================================
-   OVERRIDE: Hero background top/bottom equal on SP (500x500)
+   FIX: iPhone Safari と PCスマホ幅の差を縮める（dvh優先）
+   目的：Hero高さの定義を「動的ビューポート」に揃える
 ========================================================= */
 @media (max-width: 768px) {
-
-  /* ヘッダー分を引いた高さにして上下対称に */
+  /* フォールバック */
   .hero {
-    height: calc(100svh - 70px) !important;
+    height: calc(100vh - 70px) !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  /* 背景動画の表示領域もぴったり合わせる */
+  /* dvh対応ブラウザ（iOS16+ など）はこれが効く */
+  @supports (height: 100dvh) {
+    .hero {
+      height: calc(100dvh - 70px) !important;
+    }
+  }
+
+  /* 背景動画領域を確実にHeroに追従 */
   .hero-video-container {
-    top: 0 !important;
     height: 100% !important;
+  }
+
+  /* 動画の切り取り基準を固定（環境差の見え方を安定させる） */
+  .hero-video-container video {
+    object-position: 50% 50% !important;
   }
 }
 
