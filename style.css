@@ -961,7 +961,7 @@ html, body {
     flex-wrap: nowrap;         /* 2段を止める */
     white-space: nowrap;       /* 折り返しを止める */
     align-items: center;
-    gap: 24px;                 /* ここで詰め具合を調整 */
+    gap: 28px;                 /* ここで詰め具合を調整 */
   }
 
   .pc-nav .nav-logo a {
@@ -991,11 +991,8 @@ html, body {
     opacity: 0.9;
     border-bottom: none !important;
   }
+  .pc-nav .nav-logo-img { transform: translateX(-5px); }
 
-  /* ナビの見た目バランスを微調整 */
-  .pc-nav ul{
-    gap: 28px;
-  }
 }
 
 
