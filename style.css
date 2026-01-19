@@ -734,8 +734,20 @@ body.start-animation #opening-splash{
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}/* =========================================================
+   Section Spacing - Unified (PC/SP)
+========================================================= */
+section {
+  padding: 40px 5% 90px;   /* PC基準：上40 / 下90 */
+  max-width: 1200px;
+  margin: 0 auto;
 }
-section { padding: 20px 5% 60px; }
+
+@media (max-width: 768px) {
+  section {
+    padding: 28px 5% 70px; /* SP基準：上28 / 下70 */
+  }
+}
 
 /* =========================================================
    OVERRIDE PACK (2026-01-19)
