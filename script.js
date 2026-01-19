@@ -9,18 +9,20 @@ const menuBtn = document.getElementById('menu-toggle');
 const navMenu = document.getElementById('nav-menu');
 
 menuBtn.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  menuBtn.classList.toggle('is-open', navMenu.classList.contains('active'));
+  const isOpen = navMenu.classList.toggle('active');
+  menuBtn.classList.toggle('is-open', isOpen);
+  menuBtn.setAttribute('aria-expanded', isOpen);
 });
 
-// キーボード操作（Enter / Space）対応
 menuBtn.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' || e.key === ' ') {
     e.preventDefault();
-    navMenu.classList.toggle('active');
-    menuBtn.classList.toggle('is-open', navMenu.classList.contains('active'));
+    const isOpen = navMenu.classList.toggle('active');
+    menuBtn.classList.toggle('is-open', isOpen);
+    menuBtn.setAttribute('aria-expanded', isOpen);
   }
 });
+
 
 document.querySelectorAll('.pc-nav a').forEach(link => {
   link.addEventListener('click', () => {
