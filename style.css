@@ -735,3 +735,50 @@ body.start-animation #opening-splash{
   pointer-events: none;
 }
 section { padding: 20px 5% 60px; }
+
+/* =========================================================
+   OVERRIDE PACK (2026-01-19)
+   1) Hamburger 0.8x
+   2) Hero top space reduced on SP (button visible)
+   3) Services cards: remove "clickable" motion
+   ========================================================= */
+
+/* 1) ハンバーガーを0.8倍（#menu-toggle） */
+@media (max-width: 768px) {
+  #menu-toggle {
+    transform: scale(0.8);
+    transform-origin: center;
+  }
+}
+
+/* 2) スマホHero：上の余白を減らしてCTAまで見せる */
+@media (max-width: 768px) {
+  /* 現状：.hero が height:100vh かつ padding-top:70px なので縦が足りなくなる */
+  .hero {
+    height: calc(100svh - 70px) !important; /* 固定ヘッダー70px分を差し引く */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* さらに縦を節約（過剰に崩さない範囲で） */
+  .hero-content {
+    padding: 28px 18px !important;
+  }
+  .hero-content h1 {
+    margin-bottom: 18px !important;
+  }
+  .btn-main {
+    margin-top: 24px !important;
+  }
+}
+
+/* 3) Services：カードのhoverモーションを消して「押せそう感」を消す */
+#services .service-card {
+  cursor: default !important;
+}
+
+#services .service-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-bottom: 4px solid transparent !important;
+}

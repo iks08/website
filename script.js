@@ -40,3 +40,11 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in').forEach(section => {
   observer.observe(section);
 });
+
+// 画面幅がPCに戻ったら、SPメニュー状態を解除して整合性を保つ
+window.addEventListener('resize', () => {
+  if (window.matchMedia('(min-width: 769px)').matches) {
+    navMenu.classList.remove('active');
+    menuBtn.classList.remove('is-open');
+  }
+});
