@@ -533,6 +533,7 @@ footer {
 /* PCでは表示しない */
 @media (min-width: 769px) {
   #menu-toggle { display: none !important; }
+  #splash-mark { width: 180px !important; }
 }
 
 /* スマホのみ表示＆描画 */
@@ -700,10 +701,10 @@ footer {
 }
 
 #splash-mark{
-  width: clamp(88px, 12vw, 160px) !important;
+  width: clamp(120px, 12vw, 180px) !important;
   height: auto;
   display: block;
-  margin-bottom: 0px !important; 
+  margin: 0px !important; 
 }
 
 #splash-logo{
