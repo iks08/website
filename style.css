@@ -940,3 +940,34 @@ html, body {
 .footer-address a:hover {
   text-decoration: underline;
 }
+/* =========================================================
+   Logo (Header / Footer) - Minimal Add
+========================================================= */
+
+/* ヘッダー：画像＋テキストを横並び */
+.logo-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+
+.logo-img{
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.logo-text{
+  display: inline-block;
+  line-height: 1;
+}
+
+/* フッター：ロゴを小さく添える */
+.footer-logo{
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
