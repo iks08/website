@@ -798,3 +798,39 @@ footer {
   color: #fff !important;
   -webkit-tap-highlight-color: transparent !important;
 }
+/* === ハンバーガーメニューをCSS描画に変更（確実に大きく表示） === */
+#menu-toggle{
+  width: 64px;
+  height: 64px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* 線を3本描画 */
+#menu-toggle::before,
+#menu-toggle::after,
+#menu-toggle span{
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 36px;          /* 線の長さ */
+  height: 4px;          /* 線の太さ */
+  background: #fff;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* 上の線 */
+#menu-toggle::before{
+  top: 18px;
+}
+
+/* 真ん中の線 */
+#menu-toggle span{
+  top: 30px;
+}
+
+/* 下の線 */
+#menu-toggle::after{
+  top: 42px;
+}
