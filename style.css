@@ -697,169 +697,43 @@ footer {
   .btn-main { margin-top: 50px; }
   .hero-video-container { opacity: 1; }
 
-  /* === ハンバーガー（これが最終） === */
-  #menu-toggle.menu-btn{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+/* =========================================
+   HAMBURGER MENU (CSS DRAWING) - FINAL
+   影響範囲：#menu-toggle と .pc-nav.active のみ
+   ========================================= */
 
-    width: 64px !important;
-    height: 64px !important;
-    padding: 0 !important;
-
-    font-size: 44px !important;  /* 3.6rem より確実に見えるpx指定 */
-    line-height: 1 !important;
-
-    background: transparent !important;
-    border: 0 !important;
-    outline: 0 !important;
-    box-shadow: none !important;
-    color: var(--white) !important;
-
-    -webkit-tap-highlight-color: transparent !important;
-    touch-action: manipulation !important;
-  }
-
-  #menu-toggle.menu-btn,
-  #menu-toggle.menu-btn *{
-    font-size: inherit !important;
-    line-height: 1 !important;
-  }
-
-  .pc-nav {
-    position: fixed;
-    top: 70px;
-    right: -100%;
-    width: 70%;
-    height: calc(100vh - 70px);
-    background: var(--white);
-    transition: 0.4s;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-  }
-  .pc-nav.active { right: 0; }
-  .pc-nav ul { flex-direction: column; padding: 40px; gap: 20px; }
-  .pc-nav a { color: var(--text-color); border-bottom: none; }
-  .pc-nav a:hover { color: var(--primary-color); }
-
-  .flow-container::before { left: 20px; }
-  .flow-step {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 40px;
-    padding-left: 50px;
-  }
-  .flow-step::after { left: 20px; top: 25px; }
-  .step-header, .step-body { width: 100%; text-align: left; }
-  .step-name { font-size: 1.4rem; }
-
-  .about-grid { grid-template-columns: 1fr; }
-  .alone-container img { width: 90%; }
-
-  .company-grid { grid-template-columns: 1fr; gap: 30px; }
-  .company-details dl { grid-template-columns: 1fr; gap: 5px; }
-  .company-details dt { border-bottom: none; margin-top: 15px; }
-
-  .footer-container { flex-direction: column; text-align: center; }
-  .footer-logo-area, .footer-contact-area {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .contact-row { justify-content: center; flex-direction: column; gap: 5px; }
-  .footer-address { font-size: 0.85rem; line-height: 1.5; width: 100%; }
-  .divider { display: none; }
-  .tel-number { font-size: 1.2rem; }
-
-  .company-map { text-align: center; margin-top: 20px; }
-  .company-map img { display: block; margin: 0 auto; }
+/* PCでは非表示（既存の .menu-btn display:none と整合） */
+@media (min-width: 769px) {
+  #menu-toggle { display: none; }
 }
 
-/* DEBUG（確認後に消してOK） */
-#menu-toggle{ background: yellow !important; }
-/* IK-HAMBURGER-20260118-MARK */
-
-#menu-toggle{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  width: 64px !important;
-  height: 64px !important;
-  padding: 0 !important;
-
-  font-size: 48px !important;
-  line-height: 1 !important;
-
-  font-family: system-ui, -apple-system, "Segoe UI Symbol", "Apple Color Emoji", sans-serif !important;
-
-  background: transparent !important;
-  border: 0 !important;
-  outline: none !important;
-  color: #fff !important;
-  -webkit-tap-highlight-color: transparent !important;
-}
-/* === ハンバーガーメニューをCSS描画に変更（確実に大きく表示） === */
-#menu-toggle{
-  width: 64px;
-  height: 64px;
-  position: relative;
-  cursor: pointer;
-}
-
-/* 線を3本描画 */
-#menu-toggle::before,
-#menu-toggle::after,
-#menu-toggle span{
-  content: "";
-  position: absolute;
-  left: 50%;
-  width: 36px;          /* 線の長さ */
-  height: 4px;          /* 線の太さ */
-  background: #fff;
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
-
-/* 上の線 */
-#menu-toggle::before{
-  top: 18px;
-}
-
-/* 真ん中の線 */
-#menu-toggle span{
-  top: 30px;
-}
-
-/* 下の線 */
-#menu-toggle::after{
-  top: 42px;
-}
-/* ================================
-   IK MOBILE HAMBURGER (NO TEXT)
-   ================================ */
-
-/* スマホだけ表示（PCでは非表示） */
-@media (max-width: 768px){
-  #menu-toggle{
-    display: flex !important;
+/* スマホのみ表示 */
+@media (max-width: 768px) {
+  /* トグル本体（タップ領域） */
+  #menu-toggle {
+    display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 64px !important;
-    height: 64px !important;
+    width: 64px;
+    height: 64px;
+    padding: 0;
 
-    position: relative !important;
+    position: relative;
     cursor: pointer;
-    background: transparent !important;
-    border: 0 !important;
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent !important;
+
+    background: transparent;
+    border: 0;
+    outline: none;
+
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
-  /* 3本線 */
+  /* 3本線（疑似要素＋span） */
   #menu-toggle::before,
   #menu-toggle::after,
-  #menu-toggle span{
+  #menu-toggle span {
     content: "";
     position: absolute;
     left: 50%;
@@ -871,25 +745,21 @@ footer {
     transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
   }
 
-  #menu-toggle::before{ top: 20px; }
-  #menu-toggle span{ top: 30px; }
-  #menu-toggle::after{ top: 40px; }
+  #menu-toggle::before { top: 20px; }
+  #menu-toggle span     { top: 30px; }
+  #menu-toggle::after  { top: 40px; }
 
-  /* メニューOPEN時：×に変形 */
-  #menu-toggle.is-open::before{
+  /* 開いたとき：× */
+  #menu-toggle.is-open::before {
     top: 30px;
     transform: translateX(-50%) rotate(45deg);
   }
-  #menu-toggle.is-open span{
+  #menu-toggle.is-open span {
     opacity: 0;
   }
-  #menu-toggle.is-open::after{
+  #menu-toggle.is-open::after {
     top: 30px;
     transform: translateX(-50%) rotate(-45deg);
   }
-}
-
-/* PCでは表示しない */
-@media (min-width: 769px){
-  #menu-toggle{ display: none !important; }
+  }
 }

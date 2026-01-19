@@ -1,65 +1,67 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>株式会社iK</title>
-    <!-- ファビコン -->
-    <link rel="icon" href="picmov/iK-logo.png">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css?v=20260118-2">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>株式会社iK</title>
+
+  <!-- ファビコン -->
+  <link rel="icon" href="picmov/iK-logo.png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css?v=20260118-2">
 </head>
+
 <body>
-    <!-- オープニングアニメーション -->
-    <div id="opening-splash">
-        <div id="splash-logo">iK相談支援センター</div>
-    </div>
+  <!-- オープニングアニメーション -->
+  <div id="opening-splash">
+    <div id="splash-logo">iK相談支援センター</div>
+  </div>
 
-<header>
+  <header>
     <div class="logo">
-        <a href="#">
-            iK相談支援センター
-        </a>
+      <a href="#">iK相談支援センター</a>
     </div>
-    
+
     <nav class="pc-nav" id="nav-menu">
-        <ul>
-            <li><a href="#services">相談内容</a></li>
-            <li><a href="#flow">相談の流れ</a></li>
-            <li><a href="#about">私たちについて</a></li>
-            <li><a href="#contact">お問い合わせ</a></li>
-        </ul>
+      <ul>
+        <li><a href="#services">相談内容</a></li>
+        <li><a href="#flow">相談の流れ</a></li>
+        <li><a href="#about">私たちについて</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
     </nav>
-        <div class="menu-btn" id="menu-toggle">
-        <span></span>
-        </div>
-</header>
 
-<!-- ヒーローセクション -->
-<section class="hero">
+    <div class="menu-btn" id="menu-toggle" aria-label="メニューを開閉">
+      <span></span>
+    </div>
+  </header>
+
+  <!-- ヒーローセクション -->
+  <section class="hero">
     <div class="hero-video-container">
-        <!-- loop属性を追加して、1本の動画を延々と繰り返す設定にします -->
-        <video id="bg-video" autoplay loop muted playsinline>
-            <!-- ▼ 新しい結合した動画ファイルを指定 ▼ -->
-            <source src="picmov/hero-movie.mp4" type="video/mp4">
-        </video>
+      <video id="bg-video" autoplay loop muted playsinline>
+        <source src="picmov/hero-movie.mp4" type="video/mp4">
+      </video>
     </div>
-<div class="hero-content">
-            <h1>障がいのある方も<br>ご家族にも</h1>
 
-        <p>
-            相談支援事業では、障がいのある方<br class="sp-br">だけではなく、<br class="pc-br">
-            ご家族や関係機関<br class="sp-br">のさまざまなお悩みや<br class="pc-br">
-            お困りごと<br class="sp-br">について、ご相談を受け付けております。<br class="pc-br"><br class="sp-br">
-            誰もがより豊かな生活を送れるよう<br class="sp-br">に支援させていただきます。
-        </p>
-        
-        <a href="#contact" class="btn-main">お問い合わせはこちら</a>
+    <div class="hero-content">
+      <h1>障がいのある方も<br>ご家族にも</h1>
+
+      <p>
+        相談支援事業では、障がいのある方<br class="sp-br">だけではなく、<br class="pc-br">
+        ご家族や関係機関<br class="sp-br">のさまざまなお悩みや<br class="pc-br">
+        お困りごと<br class="sp-br">について、ご相談を受け付けております。<br class="pc-br"><br class="sp-br">
+        誰もがより豊かな生活を送れるよう<br class="sp-br">に支援させていただきます。
+      </p>
+
+      <a href="#contact" class="btn-main">お問い合わせはこちら</a>
     </div>
-</section>
+  </section>
 
 <!-- サービス案内 -->
 <section id="services" class="services-bg fade-in">
@@ -284,73 +286,65 @@
     </form>
 </section>
 
-<!-- フッター -->
 <footer>
-    <div class="footer-container">
-        <!-- 1. ロゴ・住所エリア -->
-        <div class="footer-logo-area">
-            <h3>株式会社iK</h3>
-            <p class="footer-address">
-                〒802-0831 北九州市小倉南区八重洲町11-20 2階
-            </p>
-        </div>
-
-        <!-- 2. 連絡先エリア -->
-        <div class="footer-contact-area">
-            <div class="contact-row">
-                <span class="contact-label">TEL</span>
-                <a href="tel:093-383-1327" class="tel-number">093-383-1327</a>
-                <span class="divider">/</span>
-                <span class="contact-label">FAX</span>
-                <span class="fax-number">093-383-1328</span>
-            </div>
-            <div class="contact-row">
-                <span class="contact-label">Mail</span>
-                <a href="mailto:iks.080101.iks@gmail.com">iks.080101.iks@gmail.com</a>
-            </div>
-        </div>
-
-        <!-- 3. コピーライト -->
-        <p class="copyright">&copy; 2026 株式会社iK All Rights Reserved.test</p>
+<div class="footer-container">
+    <div class="footer-logo-area">
+    <h3>株式会社iK</h3>
+    <p class="footer-address">〒802-0831 北九州市小倉南区八重洲町11-20 2階</p>
     </div>
+
+    <div class="footer-contact-area">
+    <div class="contact-row">
+        <span class="contact-label">TEL</span>
+        <a href="tel:093-383-1327" class="tel-number">093-383-1327</a>
+        <span class="divider">/</span>
+        <span class="contact-label">FAX</span>
+        <span class="fax-number">093-383-1328</span>
+    </div>
+    <div class="contact-row">
+        <span class="contact-label">Mail</span>
+        <a href="mailto:iks.080101.iks@gmail.com">iks.080101.iks@gmail.com</a>
+    </div>
+    </div>
+
+    <p class="copyright">&copy; 2026 株式会社iK All Rights Reserved.</p>
+</div>
 </footer>
 
 <!-- JavaScript -->
 <script>
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.body.classList.add('start-animation');
-        }, 3000);
-    });
+window.addEventListener('load', () => {
+    setTimeout(() => {
+    document.body.classList.add('start-animation');
+    }, 3000);
+});
 
-    const menuBtn = document.getElementById('menu-toggle');
-    const navMenu = document.getElementById('nav-menu');
+const menuBtn = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
 
-    menuBtn.addEventListener('click', () => {
+menuBtn.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     menuBtn.classList.toggle('is-open', navMenu.classList.contains('active'));
-    });
+});
 
-
-    document.querySelectorAll('.pc-nav a').forEach(link => {
+document.querySelectorAll('.pc-nav a').forEach(link => {
     link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        menuBtn.classList.remove('is-open');
-      });
+    navMenu.classList.remove('active');
+    menuBtn.classList.remove('is-open');
     });
+});
 
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(section => {
-        observer.observe(section);
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+    if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+    }
     });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(section => {
+    observer.observe(section);
+});
 </script>
 </body>
 </html>
