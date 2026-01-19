@@ -951,18 +951,3 @@ html, body {
 .footer-address a:hover {
   text-decoration: underline;
 }
-/* =========================
-   Opening: logo readability without changing the logo file
-========================= */
-
-#splash-mark{
-  width: 140px;            /* 必要なら120に戻せます */
-  height: auto;
-  display: block;
-
-  /* ロゴを加工せず、背景側で見せる */
-  background: rgba(255,255,255,0.8);
-  padding: 14px 18px;
-  border-radius: 16px;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.18);
-}
