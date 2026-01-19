@@ -870,4 +870,43 @@ section { padding: 20px 5% 60px; }
     padding-bottom: 0 !important;
   }
 }
+/* =========================================================
+   FIX: iOS Chrome Pull-to-Refresh で背景が伸びる問題を抑止
+========================================================= */
+
+/* Chrome(iOS)のみ overscroll を殺す */
+html, body {
+  overscroll-behavior-y: contain;
+}
+
+/* Hero背景の引き伸ばし防止 */
+.hero,
+.hero-video-container,
+.hero-video-container video {
+  overscroll-behavior: none;
+  touch-action: pan-x pan-y;
+}
+/* iOS Chrome で pull refresh 無効化 */
+@supports (-webkit-touch-callout: none) {
+  body {
+    overscroll-behavior-y: none;
+  }
+}
+
+/* =========================================================
+   FIX: Heroをヘッダー下から開始して上下の背景差を解消
+========================================================= */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 0 !important;                  /* 既存70pxを無効 */
+    margin-top: 70px !important;                /* ヘッダー分だけ下げる */
+    height: calc(100dvh - 70px) !important;     /* 表示領域にフィット */
+  }
+}
+@media (max-width: 768px) {
+  @supports not (height: 100dvh) {
+    .hero { height: calc(100vh - 70px) !important; }
+  }
+}
+
 
