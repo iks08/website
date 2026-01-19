@@ -683,7 +683,7 @@ footer {
   width: 100% !important;
   height: 100vh !important;
   height: 100dvh !important;
-  background: var(--primary-color) !important;
+  background: #f4f6f8 !important; /* ややグレー寄りの白 */
   z-index: 9999 !important;
 
   display: grid !important;
@@ -706,14 +706,6 @@ footer {
   gap: 24px;
 }
 
-#splash-mark{
-  width: 120px;
-  height: auto;
-  object-fit: contain;
-  opacity: 0;
-  animation: splashFadeIn 0.8s ease forwards;
-}
-
 /* 旧CSS（position:absolute / top/left / transform 等）を完全に潰す */
 #splash-logo{
   position: static !important;
@@ -726,7 +718,7 @@ footer {
   margin: 0 !important;
   padding: 0 !important;
 
-  color: #fff !important;
+  color: var(--primary-color) !important;
   font-weight: 700 !important;
   letter-spacing: 0.06em !important;
   white-space: nowrap !important;
