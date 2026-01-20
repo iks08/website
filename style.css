@@ -1256,36 +1256,49 @@ html, body {
   .hero-content p{ font-size: 1.03rem; }
 }
 /* =========================================================
-   Flow 視認性改善：B案（タイムライン感を強める）
-   - 内容は変更しない（表示のみ）
-   - 追記で上書き
+   Flow 視認性改善：C案（ミニマル／文字中心）
+   - ラインと丸の主張を弱める
+   - 文章の可読性を最優先
 ========================================================= */
 
-/* 縦ライン：少し濃く＆わずかに太く */
+/* 縦ライン：細く・薄く */
 .flow-container::before{
-  width: 2px;
-  background: rgba(11,47,138,0.22);
+  width: 1px;
+  background: rgba(11,47,138,0.12);
 }
 
-/* 丸マーカー：少し小さく、主張を抑えて整える */
+/* 丸マーカー：小さく・控えめ */
 .flow-step::after{
-  width: 10px;
-  height: 10px;
-  border-width: 3px;
-  box-shadow: 0 0 0 1px rgba(11,47,138,0.18);
+  width: 8px;
+  height: 8px;
+  border-width: 2px;
+  background-color: rgba(11,47,138,0.45);
+  box-shadow: 0 0 0 1px rgba(11,47,138,0.10);
 }
 
-/* テキストの可読性を微調整（押しは強くしない） */
+/* カード感が残っている場合は弱める（A案/B案の影響を打ち消し） */
+.flow-step{
+  background: transparent;
+  box-shadow: none;
+  padding: 18px 0; /* 文字が主役になるよう上下余白のみ */
+}
+
+/* 文字の可読性を最優先 */
 .step-num{
-  letter-spacing: 0.12em;
-  margin-bottom: 8px;
+  letter-spacing: 0.10em;
+  margin-bottom: 6px;
+  opacity: 0.85;
+}
+.step-name{
+  line-height: 1.35;
 }
 .step-desc{
-  line-height: 2.0;
+  line-height: 2.05;
   margin-top: 8px;
+  color: #555;
 }
 
-/* SP（縦並び）では、左ライン位置に合わせて見やすく */
+/* SP：縦ライン位置を整えて“流れ”だけ残す */
 @media (max-width: 768px){
   .flow-container::before{
     left: 20px;
