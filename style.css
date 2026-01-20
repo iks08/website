@@ -807,16 +807,28 @@ body.start-animation #opening-splash{
    ※Heroを除外（ヒーロー背景縮小事故防止）
 ========================================================= */
 section:not(.hero) {
-  padding: var(--section-pad-top) var(--container-pad-x) var(--section-pad-bottom);
-  max-width: var(--container-max);
-  margin: 0 auto;
+  padding-top: var(--section-pad-top);
+  padding-bottom: var(--section-pad-bottom);
   box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   section:not(.hero) {
-    padding: var(--section-pad-top-sp) var(--container-pad-x) var(--section-pad-bottom-sp);
+    padding-top: var(--section-pad-top-sp);
+    padding-bottom: var(--section-pad-bottom-sp);
   }
+}
+
+/* =========================================================
+   Container - Layout Responsibility (A-2)
+   中央箱の責務を section から分離
+========================================================= */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-pad-x);
+  padding-right: var(--container-pad-x);
+  box-sizing: border-box;
 }
 
 /* =========================================================
