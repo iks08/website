@@ -15,20 +15,17 @@
 
   /* =========================================================
      Section padding (B-B)
-     目的：セクションの呼吸感を「企業サイト標準」に統一
-     ※構造は維持、数値だけを最終形へ
   ========================================================= */
-  --section-pad-top: 52px;     /* 40 -> 52 */
-  --section-pad-bottom: 96px;  /* 90 -> 96 */
+  --section-pad-top: 52px;
+  --section-pad-bottom: 96px;
 
-  --section-pad-top-sp: 34px;     /* 28 -> 34 */
-  --section-pad-bottom-sp: 76px;  /* 70 -> 76 */
+  --section-pad-top-sp: 34px;
+  --section-pad-bottom-sp: 76px;
 
   --header-h: 70px;
 
   /* =========================================
      Typography Tokens (B-A)
-     目的：企業感・可読性・統一感（事故防止のため変数化）
   ========================================= */
   --font-base-pc: 16px;
   --font-base-sp: 15px;
@@ -52,15 +49,28 @@
 
   /* =========================================
      Spacing Tokens (B-B)
-     目的：見出し/ブロック/CTA の余白リズムを統一
   ========================================= */
   --gap-lg: 40px;
   --gap-md: 28px;
   --gap-sm: 18px;
 
-  --title-mb: 56px;      /* section-title の下余白 */
-  --block-mb: 60px;      /* 大ブロック間 */
-  --cta-mt: 56px;        /* CTA上の余白 */
+  --title-mb: 56px;
+  --block-mb: 60px;
+  --cta-mt: 56px;
+
+  /* =========================================================
+     Header Tone (B-C)
+     目的：企業感・信頼感のトーン統一（事故防止のため変数化）
+  ========================================================= */
+  --header-bg: #1f4f7a;           /* 深めのコーポレートブルー */
+  --header-bg-2: #163A5F;         /* フッターと同系の深色 */
+  --header-border: rgba(255,255,255,0.15);
+  --header-shadow: 0 2px 14px rgba(0,0,0,0.10);
+
+  --header-link-opacity: 0.92;
+  --header-link-hover: 1;
+  --header-pill-bg: rgba(255,255,255,0.18);
+  --header-pill-bg-hover: rgba(255,255,255,0.26);
 }
 
 /* === 全体のスクロール設定 === */
@@ -82,7 +92,6 @@ body {
   width: 100%;
   font-feature-settings: "palt" 1;
 
-  /* B-A: ベースの文字密度（サイト全体の土台） */
   font-size: var(--font-base-pc);
   letter-spacing: var(--ls-base);
   text-rendering: optimizeLegibility;
@@ -104,9 +113,12 @@ img, video { max-width: 100%; height: auto; display: block; }
 
 /* === ヘッダー === */
 header {
-  font-family: "Kiwi Maru", serif;
-  background-color: var(--primary-color);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  /* === Header Tone (B-C) === */
+  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  background: linear-gradient(180deg, var(--header-bg) 0%, var(--header-bg-2) 100%);
+  box-shadow: var(--header-shadow);
+  border-bottom: 1px solid var(--header-border);
+
   position: fixed;
   width: 100%;
   top: 0;
@@ -121,36 +133,38 @@ header {
 }
 
 .logo {
-  font-size: 1.75rem;
+  font-size: 1.55rem;         /* 1.75 -> 1.55（ナビとのバランス） */
   font-weight: 700;
   color: var(--white);
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
 }
-.logo a { display: block; height: 100%; }
+.logo a { display: block; height: 100%; opacity: 0.96; }
+.logo a:hover { opacity: 1; }
 
 /* PCナビ */
-.pc-nav ul { display: flex; gap: 30px; }
+.pc-nav ul { display: flex; gap: 26px; } /* 30 -> 26（密度を整える） */
 .pc-nav a {
-  font-weight: 500;
-  transition: var(--transition);
+  font-weight: 600;
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
   color: var(--white);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.06em;
+  opacity: var(--header-link-opacity);
+
+  /* “線” ではなく “面” の控えめ表現（見た目が荒れにくい） */
+  padding: 10px 12px;
+  border-radius: 10px;
 }
 .pc-nav a:hover {
-  opacity: 0.8;
-  border-bottom: 2px solid var(--white);
-}
-
-/* ヘッダー右側メニュー文字をOSAKAに */
-.pc-nav,
-.pc-nav a {
-  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  opacity: var(--header-link-hover);
+  background-color: rgba(255,255,255,0.10);
+  transform: translateY(-1px);
 }
 
 /* PCのみ：右側メニュー文字サイズ */
 @media (min-width: 769px) {
-  .pc-nav a { font-size: 1.22rem; }
+  .pc-nav a { font-size: 1.08rem; } /* 1.22/1.3系 -> 1.08：上品に */
 }
 
 /* ハンバーガー（基本はPC非表示） */
@@ -197,10 +211,7 @@ header {
   max-width: 800px;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.85);
-
-  /* B-B: Heroボックスの余白を微調整（詰まり/間延び防止） */
-  padding: 58px 40px; /* 60 -> 58 */
-
+  padding: 58px 40px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
@@ -234,10 +245,7 @@ header {
   transition: var(--transition);
   display: block;
   width: fit-content;
-
-  /* B-B: CTAの余白ルールを統一 */
   margin: var(--cta-mt) auto 0;
-
   box-shadow: 0 5px 15px rgba(46, 134, 222, 0.4);
 }
 .btn-main:hover {
@@ -249,7 +257,7 @@ header {
 /* セクションタイトル */
 .section-title {
   text-align: center;
-  margin-bottom: var(--title-mb); /* B-B: 50 -> token */
+  margin-bottom: var(--title-mb);
   position: relative;
   padding-bottom: 20px;
 }
@@ -282,8 +290,6 @@ header {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-  /* B-B: ギャップ統一 */
   gap: var(--gap-md);
 }
 .service-card {
@@ -304,8 +310,6 @@ header {
   width: 100%;
   height: 180px;
   object-fit: contain;
-
-  /* B-B: 画像と見出しの距離を一定化 */
   margin: 0 auto 18px;
 }
 .service-card h3 {
@@ -340,10 +344,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  /* B-B: Flowの段差のリズム（少し締めて企業感） */
-  margin-bottom: 56px; /* 60 -> 56 */
-
+  margin-bottom: 56px;
   position: relative;
   z-index: 1;
 }
@@ -390,13 +391,8 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   max-width: 900px;
-
-  /* B-B: Aboutの左右間隔を少し広げて上質化 */
   gap: var(--gap-lg);
-
   align-items: center;
-
-  /* B-B: 次ブロックまでの間隔を統一 */
   margin: 0 auto var(--block-mb);
 }
 .about-text h3 {
@@ -424,15 +420,11 @@ header {
   max-width: 1000px;
   margin: 0 auto;
   border-top: 1px solid #ddd;
-
-  /* B-B: 区切りの余白を整える */
-  padding-top: 56px; /* 60 -> 56 */
+  padding-top: 56px;
 }
 .company-header {
   text-align: center;
-
-  /* B-B: 見出しブロックの下余白を統一 */
-  margin-bottom: 36px; /* 40 -> 36 */
+  margin-bottom: 36px;
 }
 .company-title {
   font-size: 1.92rem;
@@ -453,20 +445,14 @@ header {
 .company-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-
-  /* B-B: 会社概要の左右間隔を統一 */
   gap: var(--gap-lg);
-
   align-items: center;
 }
 
 .company-details dl {
   display: grid;
   grid-template-columns: auto 1fr;
-
-  /* B-B: 行間のリズム調整 */
-  gap: 14px 20px; /* 15 -> 14 */
-
+  gap: 14px 20px;
   margin: 0;
 }
 .company-details dt {
@@ -519,10 +505,7 @@ header {
   max-width: 600px;
   margin: 0 auto;
   background: var(--bg-color);
-
-  /* B-B: フォームの内側余白を企業サイト標準へ */
-  padding: 44px; /* 40 -> 44 */
-
+  padding: 44px;
   border-radius: 10px;
 }
 .form-group { margin-bottom: 20px; }
@@ -564,17 +547,13 @@ footer {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
   background-color: #163A5F;
   color: #fff;
-
-  /* B-B: 上下余白のリズムを少し厚く */
-  padding-top: 36px; /* 30 -> 36 */
-
+  padding-top: 36px;
   font-size: 0.9rem;
   letter-spacing: 0.02em;
 }
 
 /* =========================================================
    Footer: 2列×2行の単一グリッドで上下を完全一致（下揃え）
-   HTMLは変更しない（display: contents でフラット化）
 ========================================================= */
 .footer-container {
   max-width: 1100px;
@@ -585,9 +564,7 @@ footer {
   grid-template-columns: 45% 50%;
   grid-template-rows: auto auto;
   column-gap: 40px;
-
-  /* B-B: フッター行間を微調整（詰めすぎ防止） */
-  row-gap: 12px; /* 10 -> 12 */
+  row-gap: 12px;
 
   align-items: end;
 }
@@ -643,9 +620,7 @@ footer {
   justify-content: flex-start;
   align-items: baseline;
   flex-wrap: wrap;
-
-  /* B-B: 行内の詰まりを緩和 */
-  gap: 14px; /* 15 -> 14 */
+  gap: 14px;
 }
 
 .contact-label {
@@ -689,17 +664,13 @@ footer {
   padding: 15px 0;
   font-size: 0.7rem;
   opacity: 0.5;
-
-  /* B-B: 上の間隔を整える */
-  margin-top: 14px; /* 10 -> 14 */
-
+  margin-top: 14px;
   border-top: 1px solid rgba(255,255,255,0.1);
   grid-column: 1 / -1;
 }
 
 /* =========================================================
    HAMBURGER MENU（CSS DRAWING）- FINAL
-   影響範囲：#menu-toggle / .pc-nav.active のみ
 ========================================================= */
 
 /* PCでは表示しない */
@@ -792,11 +763,10 @@ footer {
   .pc-br { display: none; }
   .sp-br { display: block; }
 
-  /* ヒーロー（テキスト側の調整のみ。高さは末尾のSP HERO統合で決める） */
+  /* ヒーロー */
   .hero { text-align: left; }
   .hero-content {
-    /* B-B: SPは上下余白を少し増やして呼吸感 */
-    padding: 42px 20px; /* 40 -> 42 */
+    padding: 42px 20px;
     text-align: center;
   }
 
@@ -821,7 +791,7 @@ footer {
     white-space: nowrap;
   }
 
-  /* Flow（スマホ） */
+  /* Flow */
   .flow-container::before { left: 20px; }
   .flow-step {
     flex-direction: column;
@@ -958,7 +928,6 @@ body.start-animation #opening-splash{
 
 /* =========================================================
    Container - Layout Responsibility (A-2)
-   中央箱の責務を section から分離
 ========================================================= */
 .container {
   max-width: var(--container-max);
@@ -1091,7 +1060,7 @@ html, body {
 ========================================================= */
 .flow-cta {
   text-align: center;
-  margin-top: var(--cta-mt); /* B-B: 統一 */
+  margin-top: var(--cta-mt);
 }
 
 /* =========================================================
@@ -1111,12 +1080,24 @@ html, body {
 }
 .header-tel {
   color: #fff;
-  font-weight: bold;
-  font-size: 0.95rem;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+
+  /* C: ナビと同じトーンへ */
+  font-size: 0.98rem;
+  letter-spacing: 0.08em;
+  opacity: 0.94;
+
   white-space: nowrap;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--header-pill-bg);
+  transition: opacity 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 }
-.header-tel:hover { opacity: 0.8; }
+.header-tel:hover {
+  opacity: 1;
+  background: var(--header-pill-bg-hover);
+  transform: translateY(-1px);
+}
 
 /* スマホでは非表示 */
 @media (max-width: 768px) {
@@ -1124,7 +1105,7 @@ html, body {
 }
 
 /* =========================================================
-   Anchor Scroll Position - stop a bit lower
+   Anchor Scroll Position
 ========================================================= */
 #services, #flow, #about, #contact {
   scroll-margin-top: calc(-1 * var(--header-h) + 10px);
@@ -1141,7 +1122,6 @@ html, body {
 
 /* =========================================================
    OPENING ロゴサイズ確定（PC 180px）
-   ※「#menu-toggleのPCブロック」に混ぜない（影響範囲を狭める）
 ========================================================= */
 @media (min-width: 769px) {
   #opening-splash #splash-mark{
