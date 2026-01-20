@@ -126,8 +126,9 @@ if (contactForm && formResult) {
       // 成功判定：HTTP OK かつ errors が無いこと
       if (response.ok && (!data || !data.errors)) {
         contactForm.reset();
-        formResult.textContent = '送信が完了しました。担当者よりご連絡いたします。';
+        formResult.textContent = '送信が完了しました。内容を確認し、担当者よりご連絡いたします。';
         formResult.style.display = 'block';
+        formResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
 
