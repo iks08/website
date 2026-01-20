@@ -110,23 +110,40 @@ if (contactForm && formResult) {
 
     try {
       const response = await fetch(contactForm.action, {
-        method: 'POST',
+        method: contactForm.method, // "POST" をHTMLから取得
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
 
-      if (!response.ok) {
-        throw new Error('Formspree request failed');
+      // ここで必ずJSONを読みに行く（Formspreeはerrorsを返すことがある）
+      let data = null;
+      try {
+        data = await response.json();
+      } catch (_) {
+        // JSONで返らないケース（HTML等）は data=null のまま扱う
       }
 
-      // 成功
-      contactForm.reset();
-      formResult.textContent = '送信が完了しました。担当者よりご連絡いたします。';
+      // 成功判定：HTTP OK かつ errors が無いこと
+      if (response.ok && (!data || !data.errors)) {
+        contactForm.reset();
+        formResult.textContent = '送信が完了しました。担当者よりご連絡いたします。';
+        formResult.style.display = 'block';
+        return;
+      }
+
+      // 失敗：Formspreeのエラーを優先表示
+      const msg =
+        (data && data.errors && Array.isArray(data.errors))
+          ? data.errors.map(e => e.message).join(' / ')
+          : '送信に失敗しました。入力内容をご確認のうえ再度お試しください。';
+
+      formResult.textContent = msg;
+      formResult.classList.add('error');
       formResult.style.display = 'block';
 
     } catch (err) {
-      // 失敗
-      formResult.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+      // ネットワーク/CORS等でfetch自体が失敗
+      formResult.textContent = '送信に失敗しました。通信状況をご確認のうえ再度お試しください。';
       formResult.classList.add('error');
       formResult.style.display = 'block';
     }
