@@ -58,7 +58,7 @@ header {
   width: 100%;
   top: 0;
   z-index: 1000;
-  height: 70px;
+  height: var(--header-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -995,7 +995,7 @@ html, body {
    Anchor Scroll Position - stop a bit lower
 ========================================================= */
 #services, #flow, #about, #contact {
-  scroll-margin-top: -50px;
+  scroll-margin-top: calc(var(--header-h) + 30px);
 }
 
 /* footer 住所リンクの見た目制御 */
