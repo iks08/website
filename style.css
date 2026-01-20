@@ -8,6 +8,17 @@
   --text-color: #333333;
   --white: #ffffff;
   --transition: all 0.3s ease;
+  /* === Layout Tokens (A-1) === */
+  --container-max: 1200px;
+  --container-pad-x: 5%;
+
+  --section-pad-top: 40px;
+  --section-pad-bottom: 90px;
+
+  --section-pad-top-sp: 28px;
+  --section-pad-bottom-sp: 70px;
+
+  --header-h: 70px;
 }
 
 /* === 全体のスクロール設定 === */
@@ -796,15 +807,15 @@ body.start-animation #opening-splash{
    ※Heroを除外（ヒーロー背景縮小事故防止）
 ========================================================= */
 section:not(.hero) {
-  padding: 40px 5% 90px;
-  max-width: 1200px;
+  padding: var(--section-pad-top) var(--container-pad-x) var(--section-pad-bottom);
+  max-width: var(--container-max);
   margin: 0 auto;
   box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   section:not(.hero) {
-    padding: 28px 5% 70px;
+    padding: var(--section-pad-top-sp) var(--container-pad-x) var(--section-pad-bottom-sp);
   }
 }
 
@@ -875,12 +886,12 @@ section:not(.hero) {
 @media (max-width: 768px) {
   .hero {
     padding-top: 0 !important;
-    margin-top: 70px !important;
-    height: calc(100vh - 70px) !important;
+    margin-top: var(--header-h) !important;
+    height: calc(100vh - var(--header-h)) !important;
   }
 
   @supports (height: 100dvh) {
-    .hero { height: calc(100dvh - 70px) !important; }
+    .hero { height: calc(100dvh - var(--header-h)) !important; }
   }
 
   .hero-video-container { height: 100% !important; }
