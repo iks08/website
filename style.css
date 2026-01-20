@@ -2,8 +2,18 @@
 
 /* === 基本設定 === */
 :root {
-  --primary-color: #2E86DE;
-  --accent-color: #54A0FF;
+  /* =========================================================
+     Brand Colors (FINAL) - ロゴ準拠
+     濃い青ベース＋水色アクセント
+  ========================================================= */
+  --ik-blue-dark: #0B2F8A;   /* ロゴK上部：信頼・公的感 */
+  --ik-blue-light: #07A0E5;  /* ロゴK下部：やさしさ・安心感 */
+  --ik-blue-mid: #0A2463;
+  --ik-blue-deep: #071B4D;
+
+  /* === Site Base Colors（既存変数はブランド色へ接続） === */
+  --primary-color: var(--ik-blue-dark);
+  --accent-color: var(--ik-blue-light);
   --bg-color: #F0F9FF;
   --text-color: #333333;
   --white: #ffffff;
@@ -13,9 +23,6 @@
   --container-max: 1200px;
   --container-pad-x: 5%;
 
-  /* =========================================================
-     Section padding (B-B)
-  ========================================================= */
   --section-pad-top: 52px;
   --section-pad-bottom: 96px;
 
@@ -25,7 +32,7 @@
   --header-h: 70px;
 
   /* =========================================
-     Typography Tokens (B-A)
+     Typography Tokens
   ========================================= */
   --font-base-pc: 16px;
   --font-base-sp: 15px;
@@ -48,7 +55,7 @@
   --p-size-sp: 0.95rem;
 
   /* =========================================
-     Spacing Tokens (B-B)
+     Spacing Tokens
   ========================================= */
   --gap-lg: 40px;
   --gap-md: 28px;
@@ -59,18 +66,19 @@
   --cta-mt: 56px;
 
   /* =========================================================
-     Header Tone (B-C)
-     目的：企業感・信頼感のトーン統一（事故防止のため変数化）
+     Header Tone - ブランド色へ統一（FINAL）
   ========================================================= */
-  --header-bg: #1f4f7a;           /* 深めのコーポレートブルー */
-  --header-bg-2: #163A5F;         /* フッターと同系の深色 */
+  --header-bg: var(--ik-blue-dark);
+  --header-bg-2: var(--ik-blue-deep);
   --header-border: rgba(255,255,255,0.15);
   --header-shadow: 0 2px 14px rgba(0,0,0,0.10);
 
   --header-link-opacity: 0.92;
   --header-link-hover: 1;
-  --header-pill-bg: rgba(255,255,255,0.18);
-  --header-pill-bg-hover: rgba(255,255,255,0.26);
+
+  /* TELピル（ヘッダー/フッターで統一感） */
+  --header-pill-bg: rgba(255,255,255,0.12);
+  --header-pill-bg-hover: rgba(255,255,255,0.20);
 }
 
 /* === 全体のスクロール設定 === */
@@ -113,9 +121,10 @@ img, video { max-width: 100%; height: auto; display: block; }
 
 /* === ヘッダー === */
 header {
-  /* === Header Tone (B-C) === */
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-  background: linear-gradient(180deg, var(--header-bg) 0%, var(--header-bg-2) 100%);
+
+  /* ブランド統一：濃い青ベースの深みグラデ */
+  background: linear-gradient(180deg, var(--ik-blue-dark) 0%, var(--ik-blue-mid) 60%, var(--ik-blue-deep) 100%);
   box-shadow: var(--header-shadow);
   border-bottom: 1px solid var(--header-border);
 
@@ -133,7 +142,7 @@ header {
 }
 
 .logo {
-  font-size: 1.55rem;         /* 1.75 -> 1.55（ナビとのバランス） */
+  font-size: 1.55rem;
   font-weight: 700;
   color: var(--white);
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
@@ -144,7 +153,7 @@ header {
 .logo a:hover { opacity: 1; }
 
 /* PCナビ */
-.pc-nav ul { display: flex; gap: 26px; } /* 30 -> 26（密度を整える） */
+.pc-nav ul { display: flex; gap: 26px; }
 .pc-nav a {
   font-weight: 600;
   transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
@@ -152,7 +161,6 @@ header {
   letter-spacing: 0.06em;
   opacity: var(--header-link-opacity);
 
-  /* “線” ではなく “面” の控えめ表現（見た目が荒れにくい） */
   padding: 10px 12px;
   border-radius: 10px;
 }
@@ -162,9 +170,15 @@ header {
   transform: translateY(-1px);
 }
 
+/* ヘッダー右側メニュー文字をOSAKAに */
+.pc-nav,
+.pc-nav a {
+  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+}
+
 /* PCのみ：右側メニュー文字サイズ */
 @media (min-width: 769px) {
-  .pc-nav a { font-size: 1.08rem; } /* 1.22/1.3系 -> 1.08：上品に */
+  .pc-nav a { font-size: 1.08rem; }
 }
 
 /* ハンバーガー（基本はPC非表示） */
@@ -233,25 +247,30 @@ header {
   font-size: 1.22rem;
 }
 
+/* =========================================================
+   CTA Buttons（ブランド統一：水色アクセントのグラデ）
+========================================================= */
 .btn-main {
   font-size: 1.05rem;
   letter-spacing: 0.08em;
   line-height: 1.2;
   padding: 16px 44px;
-  background-color: var(--primary-color);
+
+  background: linear-gradient(180deg, var(--ik-blue-light) 0%, #0586C2 100%);
   color: var(--white);
+
   border-radius: 50px;
-  font-weight: bold;
+  font-weight: 700;
   transition: var(--transition);
   display: block;
   width: fit-content;
   margin: var(--cta-mt) auto 0;
-  box-shadow: 0 5px 15px rgba(46, 134, 222, 0.4);
+  box-shadow: 0 6px 18px rgba(7,160,229,0.35);
 }
 .btn-main:hover {
-  background-color: var(--accent-color);
+  background: linear-gradient(180deg, #10B0F5 0%, #067FBA 100%);
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(46, 134, 222, 0.3);
+  box-shadow: 0 8px 22px rgba(7,160,229,0.32);
 }
 
 /* セクションタイトル */
@@ -527,31 +546,38 @@ header {
   line-height: 1.7;
   letter-spacing: 0.02em;
 }
+
 .submit-btn {
   width: 100%;
-  background-color: var(--primary-color);
   color: var(--white);
   border: none;
   padding: 15px;
   font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
+  font-weight: 700;
+  border-radius: 6px;
   cursor: pointer;
   transition: var(--transition);
   letter-spacing: 0.06em;
+
+  /* ブランド統一：水色グラデ */
+  background: linear-gradient(180deg, var(--ik-blue-light) 0%, #0586C2 100%);
+  box-shadow: 0 6px 18px rgba(7,160,229,0.25);
 }
-.submit-btn:hover { background-color: var(--accent-color); }
+.submit-btn:hover {
+  background: linear-gradient(180deg, #10B0F5 0%, #067FBA 100%);
+  transform: translateY(-1px);
+}
 
 /* === Footer === */
 footer {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 
-  /* D：ヘッダーと同系の“深み”を追加 */
-  background: linear-gradient(180deg, #163A5F 0%, #0F2D4A 100%);
+  /* ヘッダーと同一トーンへ統一 */
+  background: linear-gradient(180deg, var(--ik-blue-dark) 0%, var(--ik-blue-mid) 60%, var(--ik-blue-deep) 100%);
   color: #fff;
 
-  padding-top: 44px;     /* 30 -> 44：企業サイトらしい余白 */
-  padding-bottom: 18px;  /* 下も少し確保 */
+  padding-top: 44px;
+  padding-bottom: 18px;
   font-size: 0.9rem;
   letter-spacing: 0.02em;
 
@@ -587,7 +613,7 @@ footer {
   grid-column: 1;
   grid-row: 1;
 
-  font-size: 1.65rem;   /* 1.6 -> 1.65：企業名の存在感 */
+  font-size: 1.65rem;
   font-weight: 700;
   margin: 0;
   letter-spacing: 0.06em;
@@ -602,7 +628,7 @@ footer {
   grid-row: 2;
 
   font-size: 0.95rem;
-  opacity: 0.92;
+  opacity: 0.96;   /* 微調整：沈み防止 */
   margin: 0;
   line-height: 1.8;
 
@@ -630,9 +656,8 @@ footer {
 }
 
 .contact-label {
-  /* D：ヘッダーTELの“ピル感”と揃える（上品に） */
-  background-color: rgba(255,255,255,0.16);
-  border: 1px solid rgba(255,255,255,0.10);
+  background-color: rgba(255,255,255,0.20);
+  border: 1px solid rgba(255,255,255,0.12);
 
   padding: 2px 7px;
   border-radius: 6px;
@@ -643,7 +668,7 @@ footer {
 }
 
 .tel-number {
-  font-size: 1.22rem; /* 少しだけ視認性UP */
+  font-size: 1.22rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: 0.03em;
@@ -676,12 +701,11 @@ footer {
   width: 100%;
   text-align: center;
 
-  /* D：区切り線を少し上品に */
   padding: 16px 0 6px;
   font-size: 0.72rem;
-  opacity: 0.55;
+  opacity: 0.60;
   margin-top: 18px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.10);
 
   grid-column: 1 / -1;
 }
@@ -986,7 +1010,7 @@ body.start-animation #opening-splash{
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: var(--primary-color);
+  background: linear-gradient(180deg, var(--ik-blue-light) 0%, #0586C2 100%);
   color: #fff;
   border: none;
   font-size: 1.2rem;
@@ -1002,7 +1026,7 @@ body.start-animation #opening-splash{
   pointer-events: auto;
 }
 #to-top:hover {
-  background: var(--accent-color);
+  background: linear-gradient(180deg, #10B0F5 0%, #067FBA 100%);
   transform: translateY(-4px);
 }
 @media (max-width: 768px) {
@@ -1098,8 +1122,6 @@ html, body {
 .header-tel {
   color: #fff;
   font-weight: 700;
-
-  /* C: ナビと同じトーンへ */
   font-size: 0.98rem;
   letter-spacing: 0.08em;
   opacity: 0.94;
@@ -1107,7 +1129,10 @@ html, body {
   white-space: nowrap;
   padding: 10px 12px;
   border-radius: 10px;
+
   background: var(--header-pill-bg);
+  border: 1px solid rgba(255,255,255,0.18);
+
   transition: opacity 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 }
 .header-tel:hover {
