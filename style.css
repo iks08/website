@@ -802,18 +802,18 @@ body.start-animation #opening-splash{
   pointer-events: none;
 }
 
+
 /* =========================================================
-   Section Spacing - Unified (PC/SP)
-   ※Heroを除外（ヒーロー背景縮小事故防止）
+   Section - Vertical spacing responsibility (A-2)
 ========================================================= */
-section:not(.hero) {
+.section {
   padding-top: var(--section-pad-top);
   padding-bottom: var(--section-pad-bottom);
   box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
-  section:not(.hero) {
+  .section {
     padding-top: var(--section-pad-top-sp);
     padding-bottom: var(--section-pad-bottom-sp);
   }
