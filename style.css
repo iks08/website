@@ -1,19 +1,19 @@
 @charset "UTF-8";
 
 /* === 基本設定 === */
+/* =========================================================
+   Brand Colors (FINAL) - ロゴ準拠（入れ替え版）
+   水色基調＋紺ワンポイント
+========================================================= */
 :root {
-  /* =========================================================
-     Brand Colors (FINAL) - ロゴ準拠
-     濃い青ベース＋水色アクセント
-  ========================================================= */
-  --ik-blue-dark: #0B2F8A;   /* ロゴK上部：信頼・公的感 */
-  --ik-blue-light: #07A0E5;  /* ロゴK下部：やさしさ・安心感 */
-  --ik-blue-mid: #0A2463;
-  --ik-blue-deep: #071B4D;
+  --ik-blue-dark: #0B2F8A;   /* ワンポイント（見出し/引き締め） */
+  --ik-blue-light: #07A0E5;  /* 基調（ヘッダー/フッター/CTA） */
+  --ik-blue-light-2: #0586C2; /* 水色の深み（グラデ下側） */
 
-  /* === Site Base Colors（既存変数はブランド色へ接続） === */
-  --primary-color: var(--ik-blue-dark);
-  --accent-color: var(--ik-blue-light);
+  /* 既存変数の接続（重要：可読性のため primary は濃い紺のまま） */
+  --primary-color: var(--ik-blue-dark);    /* 見出し・重要語の色（紺） */
+  --accent-color: var(--ik-blue-light);    /* UIアクセント（水色） */
+
   --bg-color: #F0F9FF;
   --text-color: #333333;
   --white: #ffffff;
@@ -123,10 +123,10 @@ img, video { max-width: 100%; height: auto; display: block; }
 header {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 
-  /* ブランド統一：濃い青ベースの深みグラデ */
-  background: linear-gradient(180deg, var(--ik-blue-dark) 0%, var(--ik-blue-mid) 60%, var(--ik-blue-deep) 100%);
-  box-shadow: var(--header-shadow);
-  border-bottom: 1px solid var(--header-border);
+  /* ここだけ差し替え */
+  background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 2px 14px rgba(0,0,0,0.10);
 
   position: fixed;
   width: 100%;
@@ -256,8 +256,7 @@ header {
   line-height: 1.2;
   padding: 16px 44px;
 
-  background: linear-gradient(180deg, var(--ik-blue-light) 0%, #0586C2 100%);
-  color: var(--white);
+  background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
 
   border-radius: 50px;
   font-weight: 700;
@@ -266,11 +265,13 @@ header {
   width: fit-content;
   margin: var(--cta-mt) auto 0;
   box-shadow: 0 6px 18px rgba(7,160,229,0.35);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--white);
 }
 .btn-main:hover {
   background: linear-gradient(180deg, #10B0F5 0%, #067FBA 100%);
+  box-shadow: 0 10px 26px rgba(11,47,138,0.20);
   transform: translateY(-3px);
-  box-shadow: 0 8px 22px rgba(7,160,229,0.32);
 }
 
 /* セクションタイトル */
@@ -572,16 +573,15 @@ header {
 footer {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 
+  background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
   /* ヘッダーと同一トーンへ統一 */
-  background: linear-gradient(180deg, var(--ik-blue-dark) 0%, var(--ik-blue-mid) 60%, var(--ik-blue-deep) 100%);
   color: #fff;
 
   padding-top: 44px;
   padding-bottom: 18px;
   font-size: 0.9rem;
   letter-spacing: 0.02em;
-
-  border-top: 1px solid rgba(255,255,255,0.10);
+  border-top: 1px solid rgba(255,255,255,0.18);
 }
 
 /* =========================================================
@@ -1010,7 +1010,7 @@ body.start-animation #opening-splash{
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: linear-gradient(180deg, var(--ik-blue-light) 0%, #0586C2 100%);
+  background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
   color: #fff;
   border: none;
   font-size: 1.2rem;
