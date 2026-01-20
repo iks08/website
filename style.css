@@ -995,7 +995,7 @@ html, body {
    Anchor Scroll Position - stop a bit lower
 ========================================================= */
 #services, #flow, #about, #contact {
-  scroll-margin-top: calc(var(--header-h) + 30px);
+  scroll-margin-top: calc(-1 * var(--header-h) + 10px);
 }
 
 /* footer 住所リンクの見た目制御 */
