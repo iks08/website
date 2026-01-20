@@ -1248,3 +1248,18 @@ html, body {
   .hero-content h1{ font-size: 2.35rem; }
   .hero-content p{ font-size: 1.03rem; }
 }
+/* =========================================================
+   SP 横余白の復活（コンテンツが画面端に張り付かないように）
+========================================================= */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  /* セクション直下のフル幅要素がある場合の保険 */
+  .section > .container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
