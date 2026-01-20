@@ -90,3 +90,45 @@ if (window.visualViewport) {
   window.visualViewport.addEventListener('resize', setVhVar);
   window.visualViewport.addEventListener('scroll', setVhVar);
 }
+
+// ==============================
+// Contact Form Submit (AJAX)
+// - Formspreeへページ遷移なしで送信し、フォーム直下に結果を表示
+// ==============================
+const contactForm = document.querySelector('.contact-form');
+const formResult = document.getElementById('form-result');
+
+if (contactForm && formResult) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // 表示リセット
+    formResult.style.display = 'none';
+    formResult.classList.remove('error');
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (!response.ok) {
+        throw new Error('Formspree request failed');
+      }
+
+      // 成功
+      contactForm.reset();
+      formResult.textContent = '送信が完了しました。担当者よりご連絡いたします。';
+      formResult.style.display = 'block';
+
+    } catch (err) {
+      // 失敗
+      formResult.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+      formResult.classList.add('error');
+      formResult.style.display = 'block';
+    }
+  });
+}
