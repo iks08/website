@@ -288,6 +288,8 @@
         <textarea name="message" rows="5" placeholder="ご質問やご相談内容をご記入ください" required></textarea>
       </div>
       <button type="submit" class="submit-btn">送信する</button>
+        <!-- 送信結果表示（ページ遷移なし送信の結果を表示） -->
+        <div id="form-result" class="form-result" aria-live="polite"></div>
 
       <p class="form-note">
         <span class="form-note-line">※ 通常1〜2営業日以内に返信いたします。</span>
@@ -299,8 +301,6 @@
       </p>
     </form>
 
-    <!-- 送信結果表示（ページ遷移なし送信の結果を表示） -->
-    <div id="form-result" class="form-result" aria-live="polite"></div>
   </section>
 
   <!-- フッター -->

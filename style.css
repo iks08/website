@@ -1107,16 +1107,16 @@ html, body {
    Contact Form - Submit Result Message
 ========================================================= */
 .form-result {
-  max-width: 600px;
-  margin: 18px auto 0;
-  padding: 14px 18px;
-  border-radius: 10px;
-  background: #e9f6ff;
-  color: var(--primary-color);
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #fff0f0;
+  color: #c00000;          /* 赤字 */
   font-weight: 700;
   text-align: center;
   letter-spacing: 0.03em;
   display: none;
+  border: 1px solid #f3b3b3;
 }
 
 .form-result.error {
