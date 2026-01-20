@@ -517,6 +517,8 @@ footer {
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
+  align-items: baseline; 
+
 }
 
 .contact-label {
