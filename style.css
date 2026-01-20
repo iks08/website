@@ -123,6 +123,7 @@ img, video { max-width: 100%; height: auto; display: block; }
 header {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 
+  /* ここだけ差し替え */
   background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
   border-bottom: 1px solid rgba(255,255,255,0.22);
   box-shadow: 0 2px 14px rgba(0,0,0,0.10);
@@ -573,6 +574,7 @@ footer {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 
   background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
+  /* ヘッダーと同一トーンへ統一 */
   color: #fff;
 
   padding-top: 44px;
@@ -583,7 +585,7 @@ footer {
 }
 
 /* =========================================================
-   Footer: 2列レイアウト（右カラム3段：TEL/FAX, Mail, Policy）
+   Footer: 2列×2行の単一グリッドで上下を完全一致（下揃え）
 ========================================================= */
 .footer-container {
   max-width: 1100px;
@@ -592,7 +594,7 @@ footer {
 
   display: grid;
   grid-template-columns: 45% 50%;
-  grid-template-rows: auto auto auto auto; /* 右カラム3段 + copyright段 */
+  grid-template-rows: auto auto;
   column-gap: 40px;
   row-gap: 12px;
 
@@ -626,14 +628,13 @@ footer {
   grid-row: 2;
 
   font-size: 0.95rem;
-  opacity: 0.96;
+  opacity: 0.96;   /* 微調整：沈み防止 */
   margin: 0;
   line-height: 1.8;
 
   align-self: end;
 }
 
-/* 右カラム：TEL/FAX=1段目、Mail=2段目、Policy=3段目 */
 .footer-contact-area .contact-row:nth-of-type(1) {
   grid-column: 2;
   grid-row: 1;
@@ -642,11 +643,6 @@ footer {
 .footer-contact-area .contact-row:nth-of-type(2) {
   grid-column: 2;
   grid-row: 2;
-  align-self: end;
-}
-.footer-contact-area .contact-row:nth-of-type(3) {
-  grid-column: 2;
-  grid-row: 3;
   align-self: end;
 }
 
@@ -701,7 +697,6 @@ footer {
   text-decoration: underline;
 }
 
-/* copyright は最下段に固定 */
 .copyright {
   width: 100%;
   text-align: center;
@@ -713,7 +708,6 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.10);
 
   grid-column: 1 / -1;
-  grid-row: 4;
 }
 
 /* =========================================================
@@ -840,6 +834,19 @@ footer {
 
   /* Flow */
   .flow-container::before { left: 20px; }
+
+  /* =========================================================
+     SP：横余白の復活（コンテンツが画面端に張り付かないように）
+     - index.html は一部セクションが .container を使っていないため
+       個別ラッパーに padding を付与して視認性と安心感を担保する
+  ========================================================= */
+  .flow-container,
+  .about-grid,
+  .company-info-area {
+    padding-left: clamp(16px, 5vw, 24px);
+    padding-right: clamp(16px, 5vw, 24px);
+    box-sizing: border-box;
+  }
   .flow-step {
     flex-direction: column;
     align-items: flex-start;
@@ -1218,24 +1225,24 @@ html, body {
     height: auto !important;
   }
 }
-
+/* ここから下を追加 */
 /* ===== Hero Display Option A : 安心パネル化 ===== */
 .hero-content{
-  background-color: rgba(255,255,255,0.92);
+  background-color: rgba(255,255,255,0.92);   /* 既存0.85 → 0.92 */
   border: 1px solid rgba(11,47,138,0.10);
   box-shadow: 0 16px 44px rgba(0,0,0,0.14);
   border-radius: 22px;
-  padding: 64px 46px;
+  padding: 64px 46px;                         /* 少し余白を増やす */
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
 
 .hero-content h1{
-  margin-bottom: 28px;
+  margin-bottom: 28px;                        /* 少し詰めて読みやすく */
 }
 
 .hero-content p{
-  font-size: 1.24rem;
+  font-size: 1.24rem;                         /* ほぼ同等だが読みやすく */
   line-height: 2.05;
   margin-bottom: 6px;
 }
@@ -1247,19 +1254,4 @@ html, body {
   }
   .hero-content h1{ font-size: 2.35rem; }
   .hero-content p{ font-size: 1.03rem; }
-}
-/* =========================================================
-   SP 横余白の復活（コンテンツが画面端に張り付かないように）
-========================================================= */
-@media (max-width: 768px) {
-  .container {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-
-  /* セクション直下のフル幅要素がある場合の保険 */
-  .section > .container {
-    padding-left: 5%;
-    padding-right: 5%;
-  }
 }
