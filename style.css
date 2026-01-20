@@ -1234,17 +1234,6 @@ html, body {
   margin-bottom: 6px;
 }
 
-.hero-content h1::after{
-  content: "";
-  display: block;
-  width: 92px;
-  height: 3px;
-  margin: 18px auto 0;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--ik-blue-light), var(--ik-blue-light-2));
-  opacity: 0.95;
-}
-
 @media (max-width: 768px){
   .hero-content{
     padding: 44px 18px;
