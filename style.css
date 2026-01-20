@@ -115,6 +115,9 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; padding: 0; margin: 0; }
 img, video { max-width: 100%; height: auto; display: block; }
 
+/* SPハンバーガー内：電話導線（PCでは非表示） */
+.sp-only-tel { display: none; }
+
 /* === 改行の制御 (PC用初期値) === */
 .pc-br { display: block; }
 .sp-br { display: none; }
@@ -794,6 +797,27 @@ footer {
     letter-spacing: 0.03em;
   }
   .pc-nav a:hover { color: var(--primary-color); }
+
+  /* SPハンバーガー内：電話導線（控えめだが見つけやすく） */
+  .sp-only-tel {
+    display: block;
+    margin-top: 6px;
+    padding-top: 14px;
+    border-top: 1px solid #eee;
+  }
+  .sp-tel-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--primary-color);
+    background: rgba(7,160,229,0.08);
+    border: 1px solid rgba(7,160,229,0.18);
+  }
+  .sp-tel-link:active { transform: translateY(1px); }
 }
 
 /* =========================================
