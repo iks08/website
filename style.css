@@ -1083,6 +1083,23 @@ html, body {
   .form-note { font-size: 0.82rem; }
 }
 
+.form-privacy{
+  margin-top: 12px;
+  text-align: center;
+}
+
+.form-privacy-link{
+  color: var(--primary-color);
+  font-weight: 700;
+  text-decoration: underline;
+  letter-spacing: 0.02em;
+  font-size: 0.92rem;
+}
+
+.form-privacy-link:hover{
+  opacity: 0.85;
+}
+
 /* =========================================================
    Section Title Enhancement
 ========================================================= */
