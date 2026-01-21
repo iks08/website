@@ -1384,3 +1384,11 @@ html, body {
     box-shadow: 0 14px 36px rgba(0,0,0,0.12);
   }
 }
+@media (max-width: 768px){
+  .hero-content{
+    padding: 28px 16px;          /* 44px 18px → さらに圧縮 */
+    max-width: 92vw;             /* 横幅を少し抑える */
+  }
+  .hero-content h1{ margin-bottom: 18px; }
+  .hero-content p{ margin-bottom: 2px; }
+}
