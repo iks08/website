@@ -834,19 +834,6 @@ footer {
 
   /* Flow */
   .flow-container::before { left: 20px; }
-
-  /* =========================================================
-     SP：横余白の復活（コンテンツが画面端に張り付かないように）
-     - index.html は一部セクションが .container を使っていないため
-       個別ラッパーに padding を付与して視認性と安心感を担保する
-  ========================================================= */
-  .flow-container,
-  .about-grid,
-  .company-info-area {
-    padding-left: clamp(16px, 5vw, 24px);
-    padding-right: clamp(16px, 5vw, 24px);
-    box-sizing: border-box;
-  }
   .flow-step {
     flex-direction: column;
     align-items: flex-start;
@@ -1255,140 +1242,42 @@ html, body {
   .hero-content h1{ font-size: 2.35rem; }
   .hero-content p{ font-size: 1.03rem; }
 }
-/* === Flow（タイムライン風） === */
-.flow-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
-  position: relative;
-}
-.flow-container::before {
-  content: '';
-  position: absolute;
-  top: 20px; bottom: 20px;
-  left: 50%;
-  width: 1px;
-  background: #ccc;
-  transform: translateX(-50%);
-  z-index: 0;
-}
 
-.flow-step {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 56px;
-  position: relative;
-  z-index: 1;
-
-  /* === A案：カード感を付与（控えめ） === */
-  background: #f7fbff;
-  border-radius: 14px;
-  padding: 26px 28px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-}
-
-.flow-step::after {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px; height: 12px;
-  background-color: var(--primary-color);
-  border: 4px solid #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px #ccc;
-}
-
-/* 左右カラム */
-.step-header { width: 45%; text-align: right; }
-.step-body   { width: 45%; text-align: left; }
-
-/* === STEP番号：ピル化して視認性アップ === */
-.step-num {
-  display: inline-block;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-weight: 700;
-  font-size: 0.78rem;
-  color: var(--primary-color);
-  letter-spacing: 0.14em;
-  margin-bottom: 10px;
-
-  background: rgba(7,160,229,0.10);
-  border: 1px solid rgba(7,160,229,0.25);
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-/* 見出し */
-.step-name {
-  font-size: 1.72rem;
-  font-weight: 700;
-  color: #333;
-  margin: 0;
-  letter-spacing: 0.02em;
-  line-height: 1.35;
-}
-
-/* 本文（読みやすさを優先） */
-.step-desc {
-  font-size: 1.03rem;
-  line-height: 2.0;
-  color: #666;
-  margin: 6px 0 0;
-  letter-spacing: 0.02em;
-}
-
-/* === SP（縦並び） === */
-@media (max-width: 768px) {
-  .flow-container::before { left: 20px; }
-
-  .flow-step {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 40px;
-    padding: 22px 18px 22px 22px;
-  }
-
-  .flow-step::after { left: 20px; top: 26px; }
-
-  .step-header,
-  .step-body {
-    width: 100%;
-    text-align: left;
-  }
-
-  .step-name {
-    font-size: 1.35rem;
-  }
-
-  .step-desc {
-    font-size: 0.95rem;
-    line-height: 1.95;
-  }
-}
 /* =========================================================
-   FIX: PCで「SP用電話導線」を絶対に出さない
+   安心材料 強調：A（About 研修実績を“安心パネル化”）
+   - 内容は変更しない（表示のみ）
+   - 既存HTMLそのまま（pの並びをブロックとして見せる）
 ========================================================= */
-@media (min-width: 769px){
-  .sp-only-tel{
-    display: none !important;
-  }
+
+/* 研修実績（About）のリスト部分だけをパネル化 */
+#about .about-text p:nth-of-type(n+2){
+  margin: 0;
+  padding: 10px 14px;
+  background: rgba(7,160,229,0.08);
+  border-left: 4px solid rgba(7,160,229,0.35);
+  color: #333;
+  line-height: 1.8;
 }
-/* SP: ヒーロー背景（動画）を見せる調整 */
-@media (max-width: 768px){
-  .hero-content{
-    background-color: rgba(255,255,255,0.72); /* 0.92 → 0.72 くらいへ */
-    box-shadow: 0 14px 36px rgba(0,0,0,0.12);
-  }
+
+/* リスト全体を1つの塊に見せる（角丸） */
+#about .about-text p:nth-of-type(2){
+  margin-top: 16px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
+#about .about-text p:nth-of-type(6){
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+/* 各行の区切り（控えめ） */
+#about .about-text p:nth-of-type(n+3){
+  border-top: 1px solid rgba(11,47,138,0.08);
+}
+
 @media (max-width: 768px){
-  .hero-content{
-    padding: 28px 16px;          /* 44px 18px → さらに圧縮 */
-    max-width: 92vw;             /* 横幅を少し抑える */
+  #about .about-text p:nth-of-type(n+2){
+    padding: 10px 12px;
+    font-size: 0.98rem;
   }
-  .hero-content h1{ margin-bottom: 18px; }
-  .hero-content p{ margin-bottom: 2px; }
 }
