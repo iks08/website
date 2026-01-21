@@ -857,24 +857,51 @@ footer {
   .company-map { text-align: center; margin-top: 20px; }
   .company-map img { display: block; margin: 0 auto; }
 
-  /* Footer（スマホは縦積み） */
-  .footer-container {
+  /* Footer（SP：余白は .container が責任 / ブロック中央寄せ・中身左揃え） */
+  .footer-container{
     display: flex;
     flex-direction: column;
-    text-align: center;
-    row-gap: 0;
-    align-items: center;
+    align-items: stretch;
+    text-align: left;
+    row-gap: 14px;
   }
-  .footer-logo-area, .footer-contact-area {
+
+  /* ロゴ/住所ブロック（中央寄せ・左揃え） */
+  .footer-logo-area{
     width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
+    max-width: 360px;
+    margin: 0 auto 6px;
+    text-align: left;
     display: block;
   }
-  .contact-row { justify-content: center; flex-direction: column; gap: 5px; }
-  .footer-address { font-size: 0.85rem; line-height: 1.5; width: 100%; }
-  .divider { display: none; }
-  .tel-number { font-size: 1.2rem; }
+
+  /* 連絡先ブロック（中央寄せ・左揃え） */
+  .footer-contact-area{
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 6px;
+    text-align: left;
+    display: block;
+  }
+
+  .footer-address{
+    width: auto;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .contact-row{
+    justify-content: flex-start;
+    align-items: baseline;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .divider{ display: inline-block; }
+
+  .tel-number{ font-size: 1.2rem; }
 }
 
 /* =========================
@@ -1360,78 +1387,37 @@ html, body {
     text-align: left !important;
   }
 }
+
 /* =========================================================
-   OVERRIDE PACK (2026-01-21) - SP組版の安定化（本題2点）
-   1) フォーム下リンク：1文字（長音「ー」）落ち防止
-   2) 許認可：末尾1文字落ち防止（SPのみ微調整）
-   3) SPフッター：ブロック中央寄せ（中身は左揃え）
-   ※ 末尾追記で必ず上書き勝ち
+   2026-01-21 SP組版安定化（再発防止）
+   - 1文字落ち（プライバシーリンク / 許認可）
+   - SP余白は .container が責任（HTML側で各セクションを container 包み済み）
 ========================================================= */
 
-/* 1) フォーム下：リンク文の“1文字落ち”を止める */
-.form-privacy-link{
-  display: inline-block;
-  white-space: nowrap;
-  word-break: keep-all;
-  overflow-wrap: normal;
-  line-break: strict;
-  text-wrap: balance;
-}
-
 @media (max-width: 768px){
+
+  /* フォーム下：プライバシーリンクの「ー」1文字落ち防止（リンク全体を折り返さない） */
   .form-privacy-link{
-    font-size: 0.95em; /* 端末幅でのギリギリを吸収 */
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    line-break: strict;
   }
-}
 
-/* 2) 許認可：タイトル側の“最後の1文字落ち”を吸収 */
-.company-details dd.license-list .license-row{
-  min-width: 0;
-  column-gap: 6px;
-}
-
-.company-details dd.license-list .license-title{
-  min-width: 0;
-  word-break: keep-all;
-  overflow-wrap: normal;
-  line-break: strict;
-  text-wrap: balance;
-  letter-spacing: -0.01em;
-}
-
-@media (max-width: 768px){
-  .company-details dd.license-list .license-title{
-    font-size: 0.95rem;
-    line-height: 1.7;
+  /* 許認可：名称が1文字だけ落ちるのを抑える */
+  .company-details dd.license-list .license-row{
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 10px;
+  }
+  .company-details dd.license-list .license-name{
+    min-width: 0;
+    overflow-wrap: normal;
+    word-break: keep-all;
+    text-wrap: balance;
+    letter-spacing: 0;
   }
   .company-details dd.license-list .license-num{
-    letter-spacing: 0.04em; /* 数字の横幅をほんの少し圧縮 */
-  }
-}
-
-/* 3) SPフッター：連絡先ブロックを中央寄せ（中身は左揃えのまま） */
-@media (max-width: 768px){
-  /* 既存の text-align:center を打ち消す */
-  .footer-contact-area{
-    width: 100%;
-    max-width: 360px;
-    margin: 0 auto 18px;
-    padding: 0 12px;          /* 端末端の詰まり防止 */
-    box-sizing: border-box;
-    text-align: left !important;
-  }
-
-  /* 行は“左起点”で整列（ブロックは中央） */
-  .footer-contact-area .contact-row{
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-    text-align: left !important;
-    flex-direction: column;   /* ラベル→値の縦積みは維持 */
-    gap: 6px;
-  }
-
-  /* Policy行も同列の整列に揃える */
-  .footer-contact-area .contact-row a{
-    text-align: left;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
   }
 }
