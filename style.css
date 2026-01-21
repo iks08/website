@@ -857,51 +857,24 @@ footer {
   .company-map { text-align: center; margin-top: 20px; }
   .company-map img { display: block; margin: 0 auto; }
 
-  /* Footer（SP：余白は .container が責任 / ブロック中央寄せ・中身左揃え） */
-  .footer-container{
+  /* Footer（スマホは縦積み） */
+  .footer-container {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    text-align: left;
-    row-gap: 14px;
+    text-align: center;
+    row-gap: 0;
+    align-items: center;
   }
-
-  /* ロゴ/住所ブロック（中央寄せ・左揃え） */
-  .footer-logo-area{
+  .footer-logo-area, .footer-contact-area {
     width: 100%;
-    max-width: 360px;
-    margin: 0 auto 6px;
-    text-align: left;
+    text-align: center;
+    margin-bottom: 20px;
     display: block;
   }
-
-  /* 連絡先ブロック（中央寄せ・左揃え） */
-  .footer-contact-area{
-    width: 100%;
-    max-width: 360px;
-    margin: 0 auto 6px;
-    text-align: left;
-    display: block;
-  }
-
-  .footer-address{
-    width: auto;
-    font-size: 0.85rem;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .contact-row{
-    justify-content: flex-start;
-    align-items: baseline;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .divider{ display: inline-block; }
-
-  .tel-number{ font-size: 1.2rem; }
+  .contact-row { justify-content: center; flex-direction: column; gap: 5px; }
+  .footer-address { font-size: 0.85rem; line-height: 1.5; width: 100%; }
+  .divider { display: none; }
+  .tel-number { font-size: 1.2rem; }
 }
 
 /* =========================
@@ -1388,36 +1361,180 @@ html, body {
   }
 }
 
+
 /* =========================================================
-   2026-01-21 SP組版安定化（再発防止）
-   - 1文字落ち（プライバシーリンク / 許認可）
-   - SP余白は .container が責任（HTML側で各セクションを container 包み済み）
+   FIX PACK (2026-01-21) - 固定（戻らないよう末尾で上書き）
+   対象：
+   1) About：研修項目（SPのみ枠で整理）
+   2) Company：許認可（装飾 + 1文字落ち抑制）
+   3) Footer：Policy位置固定（Mailの下） + SPバランス修正
 ========================================================= */
 
+/* ---------- 1) About：研修リスト ---------- */
+.training-list{
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.training-list li{
+  position: relative;
+  padding-left: 1.1em;
+  margin: 0 0 10px;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+}
+.training-list li::before{
+  content: "・";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
 @media (max-width: 768px){
+  .training-list{
+    background: #ffffff;
+    border: 1px solid rgba(11,47,138,0.10);
+    border-radius: 16px;
+    padding: 14px 14px 6px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+  }
+  .training-list li{ margin-bottom: 12px; }
+}
 
-  /* フォーム下：プライバシーリンクの「ー」1文字落ち防止（リンク全体を折り返さない） */
-  .form-privacy-link{
-    white-space: nowrap;
-    overflow-wrap: normal;
-    word-break: keep-all;
-    line-break: strict;
+/* ---------- 2) Company：許認可（装飾 + 1文字落ち抑制） ---------- */
+.company-details dd.license-list{
+  margin: 0;
+}
+
+.company-details dd.license-list .license-row{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  column-gap: 10px;
+  align-items: baseline;
+  width: 100%;
+  min-width: 0;
+}
+
+.company-details dd.license-list .license-name{
+  min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+  text-wrap: balance;
+}
+
+.company-details dd.license-list .license-num{
+  white-space: nowrap;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 768px){
+  .company-details dd.license-list{
+    background: rgba(240,249,255,0.85);
+    border: 1px solid rgba(11,47,138,0.10);
+    border-radius: 14px;
+    padding: 12px 12px;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.05);
   }
 
-  /* 許認可：名称が1文字だけ落ちるのを抑える */
   .company-details dd.license-list .license-row{
-    grid-template-columns: minmax(0, 1fr) auto;
-    column-gap: 10px;
+    padding: 10px 0;
   }
+  .company-details dd.license-list .license-row + .license-row{
+    border-top: 1px solid rgba(11,47,138,0.10);
+  }
+
   .company-details dd.license-list .license-name{
-    min-width: 0;
-    overflow-wrap: normal;
-    word-break: keep-all;
-    text-wrap: balance;
-    letter-spacing: 0;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em; /* 1文字落ちの吸収 */
+    line-height: 1.75;
   }
   .company-details dd.license-list .license-num{
-    white-space: nowrap;
-    letter-spacing: 0.03em;
+    font-size: 0.98rem;
+    letter-spacing: 0.06em;
   }
 }
+
+/* ---------- 3) Footer：レイアウトを固定（display:contents 依存を排除） ---------- */
+.footer-logo-area,
+.footer-contact-area{
+  display: block !important;
+}
+
+.footer-container{
+  display: grid !important;
+  grid-template-columns: 1.1fr 0.9fr !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 40px !important;
+  row-gap: 12px !important;
+  align-items: end !important;
+}
+
+.footer-logo-area{
+  grid-column: 1 !important;
+  grid-row: 1 / span 2 !important;
+}
+
+.footer-contact-area{
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+}
+
+.footer-contact-grid{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-contact-area .contact-row{
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.footer-contact-area .divider{
+  margin: 0 8px;
+  opacity: 0.35;
+}
+
+@media (max-width: 768px){
+  /* SPは縦積み + ブロック中央寄せ（中身は左揃え） */
+  .footer-container{
+    display: block !important;
+    text-align: center;
+  }
+
+  .footer-logo-area{
+    margin-bottom: 18px;
+  }
+  .footer-logo-area h3{
+    margin-bottom: 8px;
+  }
+  .footer-address{
+    width: 100%;
+    text-align: center;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .footer-contact-area{
+    max-width: 360px;
+    margin: 0 auto 18px;
+    text-align: left !important;
+  }
+
+  .footer-contact-area .contact-row{
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .footer-contact-area .divider{ display: inline-block; }
+}
+
+/* =========================================================
+   END FIX PACK
+========================================================= */
