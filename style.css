@@ -1360,3 +1360,78 @@ html, body {
     text-align: left !important;
   }
 }
+/* =========================================================
+   OVERRIDE PACK (2026-01-21) - SP組版の安定化（本題2点）
+   1) フォーム下リンク：1文字（長音「ー」）落ち防止
+   2) 許認可：末尾1文字落ち防止（SPのみ微調整）
+   3) SPフッター：ブロック中央寄せ（中身は左揃え）
+   ※ 末尾追記で必ず上書き勝ち
+========================================================= */
+
+/* 1) フォーム下：リンク文の“1文字落ち”を止める */
+.form-privacy-link{
+  display: inline-block;
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+  text-wrap: balance;
+}
+
+@media (max-width: 768px){
+  .form-privacy-link{
+    font-size: 0.95em; /* 端末幅でのギリギリを吸収 */
+  }
+}
+
+/* 2) 許認可：タイトル側の“最後の1文字落ち”を吸収 */
+.company-details dd.license-list .license-row{
+  min-width: 0;
+  column-gap: 6px;
+}
+
+.company-details dd.license-list .license-title{
+  min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px){
+  .company-details dd.license-list .license-title{
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .company-details dd.license-list .license-num{
+    letter-spacing: 0.04em; /* 数字の横幅をほんの少し圧縮 */
+  }
+}
+
+/* 3) SPフッター：連絡先ブロックを中央寄せ（中身は左揃えのまま） */
+@media (max-width: 768px){
+  /* 既存の text-align:center を打ち消す */
+  .footer-contact-area{
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 18px;
+    padding: 0 12px;          /* 端末端の詰まり防止 */
+    box-sizing: border-box;
+    text-align: left !important;
+  }
+
+  /* 行は“左起点”で整列（ブロックは中央） */
+  .footer-contact-area .contact-row{
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    flex-direction: column;   /* ラベル→値の縦積みは維持 */
+    gap: 6px;
+  }
+
+  /* Policy行も同列の整列に揃える */
+  .footer-contact-area .contact-row a{
+    text-align: left;
+  }
+}
