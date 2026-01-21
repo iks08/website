@@ -1320,3 +1320,43 @@ html, body {
     text-align: left !important;
   }
 }
+/* =========================================================
+   FIX: 1文字だけ改行（許認可） / SPフッター連絡先ブロックの中央寄せ
+   ※末尾追記で上書き勝ちさせる
+========================================================= */
+
+/* --- ① 許認可：1文字落ち防止（行末だけ落ちるのを抑える） --- */
+.company-details dd.license-list .license-row{
+  min-width: 0; /* 念のため（潰れ対策） */
+}
+
+.company-details dd.license-list .license-title{
+  text-wrap: balance;      /* 対応ブラウザでは自然にバランス改行 */
+  letter-spacing: -0.01em; /* 1文字落ち対策：ごく僅かに詰める */
+}
+
+@media (max-width: 768px){
+  .company-details dd.license-list .license-title{
+    font-size: 0.95rem;    /* SPだけ僅かに下げて“最後の1文字”を吸収 */
+    line-height: 1.75;
+  }
+}
+
+/* --- ② SPフッター：TEL〜Policyブロック自体を中央に寄せる（中身は左揃え） --- */
+@media (max-width: 768px){
+  .footer-contact-area{
+    max-width: 360px;            /* ブロック幅を制限 */
+    margin: 0 auto 18px;         /* ブロックを中央へ */
+    text-align: left !important; /* 中身は左揃えに戻す */
+  }
+
+  .footer-contact-area .contact-row{
+    justify-content: flex-start; /* 行内も左起点 */
+    align-items: flex-start;
+  }
+
+  /* 念のため：Policy行が別クラスで制御されている場合の保険 */
+  .footer-contact-area .footer-policy{
+    text-align: left !important;
+  }
+}
