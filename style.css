@@ -1281,3 +1281,53 @@ html, body {
     font-size: 0.98rem;
   }
 }
+/* =========================================================
+   B: Company 許認可（信頼カード化）※表示のみ
+========================================================= */
+
+/* 許認可のDD（license-list）をカード化 */
+.company-details dd.license-list{
+  background: #f7fbff;
+  border: 1px solid rgba(7,160,229,0.18);
+  border-left: 4px solid rgba(7,160,229,0.55);
+  border-radius: 12px;
+  padding: 14px 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+/* 行間と可読性（既存の右端揃えは維持） */
+.company-details dd.license-list .license-row{
+  padding: 6px 0;
+}
+.company-details dd.license-list .license-row + .license-row{
+  border-top: 1px solid rgba(11,47,138,0.10);
+}
+
+.company-details dd.license-list .license-num{
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* SPは余白だけ少し詰める */
+@media (max-width: 768px){
+  .company-details dd.license-list{
+    padding: 12px 12px;
+    border-radius: 10px;
+  }
+}
+
+/* =========================================================
+   FIX: スマホの左右余白を「セクション共通」で保証（再発防止）
+========================================================= */
+@media (max-width: 768px){
+  .section{
+    padding-left: clamp(16px, 5vw, 24px);
+    padding-right: clamp(16px, 5vw, 24px);
+    box-sizing: border-box;
+  }
+
+  /* セクション内の直下グリッドが横いっぱいでも余白を確実に残す保険 */
+  .section > *{
+    box-sizing: border-box;
+  }
+}
