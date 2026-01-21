@@ -1243,91 +1243,80 @@ html, body {
   .hero-content p{ font-size: 1.03rem; }
 }
 
+
 /* =========================================================
-   安心材料 強調：A（About 研修実績を“安心パネル化”）
-   - 内容は変更しない（表示のみ）
-   - 既存HTMLそのまま（pの並びをブロックとして見せる）
+   Utility
 ========================================================= */
+.nowrap{ white-space: nowrap; }
 
-/* 研修実績（About）のリスト部分だけをパネル化 */
-#about .about-text p:nth-of-type(n+2){
-  margin: 0;
-  padding: 10px 14px;
-  background: rgba(7,160,229,0.08);
-  border-left: 4px solid rgba(7,160,229,0.35);
-  color: #333;
-  line-height: 1.8;
-}
+/* =========================================================
+   FIX: プライバシーリンクが「ー」だけ改行されないように
+========================================================= */
+.form-privacy-link{ overflow-wrap: normal; word-break: normal; line-break: strict; }
 
-/* リスト全体を1つの塊に見せる（角丸） */
-#about .about-text p:nth-of-type(2){
-  margin-top: 16px;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-#about .about-text p:nth-of-type(6){
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-}
 
-/* 各行の区切り（控えめ） */
-#about .about-text p:nth-of-type(n+3){
-  border-top: 1px solid rgba(11,47,138,0.08);
-}
-
+/* =========================================================
+   SP HERO: 背景（海・空）をしっかり見せる（B案・最終固定）
+   - パネルを透かす
+   - パネル面積を減らす
+========================================================= */
 @media (max-width: 768px){
-  #about .about-text p:nth-of-type(n+2){
-    padding: 10px 12px;
-    font-size: 0.98rem;
+  .hero-content{
+    background-color: rgba(255,255,255,0.68) !important;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.12) !important;
+    padding: 28px 16px !important;
+    border-radius: 16px !important;
+    max-width: 92vw !important;
+  }
+  .hero-content h1{
+    font-size: 2.15rem !important;
+    margin-bottom: 18px !important;
+  }
+  .hero-content p{
+    font-size: 1.00rem !important;
+    line-height: 1.90 !important;
+    margin-bottom: 4px !important;
+  }
+  .btn-main{
+    margin-top: 26px !important;
   }
 }
+
 /* =========================================================
-   B: Company 許認可（信頼カード化）※表示のみ
+   FIX: 1文字だけ改行（許認可） / SPフッター連絡先ブロックの中央寄せ
 ========================================================= */
 
-/* 許認可のDD（license-list）をカード化 */
-.company-details dd.license-list{
-  background: #f7fbff;
-  border: 1px solid rgba(7,160,229,0.18);
-  border-left: 4px solid rgba(7,160,229,0.55);
-  border-radius: 12px;
-  padding: 14px 14px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-}
-
-/* 行間と可読性（既存の右端揃えは維持） */
+/* --- ① 許認可：1文字落ち防止（行末だけ落ちるのを抑える） --- */
 .company-details dd.license-list .license-row{
-  padding: 6px 0;
-}
-.company-details dd.license-list .license-row + .license-row{
-  border-top: 1px solid rgba(11,47,138,0.10);
+  min-width: 0; /* 念のため（flex絡みの潰れ対策） */
 }
 
-.company-details dd.license-list .license-num{
-  font-weight: 700;
-  letter-spacing: 0.08em;
+.company-details dd.license-list .license-title{
+  text-wrap: balance;           /* 対応ブラウザでは自然にバランス改行 */
+  letter-spacing: -0.01em;      /* 1文字落ちを防ぐためにほんの少し詰める */
 }
 
-/* SPは余白だけ少し詰める */
 @media (max-width: 768px){
-  .company-details dd.license-list{
-    padding: 12px 12px;
-    border-radius: 10px;
+  .company-details dd.license-list .license-title{
+    font-size: 0.95rem;         /* SPだけ僅かに下げて“最後の1文字”を吸収 */
+    line-height: 1.75;
   }
 }
 
-/* =========================================================
-   FIX: スマホの左右余白を「セクション共通」で保証（再発防止）
-========================================================= */
+/* --- ② SPフッター：TEL〜Policyブロック自体を中央に寄せる（中身は左揃え） --- */
 @media (max-width: 768px){
-  .section{
-    padding-left: clamp(16px, 5vw, 24px);
-    padding-right: clamp(16px, 5vw, 24px);
-    box-sizing: border-box;
+  .footer-contact-area{
+    max-width: 360px;           /* ブロック幅を制限して */
+    margin: 0 auto 18px;        /* ブロックを中央へ */
+    text-align: left !important;/* 中身は左揃え（読みやすさ優先） */
   }
 
-  /* セクション内の直下グリッドが横いっぱいでも余白を確実に残す保険 */
-  .section > *{
-    box-sizing: border-box;
+  .footer-contact-area .contact-row{
+    justify-content: flex-start; /* 行内は左起点でOK */
+  }
+
+  /* Policy行も同じブロック内で揃える（万一のズレ防止） */
+  .footer-contact-area .footer-policy{
+    text-align: left !important;
   }
 }
