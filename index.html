@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
-  <title>株式会社iK</title>
+  <title>iK相談支援センター｜障がい者の地域生活を支援</title>
   
   <!-- ファビコン -->
   <link rel="icon" href="picmov/iK-logo.png" type="image/png">
@@ -14,17 +14,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
   
   <!-- CSS -->
-  <link rel="stylesheet" href="style.css?v=20260122-1">
+  <link rel="stylesheet" href="style.css?v=20260122-2">
 </head>
 
 <body>
   <div id="top"></div>
-
-  <!-- オープニングアニメーション -->
-  <div id="opening-splash">
-    <img src="picmov/iK-logo.png" alt="株式会社iK ロゴ" id="splash-mark">
-    <div id="splash-logo">iK相談支援センター</div>
-  </div>
 
   <!-- ヘッダー -->
   <header>
@@ -50,151 +44,113 @@
     </div>
   </header>
 
-  <!-- ヒーローセクション -->
+  <!-- ヒーロー -->
   <section class="hero">
     <div class="hero-video-container">
-      <video id="bg-video" autoplay loop muted playsinline>
-        <source src="picmov/hero-movie.mp4" type="video/mp4">
+      <video autoplay muted loop playsinline preload="auto" aria-label="背景動画">
+        <source src="picmov/hero.mp4" type="video/mp4">
       </video>
     </div>
 
-    <div class="hero-content">
-      <h1>障がいのある方も<br>ご家族にも</h1>
-      <p>
-        相談支援事業では、障がいのある方<br class="sp-br">だけではなく、<br class="pc-br">
-        ご家族や関係機関の<br class="sp-br">さまざまなお悩みや<br class="pc-br">
-        お困りごとに<br class="sp-br">ついてご相談を受け付けております。<br class="pc-br"><br class="sp-br">
-        誰もがより豊かな生活を送れるように<br class="sp-br">支援させていただきます。
-      </p>
-      <a href="#contact" class="btn-main">お問い合わせはこちら</a>
+    <div class="hero-panel">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="title-top">相談支援専門員が</span><br>
+          <span class="title-main">障がい者の</span><br>
+          <span class="title-bottom">地域生活を支援します！</span>
+        </h1>
+        <p class="hero-description">
+          一人ひとりのライフプランを<br>
+          一緒に考えていきましょう
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn-main">今すぐお問い合わせ</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- 対象者案内 -->
-  <section class="target-users section">
-    <div class="container">
-      <h2 class="target-title">対象の方</h2>
-      <ul class="target-list">
-        <li>心身に障がいがある方</li>
-        <li>心身に障いがある児童（支給決定は保護者の方）</li>
+  <!-- 相談内容 -->
+  <section id="services" class="fade-in section services-bg">
+    <div class="section-title">
+      <h2>相談内容</h2>
+      <span>あなたのお困りごとをお聞かせください</span>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="picmov/サービス利用.png" alt="サービス利用について" loading="lazy" width="200" height="200">
+        <h3>サービス利用について</h3>
+        <p>障害福祉サービスの利用手続きや<br>事業所選びについてサポート</p>
+      </div>
+
+      <div class="service-card">
+        <img src="picmov/家族.png" alt="ご家族からの相談" loading="lazy" width="200" height="200">
+        <h3>ご家族からの相談</h3>
+        <p>家族の介護負担軽減や<br>将来設計について一緒に考えます</p>
+      </div>
+
+      <div class="service-card">
+        <img src="picmov/ライフプラン.png" alt="将来のライフプラン" loading="lazy" width="200" height="200">
+        <h3>将来のライフプラン</h3>
+        <p>地域で自分らしく暮らすための<br>長期的な計画を作成</p>
+      </div>
+    </div>
+
+    <div class="target-user-block">
+      <h3>こんな方はお気軽にご相談ください</h3>
+      <ul class="target-user-list">
+        <li>「障害福祉サービスってどうやって使うの？」</li>
+        <li>「一人暮らししたいけど何から始めればいい？」</li>
+        <li>「将来が不安…何か準備しておきたい」</li>
+        <li>「家族の負担を減らしたい」</li>
       </ul>
-      <p class="target-note">※ 御自身が対象者であるか不明な場合は御相談下さい。</p>
-    </div>
-  </section>
-
-  <!-- サービス案内 -->
-  <section id="services" class="services-bg fade-in section">
-    <div class="container">
-      <div class="section-title">
-        <h2>お困りではありませんか？</h2>
-        <span>相談内容</span>
-      </div>
-
-      <div class="services-grid">
-        <div class="service-card">
-          <img src="picmov/health.png" alt="健康" loading="lazy" width="300" height="180">
-          <h3>健康に暮らしたい</h3>
-        </div>
-        <div class="service-card">
-          <img src="picmov/illness.png" alt="病気" loading="lazy" width="300" height="180">
-          <h3>病気のことが心配</h3>
-        </div>
-        <div class="service-card">
-          <img src="picmov/house.png" alt="住まい" loading="lazy" width="300" height="180">
-          <h3>住むところを探してほしい</h3>
-        </div>
-        <div class="service-card">
-          <img src="picmov/counseling.png" alt="相談" loading="lazy" width="300" height="180">
-          <h3>悩みや相談を聞いてほしい</h3>
-        </div>
-        <div class="service-card">
-          <img src="picmov/hikky.png" alt="引きこもり" loading="lazy" width="300" height="180">
-          <h3>引きこもりから脱出したい</h3>
-        </div>
-        <div class="service-card">
-          <img src="picmov/cityoffice.png" alt="手続き" loading="lazy" width="300" height="180">
-          <h3>役所などの手続きが分からない</h3>
-        </div>
-        <div class="service-card">
-          <img src="picmov/job.png" alt="就職" loading="lazy" width="300" height="180">
-          <h3>就職のことや将来のことを相談したい</h3>
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- 相談の流れ -->
   <section id="flow" class="fade-in section">
     <div class="section-title">
-      <h2>Flow</h2>
-      <span>支援開始までの流れ</span>
+      <h2>相談の流れ</h2>
+      <span>初めての方でも安心してご利用いただけます</span>
     </div>
 
     <div class="flow-container">
       <div class="flow-step">
-        <div class="step-header">
-          <span class="step-num">STEP.01</span>
-          <h3 class="step-name">相談</h3>
-        </div>
-        <div class="step-body">
-          <p class="step-desc">
-            お電話、来所、訪問などにより<br>
-            ご相談を受け付けております。
-          </p>
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>ご連絡</h3>
+          <p>お電話またはフォームより<br>お気軽にご連絡ください</p>
         </div>
       </div>
 
+      <div class="flow-arrow">▼</div>
+
       <div class="flow-step">
-        <div class="step-header">
-          <span class="step-num">STEP.02</span>
-          <h3 class="step-name">面談</h3>
-        </div>
-        <div class="step-body">
-          <p class="step-desc">
-            直接お会いして面談をおこない、<br>
-            ご相談内容を詳しくお伺いします。
-          </p>
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>初回面談</h3>
+          <p>ご希望やお困りごとを<br>じっくりお聞きします</p>
         </div>
       </div>
 
+      <div class="flow-arrow">▼</div>
+
       <div class="flow-step">
-        <div class="step-header">
-          <span class="step-num">STEP.03</span>
-          <h3 class="step-name">計画作成</h3>
-        </div>
-        <div class="step-body">
-          <p class="step-desc">
-            面談の内容をもとに計画書を作成、<br>
-            あわせて関係機関への申請手続きを<br>
-            おこないます。
-          </p>
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>計画作成</h3>
+          <p>あなただけの<br>サービス利用計画を作成</p>
         </div>
       </div>
 
-      <div class="flow-step">
-        <div class="step-header">
-          <span class="step-num">STEP.04</span>
-          <h3 class="step-name">利用開始</h3>
-        </div>
-        <div class="step-body">
-          <p class="step-desc">
-            区役所より受給者証が届き、<br>
-            サービス利用開始となります。
-          </p>
-        </div>
-      </div>
+      <div class="flow-arrow">▼</div>
 
       <div class="flow-step">
-        <div class="step-header">
-          <span class="step-num">STEP.05</span>
-          <h3 class="step-name">定期訪問</h3>
-        </div>
-        <div class="step-body">
-          <p class="step-desc">
-            ご自宅や関係先に定期的に訪問し、<br>
-            安心した日常生活が送れるように<br>
-            継続して支援いたします。
-          </p>
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>継続支援</h3>
+          <p>サービス開始後も<br>定期的にサポート</p>
         </div>
       </div>
     </div>
@@ -260,13 +216,13 @@
             <dd>iks.080101.iks@gmail.com</dd>
 
             <dt>許認可</dt>
-            <dd class="license-list">
+            <dd>
               <div class="license-row">
-                <span class="license-name">指定特定相談支援事業</span>
+                <span class="license-label">指定特定相談支援事業</span>
                 <span class="license-num">4037 700 608</span>
               </div>
               <div class="license-row">
-                <span class="license-name">指定障がい児相談支援事業</span>
+                <span class="license-label">指定障がい児相談支援事業</span>
                 <span class="license-num">4077 700 179</span>
               </div>
             </dd>
@@ -298,25 +254,25 @@
       </div>
       <div class="form-group">
         <label>メールアドレス</label>
-        <input type="email" name="email" placeholder="例：example@mail.com" required>
+        <input type="email" name="email" placeholder="例：example@email.com" required>
       </div>
       <div class="form-group">
         <label>お問い合わせ内容</label>
-        <textarea name="message" rows="5" placeholder="ご質問やご相談内容をご記入ください" required></textarea>
+        <textarea name="message" rows="5" placeholder="ご相談内容をご記入ください" required></textarea>
       </div>
-      <button type="submit" class="submit-btn">送信する</button>
-      
-      <div id="form-result" class="form-result" aria-live="polite"></div>
 
-      <p class="form-note">
-        <span class="form-note-line">※ 通常1〜2営業日以内に返信いたします。</span>
-      </p>
+      <div class="form-privacy">
+        <input type="checkbox" name="privacy" id="privacy-check" required>
+        <label for="privacy-check">
+          <a href="contact_policy.html" class="form-privacy-link" rel="noopener">
+            お問い合わせにおける個人情報の取扱い
+          </a>に同意する
+        </label>
+      </div>
 
-      <p class="form-privacy">
-        <a href="contact_policy.html" class="form-privacy-link" target="_blank" rel="noopener">
-          お問い合わせに関する個人情報の取り扱いについて
-        </a>
-      </p>
+      <button type="submit" class="btn-main">送信する</button>
+
+      <div id="form-result"></div>
     </form>
   </section>
 
@@ -349,7 +305,7 @@
 
           <div class="contact-row contact-row-policy">
             <span class="contact-label">Policy</span>
-            <a href="privacypolicy.html" target="_blank" rel="noopener">プライバシーポリシー</a>
+            <a href="privacypolicy.html" rel="noopener">プライバシーポリシー</a>
           </div>
         </div>
       </div>

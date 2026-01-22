@@ -1599,3 +1599,113 @@ footer {
     line-height: 1.8;
   }
 }
+
+/* ========================================
+   レイアウト統一用（about・privacypolicy）
+======================================== */
+.content-wrapper {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 40px 5%;
+  background: #ffffff;
+  border: 2px solid var(--bg-color);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.policy-block h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin: 30px 0 16px;
+  letter-spacing: 0.04em;
+  border-left: 4px solid var(--accent-color);
+  padding-left: 14px;
+}
+
+.policy-block h2:first-child {
+  margin-top: 0;
+}
+
+.policy-block h3 {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin: 24px 0 12px;
+  letter-spacing: 0.03em;
+  font-weight: 700;
+}
+
+.policy-block p {
+  line-height: 1.95;
+  margin-bottom: 12px;
+  color: #444;
+}
+
+.policy-block ul {
+  padding-left: 1.5em;
+  line-height: 1.95;
+}
+
+.policy-block li {
+  margin-bottom: 10px;
+  color: #444;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    margin: 20px 5%;
+    padding: 30px 20px;
+    border-radius: 12px;
+  }
+
+  .policy-block h2 {
+    font-size: 1.3rem;
+    margin: 24px 0 12px;
+  }
+
+  .policy-block h3 {
+    font-size: 1.1rem;
+  }
+
+  .policy-block p,
+  .policy-block li {
+    font-size: 0.95rem;
+    line-height: 1.85;
+  }
+}
+
+/* ========================================
+   地図のレスポンシブ強化
+======================================== */
+.company-map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 !important;
+}
+
+.company-map img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .company-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  .company-map {
+    width: 100%;
+    padding: 0 10px !important;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .company-map img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+  }
+}
