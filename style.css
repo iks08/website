@@ -1549,3 +1549,80 @@ html, body {
     padding-right: var(--container-pad-x) !important;
   }
 }
+
+
+/* =========================================================
+   SITE FIX (2026-01-22)
+   - Footer PC: force 2 columns (company / contact) + bottom copyright
+   - Footer PC: address (left) and policy (right) bottom-aligned
+   - Footer PC: prevent TEL/FAX unwanted wrap
+   - SP: keep horizontal padding in #about (avoid "no side space" regression)
+   Scope:
+   - footer (PC only)
+   - #about (SP only)
+========================================================= */
+
+/* --- Footer PC: 2 columns + bottom copyright --- */
+@media (min-width: 769px){
+  footer .footer-container{
+    display: grid !important;
+    grid-template-columns: minmax(260px, 44%) 1fr !important;
+    column-gap: 40px !important;
+    row-gap: 18px !important;
+    align-items: end !important;
+  }
+
+  footer .footer-logo-area{ grid-column: 1 !important; }
+
+  footer .footer-contact-area{
+    grid-column: 2 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+  }
+
+  footer .footer-contact-grid{
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+
+  /* policy to bottom -> aligns with left address bottom */
+  footer .footer-contact-grid .contact-row-policy{
+    margin-top: auto !important;
+  }
+
+  /* keep TEL/FAX in one line */
+  footer .footer-contact-grid .contact-row-tel{
+    flex-wrap: nowrap !important;
+  }
+  footer .footer-contact-grid .tel-number,
+  footer .footer-contact-grid .fax-number{
+    white-space: nowrap !important;
+  }
+
+  /* copyright to bottom row (span both columns) */
+  footer .footer-container > .copyright{
+    grid-column: 1 / -1 !important;
+    justify-self: end !important;
+    align-self: end !important;
+    margin: 0 !important;
+    padding-top: 14px !important;
+    border-top: 1px solid rgba(255,255,255,0.10) !important;
+    text-align: right !important;
+    font-size: 0.72rem !important;
+    opacity: 0.60 !important;
+  }
+}
+
+/* --- SP: keep padding in About area --- */
+@media (max-width: 768px){
+  #about .about-grid,
+  #about .company-info-area{
+    box-sizing: border-box !important;
+    padding-left: var(--container-pad-x) !important;
+    padding-right: var(--container-pad-x) !important;
+  }
+}
+
