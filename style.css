@@ -1335,3 +1335,59 @@ html, body {
   padding-left: var(--container-pad-x);
   padding-right: var(--container-pad-x);
 }
+/* =========================================================
+   FIX: Footer PC — 住所（左）と Policy（右）を同一ラインで下揃え（確実版）
+   影響範囲：footer のPC表示のみ
+========================================================= */
+@media (min-width: 769px) {
+  .footer-container{
+    display: grid;
+    grid-template-columns: minmax(260px, 44%) 1fr auto; /* 左 / 連絡先 / 著作権 */
+    column-gap: 40px;
+    align-items: end; /* 3カラムを下揃え */
+  }
+
+  .footer-logo-area{ grid-column: 1; }
+  .footer-contact-area{
+    grid-column: 2;
+    height: 100%;              /* gridセルの高さを使えるようにする */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-contact-grid{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* Policyを右カラム最下段へ固定 → 左の住所と同じ下ラインに乗る */
+  .footer-contact-grid .contact-row-policy{
+    margin-top: auto;
+  }
+
+  .copyright{
+    grid-column: 3;
+    justify-self: end;
+    align-self: end;
+    margin: 0;
+  }
+}
+
+/* =========================================================
+   FIX: SP左右余白の恒久保証（About/Company Infoのみ）
+   影響範囲：#about 配下のみ
+========================================================= */
+@media (max-width: 768px){
+  #about .about-grid{
+    box-sizing: border-box;
+    padding-left: var(--container-pad-x) !important;
+    padding-right: var(--container-pad-x) !important;
+  }
+
+  #about .company-info-area{
+    box-sizing: border-box;
+    padding-left: var(--container-pad-x) !important;
+    padding-right: var(--container-pad-x) !important;
+  }
+}
