@@ -1391,3 +1391,26 @@ html, body {
     padding-right: var(--container-pad-x) !important;
   }
 }
+/* =========================================================
+   FIX: Footer PC — 3列化をやめ、copyrightを下段へ
+   + TEL/FAXの改行を防ぐ（footer内のみ）
+========================================================= */
+@media (min-width: 769px) {
+  /* copyright をフッター下段に回す（=3列を解消） */
+  footer .footer-container .copyright{
+    flex: 0 0 100%;
+    margin-top: 18px;
+    text-align: right;          /* 右寄せのまま下段へ */
+  }
+
+  /* TEL/FAX 行は折り返し禁止（中央幅が確保される前提） */
+  footer .footer-contact-grid .contact-row-tel{
+    flex-wrap: nowrap;
+  }
+
+  /* 念のため：番号自体も折り返さない */
+  footer .footer-contact-grid .tel-number,
+  footer .footer-contact-grid .fax-number{
+    white-space: nowrap;
+  }
+}
