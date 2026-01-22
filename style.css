@@ -841,7 +841,7 @@ body.start-animation #opening-splash {
 }
 
 /* ========================================
-   About Us
+   About Us - 余白を確実に確保
 ======================================== */
 .about-grid {
   display: grid;
@@ -850,6 +850,9 @@ body.start-animation #opening-splash {
   gap: var(--gap-lg);
   align-items: center;
   margin: 0 auto var(--block-mb);
+  padding-left: var(--container-pad-x);
+  padding-right: var(--container-pad-x);
+  box-sizing: border-box;
 }
 
 .about-text h3 {
@@ -874,6 +877,13 @@ body.start-animation #opening-splash {
   line-height: 1.9;
 }
 
+.training-list {
+  list-style: disc;
+  padding-left: 1.2em;
+  line-height: 1.9;
+}
+
+.training-list li,
 .about-text li {
   margin-bottom: 8px;
   color: #444;
@@ -888,6 +898,8 @@ body.start-animation #opening-splash {
 .about-page-cta {
   text-align: center;
   margin: 40px auto 56px !important;
+  padding-left: var(--container-pad-x);
+  padding-right: var(--container-pad-x);
 }
 
 .about-page-cta .btn-sub {
@@ -899,6 +911,8 @@ body.start-animation #opening-splash {
   .about-grid {
     grid-template-columns: 1fr;
     gap: 30px;
+    padding-left: var(--container-pad-x);
+    padding-right: var(--container-pad-x);
   }
 
   .about-text h3 {
@@ -907,6 +921,14 @@ body.start-animation #opening-splash {
 
   .about-text p {
     font-size: var(--p-size-sp);
+  }
+
+  .about-text ul {
+    padding-left: 1.5em;
+  }
+
+  .training-list {
+    padding-left: 1.5em;
   }
 
   .about-page-cta {
@@ -927,6 +949,9 @@ body.start-animation #opening-splash {
   margin: 28px auto 0 !important;
   border-top: 1px solid #ddd;
   padding-top: 56px;
+  padding-left: var(--container-pad-x);
+  padding-right: var(--container-pad-x);
+  box-sizing: border-box;
 }
 
 .company-header {
@@ -1029,6 +1054,8 @@ body.start-animation #opening-splash {
 @media (max-width: 768px) {
   .company-info-area {
     padding-top: 40px;
+    padding-left: var(--container-pad-x);
+    padding-right: var(--container-pad-x);
   }
 
   .company-header {
