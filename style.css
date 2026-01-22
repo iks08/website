@@ -1414,3 +1414,28 @@ html, body {
     white-space: nowrap;
   }
 }
+/* =========================================================
+   FIX: Footer PC — 横3列を解消し、copyrightを下段へ（HTMLは変更しない）
+   影響範囲：footer のPC表示のみ
+========================================================= */
+@media (min-width: 769px) {
+  /* HTMLは <p class="copyright"> なので、こちらに当てる */
+  footer .footer-container > .copyright{
+    flex: 0 0 100%;
+    text-align: right;
+    margin-top: 18px;
+    padding: 16px 0 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    font-size: 0.72rem;
+    opacity: 0.60;
+  }
+
+  /* ついでに：TEL/FAX 行の改行を抑制（footer内のみ） */
+  footer .footer-contact-grid .contact-row-tel{
+    flex-wrap: nowrap;
+  }
+  footer .footer-contact-grid .tel-number,
+  footer .footer-contact-grid .fax-number{
+    white-space: nowrap;
+  }
+}
