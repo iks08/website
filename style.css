@@ -1415,27 +1415,51 @@ html, body {
   }
 }
 /* =========================================================
-   FIX: Footer PC — 横3列を解消し、copyrightを下段へ（HTMLは変更しない）
+   FIX: Footer PC — 2列＋下段copyright（住所とPolicyは下揃え）
    影響範囲：footer のPC表示のみ
 ========================================================= */
 @media (min-width: 769px) {
-  /* HTMLは <p class="copyright"> なので、こちらに当てる */
-  footer .footer-container > .copyright{
-    flex: 0 0 100%;
-    text-align: right;
-    margin-top: 18px;
-    padding: 16px 0 6px;
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
-    font-size: 0.72rem;
-    opacity: 0.60;
+  .footer-container{
+    display: grid;
+    grid-template-columns: minmax(260px, 44%) 1fr; /* 左 / 連絡先 の2列 */
+    column-gap: 40px;
+    row-gap: 18px;
+    align-items: end; /* 左住所と右Policyを“下揃え” */
   }
 
-  /* ついでに：TEL/FAX 行の改行を抑制（footer内のみ） */
-  footer .footer-contact-grid .contact-row-tel{
-    flex-wrap: nowrap;
+  .footer-logo-area{ grid-column: 1; }
+  .footer-contact-area{
+    grid-column: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
-  footer .footer-contact-grid .tel-number,
-  footer .footer-contact-grid .fax-number{
-    white-space: nowrap;
+
+  .footer-contact-grid{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* Policyを右カラム最下段へ固定 → 左の住所と同じ下ラインに乗る */
+  .footer-contact-grid .contact-row-policy{
+    margin-top: auto;
+  }
+
+  /* TEL/FAXの改行を防ぐ */
+  .footer-contact-grid .contact-row-tel{ flex-wrap: nowrap; }
+  .footer-contact-grid .tel-number,
+  .footer-contact-grid .fax-number{ white-space: nowrap; }
+
+  /* copyright は2列を跨いで「下段・右寄せ」 */
+  .footer-container > .copyright{
+    grid-column: 1 / -1;
+    justify-self: end;
+    align-self: end;
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    font-size: 0.72rem;
+    opacity: 0.60;
   }
 }
