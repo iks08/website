@@ -590,136 +590,92 @@ footer {
 .footer-container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 20px;
-
-  display: grid;
-  grid-template-columns: 45% 50%;
-  grid-template-rows: auto auto;
-  column-gap: 40px;
-  row-gap: 12px;
-
-  align-items: end;
+  padding: 34px 22px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* 住所とPolicyの“下揃え” */
+  gap: 40px;
+  flex-wrap: wrap; /* copyright を下段に回す */
 }
 
-.footer-logo-area,
-.footer-contact-area {
-  width: auto;
-  padding-bottom: 0;
-  margin-top: 0;
-  display: contents;
+.footer-logo-area {
+  flex: 0 0 44%;
+  min-width: 260px;
 }
 
 .footer-logo-area h3 {
-  grid-column: 1;
-  grid-row: 1;
+  margin: 0 0 12px;
+  font-size: 2.0rem;
+  letter-spacing: 0.03em;
+}
 
-  font-size: 1.65rem;
-  font-weight: 700;
+.footer-logo-area p {
   margin: 0;
-  letter-spacing: 0.06em;
-  color: #fff;
-  line-height: 1.2;
-
-  align-self: end;
+  font-size: 0.96rem;
+  line-height: 1.9;
+  opacity: 0.90;
 }
 
-.footer-address {
-  grid-column: 1;
-  grid-row: 2;
-
-  font-size: 0.95rem;
-  opacity: 0.96;   /* 微調整：沈み防止 */
-  margin: 0;
-  line-height: 1.8;
-
-  align-self: end;
-}
-
-.footer-contact-area .contact-row:nth-of-type(1) {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: end;
-}
-.footer-contact-area .contact-row:nth-of-type(2) {
-  grid-column: 2;
-  grid-row: 2;
-  align-self: end;
-}
-
-.contact-row {
-  margin: 0;
+.footer-contact-area {
+  flex: 0 0 56%;
   display: flex;
-  justify-content: flex-start;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 14px;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
 
-.contact-label {
-  background-color: rgba(255,255,255,0.20);
-  border: 1px solid rgba(255,255,255,0.12);
+.footer-contact-area .contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
 
-  padding: 2px 7px;
-  border-radius: 6px;
-  font-size: 0.72rem;
+.footer-contact-area .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-contact-area .contact-divider {
+  opacity: 0.35;
+  margin: 0 6px;
+}
+
+.footer-contact-area .contact-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  line-height: 1.3;
+  border: 1px solid rgba(255, 255, 255, 0.28); /* 薄い枠 */
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: none;
 }
-
-.tel-number {
-  font-size: 1.22rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.03em;
-}
-.fax-number {
-  color: #fff;
-  opacity: 0.95;
-  letter-spacing: 0.03em;
-}
-.divider { margin: 0 8px; opacity: 0.35; }
 
 .footer-contact-area a {
-  color: #fff;
-  transition: opacity 0.25s ease;
-}
-.footer-contact-area a:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-.footer-address a {
-  color: inherit;
+  color: #ffffff;
   text-decoration: none;
-}
-.footer-address a:hover {
-  text-decoration: underline;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.copyright {
-  width: 100%;
+.footer-contact-area a:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.70);
+}
+
+.footer-copyright {
+  flex: 0 0 100%;
   text-align: center;
-
+  margin-top: 18px;
   padding: 16px 0 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
   font-size: 0.72rem;
   opacity: 0.60;
-  margin-top: 18px;
-  border-top: 1px solid rgba(255,255,255,0.10);
-
-  grid-column: 1 / -1;
 }
-
-/* =========================================================
-   HAMBURGER MENU（CSS DRAWING）- FINAL
-========================================================= */
-
-/* PCでは表示しない */
-@media (min-width: 769px) {
-  #menu-toggle { display: none !important; }
-}
-
-/* スマホのみ表示＆描画 */
 @media (max-width: 768px) {
 
   #menu-toggle {
@@ -1359,42 +1315,4 @@ html, body {
   .footer-contact-area .footer-policy{
     text-align: left !important;
   }
-}
-/* ==============================
-   FIX (2026-01-22): Contact form layout restore (PC/Mobile)
-   - Scoped to #contact only to avoid side effects
-============================== */
-#contact .contact-form .form-group {
-  display: block;
-  width: 100%;
-}
-
-#contact .contact-form .form-group label {
-  display: block !important;
-  margin: 0 0 6px 0 !important;
-  font-weight: 700;
-}
-
-#contact .contact-form .form-group input,
-#contact .contact-form .form-group textarea {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-#contact .contact-form .form-group textarea {
-  min-height: 160px;
-  resize: vertical;
-}
-
-/* ==============================
-   FIX (2026-01-22): Footer contact-label (subtle outline)
-   - Keep distinction but reduce visual weight
-============================== */
-.footer .contact-label {
-  background-color: rgba(255,255,255,0.14);
-  border: 1px solid rgba(255,255,255,0.10);
-  font-weight: 600;
-  padding: 2px 6px;
 }
