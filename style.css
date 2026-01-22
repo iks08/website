@@ -572,11 +572,8 @@ header {
 /* === Footer === */
 footer {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-
   background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
-  /* ヘッダーと同一トーンへ統一 */
   color: #fff;
-
   padding-top: 44px;
   padding-bottom: 18px;
   font-size: 0.9rem;
@@ -584,23 +581,19 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.18);
 }
 
-/* =========================================================
-   Footer: 2列×2行の単一グリッドで上下を完全一致（下揃え）
-========================================================= */
 .footer-container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 34px 22px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end; /* 住所とPolicyの"下揃え" */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
-  flex-wrap: wrap; /* copyright を下段に回す */
+  align-items: start;
 }
 
+/* 左側：社名と住所 */
 .footer-logo-area {
-  flex: 0 0 44%;
-  min-width: 260px;
+  text-align: left;
 }
 
 .footer-logo-area h3 {
@@ -609,41 +602,41 @@ footer {
   letter-spacing: 0.03em;
 }
 
-.footer-logo-area p {
+.footer-address {
   margin: 0;
   font-size: 0.96rem;
   line-height: 1.9;
   opacity: 0.90;
 }
 
+.footer-address a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-address a:hover {
+  text-decoration: underline;
+}
+
+/* 右側：TEL・FAX・Policy */
 .footer-contact-area {
-  flex: 0 0 56%;
+  text-align: left;
+}
+
+.footer-contact-grid {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-start;
 }
 
-.footer-contact-area .contact-row {
+.contact-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
 }
 
-.footer-contact-area .contact-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.footer-contact-area .contact-divider {
-  opacity: 0.35;
-  margin: 0 6px;
-}
-
-.footer-contact-area .contact-label {
+.contact-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -651,10 +644,9 @@ footer {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  border: 1px solid rgba(255, 255, 255, 0.28); /* 薄い枠 */
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.10);
-  box-shadow: none;
 }
 
 .footer-contact-area a {
@@ -667,182 +659,54 @@ footer {
   border-bottom-color: rgba(255, 255, 255, 0.70);
 }
 
-/* =========================================================
-   Footer Copyright - 中央寄せ強化版（FINAL FIX）
-========================================================= */
+.divider {
+  opacity: 0.35;
+  margin: 0 6px;
+}
+
+/* コピーライト：下段中央 */
 .footer-copyright {
-  flex: 0 0 100% !important;
-  width: 100% !important;
-  text-align: center !important;
-  margin: 18px 0 0 0 !important;
-  padding: 16px 0 6px !important;
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 18px;
+  padding: 16px 0 6px;
   border-top: 1px solid rgba(255, 255, 255, 0.10);
   font-size: 0.72rem;
   opacity: 0.60;
 }
 
+/* スマホ版 */
 @media (max-width: 768px) {
-
-  #menu-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 64px;
-    height: 64px;
-    padding: 0;
-
-    position: relative;
-    cursor: pointer;
-
-    background: transparent;
-    border: 0;
-    outline: none;
-
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-
-  #menu-toggle::before,
-  #menu-toggle::after,
-  #menu-toggle span {
-    content: "";
-    position: absolute;
-    left: 50%;
-    width: 38px;
-    height: 4px;
-    background: #fff;
-    transform: translateX(-50%);
-    border-radius: 2px;
-    transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
-  }
-
-  #menu-toggle::before { top: 20px; }
-  #menu-toggle span     { top: 30px; }
-  #menu-toggle::after  { top: 40px; }
-
-  #menu-toggle.is-open::before {
-    top: 30px;
-    transform: translateX(-50%) rotate(45deg);
-  }
-  #menu-toggle.is-open span { opacity: 0; }
-  #menu-toggle.is-open::after {
-    top: 30px;
-    transform: translateX(-50%) rotate(-45deg);
-  }
-
-  /* SPナビ */
-  .pc-nav {
-    position: fixed;
-    top: 70px;
-    right: -100%;
-    width: 70%;
-    height: calc(100vh - 70px);
-    background: var(--white);
-    transition: 0.4s;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-  }
-  .pc-nav.active { right: 0; }
-
-  .pc-nav ul {
-    flex-direction: column;
-    padding: 40px;
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
     gap: 20px;
   }
-  .pc-nav a {
-    color: var(--text-color);
-    border-bottom: none;
-    letter-spacing: 0.03em;
-  }
-  .pc-nav a:hover { color: var(--primary-color); }
-}
-
-/* =========================================
-   レスポンシブ（スマホ）
-========================================= */
-@media (max-width: 768px) {
-  /* 改行制御 */
-  .pc-br { display: none; }
-  .sp-br { display: block; }
-
-  /* ヒーロー */
-  .hero { text-align: left; }
-  .hero-content {
-    padding: 42px 20px;
-    text-align: center;
-  }
-
-  .hero-content p {
-    text-align: center;
-    font-size: 0.98rem;
-    line-height: 1.95;
-    letter-spacing: 0.035em;
-  }
-  .hero-content h1 {
-    font-size: 2.05rem;
-    margin-bottom: 26px;
-    letter-spacing: 0.06em;
-  }
-  .btn-main { margin-top: 46px; }
-
-  /* セクション見出し */
-  .section-title h2 {
-    font-size: var(--h2-size-sp);
-    line-height: 1.3;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
-  }
-
-  /* Flow */
-  .flow-container::before { left: 20px; }
-  .flow-step {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 40px;
-    padding-left: 50px;
-  }
-  .flow-step::after { left: 20px; top: 25px; }
-  .step-header, .step-body { width: 100%; text-align: left; }
-  .step-name { font-size: 1.35rem; }
-  .step-desc { font-size: 0.95rem; line-height: 1.9; }
-
-  /* About */
-  .about-grid { grid-template-columns: 1fr; }
-  .about-text h3 { font-size: var(--h3-size-sp); }
-  .about-text p { font-size: var(--p-size-sp); }
-
-  /* Company */
-  .company-grid { grid-template-columns: 1fr; gap: 30px; }
-  .company-details dl { grid-template-columns: 1fr; gap: 5px; }
-  .company-details dt { border-bottom: none; margin-top: 15px; }
-  .company-map { text-align: center; margin-top: 20px; }
-  .company-map img { display: block; margin: 0 auto; }
-
-  /* Footer（スマホは縦積み） */
-  .footer-container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    row-gap: 0;
-    align-items: center;
-  }
-  .footer-logo-area, .footer-contact-area {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-    display: block;
-  }
-  .contact-row { justify-content: center; flex-direction: column; gap: 5px; }
-  .footer-address { font-size: 0.85rem; line-height: 1.5; width: 100%; }
-  .divider { display: none; }
-  .tel-number { font-size: 1.2rem; }
   
-  /* スマホ版コピーライトも中央寄せ強化 */
+  .footer-logo-area,
+  .footer-contact-area {
+    text-align: center;
+  }
+  
+  .contact-row {
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .divider {
+    display: none;
+  }
+  
+  .tel-number {
+    font-size: 1.2rem;
+  }
+  
   .footer-copyright {
-    text-align: center !important;
-    width: 100% !important;
+    text-align: center;
   }
 }
+
 
 /* =========================
    OPENING (A) - FINAL FIX
