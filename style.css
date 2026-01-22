@@ -593,7 +593,7 @@ footer {
   padding: 34px 22px 18px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end; /* 住所とPolicyの“下揃え” */
+  align-items: flex-end; /* 住所とPolicyの"下揃え" */
   gap: 40px;
   flex-wrap: wrap; /* copyright を下段に回す */
 }
@@ -667,15 +667,20 @@ footer {
   border-bottom-color: rgba(255, 255, 255, 0.70);
 }
 
+/* =========================================================
+   Footer Copyright - 中央寄せ強化版（FINAL FIX）
+========================================================= */
 .footer-copyright {
-  flex: 0 0 100%;
-  text-align: center;
-  margin-top: 18px;
-  padding: 16px 0 6px;
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  text-align: center !important;
+  margin: 18px 0 0 0 !important;
+  padding: 16px 0 6px !important;
   border-top: 1px solid rgba(255, 255, 255, 0.10);
   font-size: 0.72rem;
   opacity: 0.60;
 }
+
 @media (max-width: 768px) {
 
   #menu-toggle {
@@ -831,6 +836,12 @@ footer {
   .footer-address { font-size: 0.85rem; line-height: 1.5; width: 100%; }
   .divider { display: none; }
   .tel-number { font-size: 1.2rem; }
+  
+  /* スマホ版コピーライトも中央寄せ強化 */
+  .footer-copyright {
+    text-align: center !important;
+    width: 100% !important;
+  }
 }
 
 /* =========================
@@ -1254,7 +1265,7 @@ html, body {
 
 @media (max-width: 768px){
   .company-details dd.license-list .license-title{
-    font-size: 0.95rem;         /* SPだけ僅かに下げて“最後の1文字”を吸収 */
+    font-size: 0.95rem;         /* SPだけ僅かに下げて"最後の1文字"を吸収 */
     line-height: 1.75;
   }
 }
@@ -1293,7 +1304,7 @@ html, body {
 
 @media (max-width: 768px){
   .company-details dd.license-list .license-title{
-    font-size: 0.95rem;    /* SPだけ僅かに下げて“最後の1文字”を吸収 */
+    font-size: 0.95rem;    /* SPだけ僅かに下げて"最後の1文字"を吸収 */
     line-height: 1.75;
   }
 }
@@ -1307,197 +1318,11 @@ html, body {
   }
 
   .footer-contact-area .contact-row{
-    justify-content: flex-start; /* 行内も左起点 */
-    align-items: flex-start;
+    justify-content: flex-start; /* 行内は左起点でOK */
   }
 
-  /* 念のため：Policy行が別クラスで制御されている場合の保険 */
+  /* Policy行も同じブロック内で揃える（万一のズレ防止） */
   .footer-contact-area .footer-policy{
     text-align: left !important;
   }
 }
-/* =========================================================
-   FIX: SPの左右余白（Company Info）を恒久的に確保
-   影響範囲：#about 内の .company-info-area のみ
-========================================================= */
-.company-info-area{
-  box-sizing: border-box;
-  padding-left: var(--container-pad-x);
-  padding-right: var(--container-pad-x);
-}
-/* =========================================================
-   FIX: SPの左右余白を恒久保証（Company Info専用）
-   影響範囲：#about 内 .company-info-area のみ
-========================================================= */
-
-.company-info-area{
-  box-sizing: border-box;
-  padding-left: var(--container-pad-x);
-  padding-right: var(--container-pad-x);
-}
-/* =========================================================
-   FIX: Footer PC — 住所（左）と Policy（右）を同一ラインで下揃え（確実版）
-   影響範囲：footer のPC表示のみ
-========================================================= */
-@media (min-width: 769px) {
-  .footer-container{
-    display: grid;
-    grid-template-columns: minmax(260px, 44%) 1fr auto; /* 左 / 連絡先 / 著作権 */
-    column-gap: 40px;
-    align-items: end; /* 3カラムを下揃え */
-  }
-
-  .footer-logo-area{ grid-column: 1; }
-  .footer-contact-area{
-    grid-column: 2;
-    height: 100%;              /* gridセルの高さを使えるようにする */
-    display: flex;
-    flex-direction: column;
-  }
-
-  .footer-contact-grid{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  /* Policyを右カラム最下段へ固定 → 左の住所と同じ下ラインに乗る */
-  .footer-contact-grid .contact-row-policy{
-    margin-top: auto;
-  }
-
-  .copyright{
-    grid-column: 3;
-    justify-self: end;
-    align-self: end;
-    margin: 0;
-  }
-}
-
-/* =========================================================
-   FIX: SP左右余白の恒久保証（About/Company Infoのみ）
-   影響範囲：#about 配下のみ
-========================================================= */
-@media (max-width: 768px){
-  #about .about-grid{
-    box-sizing: border-box;
-    padding-left: var(--container-pad-x) !important;
-    padding-right: var(--container-pad-x) !important;
-  }
-
-  #about .company-info-area{
-    box-sizing: border-box;
-    padding-left: var(--container-pad-x) !important;
-    padding-right: var(--container-pad-x) !important;
-  }
-}
-/* =========================================================
-   FIX: Footer PC — 3列化をやめ、copyrightを下段へ
-   + TEL/FAXの改行を防ぐ（footer内のみ）
-========================================================= */
-@media (min-width: 769px) {
-  /* copyright をフッター下段に回す（=3列を解消） */
-  footer .footer-container .copyright{
-    flex: 0 0 100%;
-    margin-top: 18px;
-    text-align: right;          /* 右寄せのまま下段へ */
-  }
-
-  /* TEL/FAX 行は折り返し禁止（中央幅が確保される前提） */
-  footer .footer-contact-grid .contact-row-tel{
-    flex-wrap: nowrap;
-  }
-
-  /* 念のため：番号自体も折り返さない */
-  footer .footer-contact-grid .tel-number,
-  footer .footer-contact-grid .fax-number{
-    white-space: nowrap;
-  }
-}
-/* =========================================================
-   FIX: Footer PC — 2列＋下段copyright（住所とPolicyは下揃え）
-   影響範囲：footer のPC表示のみ
-========================================================= */
-@media (min-width: 769px) {
-  .footer-container{
-    display: grid;
-    grid-template-columns: minmax(260px, 44%) 1fr; /* 左 / 連絡先 の2列 */
-    column-gap: 40px;
-    row-gap: 18px;
-    align-items: end; /* 左住所と右Policyを“下揃え” */
-  }
-
-  .footer-logo-area{ grid-column: 1; }
-  .footer-contact-area{
-    grid-column: 2;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .footer-contact-grid{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  /* Policyを右カラム最下段へ固定 → 左の住所と同じ下ラインに乗る */
-  .footer-contact-grid .contact-row-policy{
-    margin-top: auto;
-  }
-
-  /* TEL/FAXの改行を防ぐ */
-  .footer-contact-grid .contact-row-tel{ flex-wrap: nowrap; }
-  .footer-contact-grid .tel-number,
-  .footer-contact-grid .fax-number{ white-space: nowrap; }
-
-  /* copyright は2列を跨いで「下段・右寄せ」 */
-  .footer-container > .copyright{
-    grid-column: 1 / -1;
-    justify-self: end;
-    align-self: end;
-    margin: 0;
-    padding-top: 14px;
-    border-top: 1px solid rgba(255,255,255,0.10);
-    font-size: 0.72rem;
-    opacity: 0.60;
-  }
-}
-
-
-/* =========================================================
-   Footer COPYRIGHT FIX (PC)
-========================================================= */
-@media (min-width: 769px){
-  footer .footer-container{
-    display: grid !important;
-    grid-template-columns: minmax(360px, 46%) 1fr !important;
-    column-gap: 48px !important;
-    row-gap: 18px !important;
-    align-items: end !important;
-  }
-
-  footer .footer-logo-area{ grid-column: 1 !important; align-self: end !important; }
-  footer .footer-contact-area{ grid-column: 2 !important; align-self: end !important; }
-
-  footer .footer-contact-grid{ display: flex !important; flex-direction: column !important; }
-  footer .footer-contact-grid .contact-row-policy{ margin-top: auto !important; }
-
-  footer .footer-contact-grid .contact-row-tel{ flex-wrap: nowrap !important; }
-  footer .footer-contact-grid .tel-number,
-  footer .footer-contact-grid .fax-number{ white-space: nowrap !important; }
-
-  footer .footer-container > .copyright{
-    grid-column: 1 / -1 !important;
-    justify-self: end !important;
-    align-self: end !important;
-    margin: 0 !important;
-    padding-top: 14px !important;
-    border-top: 1px solid rgba(255,255,255,0.10) !important;
-    text-align: right !important;
-    line-height: 1.4 !important;
-    font-size: 0.72rem !important;
-    opacity: 0.60 !important;
-  }
-}
-
