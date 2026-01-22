@@ -1340,3 +1340,21 @@ html, body {
     padding: 22px 16px;
   }
 }
+/* =========================================================
+   FIX: トップAbout内「事業所案内」ボタンの窮屈さ解消
+   - ボタンの上下に余白を追加
+   - Company Info の区切り線と距離を取る
+========================================================= */
+.about-page-cta{
+  margin: 40px auto 56px !important;  /* 下をしっかり空ける */
+}
+
+.about-page-cta .btn-sub{
+  padding: 14px 34px !important;
+  line-height: 1.35 !important;
+}
+
+/* CTA直下に来る Company Info の border-top が近すぎるため距離を追加 */
+.company-info-area{
+  margin-top: 28px !important;
+}
