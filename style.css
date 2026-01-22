@@ -1625,4 +1625,90 @@ html, body {
     padding-right: var(--container-pad-x) !important;
   }
 }
+/* =========================================================
+   2026-01-22 HOTFIX (footer alignment + mobile side padding)
+   - Footer: 2-column layout (logo/address | contacts) + copyright right
+   - Footer: policy line bottom-aligned with address
+   - Footer: keep TEL/FAX on one line on desktop
+   - Mobile: restore consistent side padding in key sections
+   ========================================================= */
 
+/* ---- Mobile: persistent side padding (avoid edge-to-edge) ---- */
+@media (max-width: 768px) {
+  .container,
+  .section-title,
+  .about-grid,
+  .company-info-area,
+  .contact-form {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box;
+  }
+
+  /* Company Info table-like area */
+  .company-details dl {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* ---- Desktop footer: enforce correct layout & baselines ---- */
+@media (min-width: 769px) {
+  footer .footer-container {
+    /* override any previous flex rules */
+    display: grid !important;
+    grid-template-columns: minmax(300px, 42%) 1fr !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 48px !important;
+    row-gap: 18px !important;
+    align-items: end !important;
+    justify-items: stretch !important;
+    padding: 60px 80px !important;
+    box-sizing: border-box;
+  }
+
+  footer .footer-logo-area {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  footer .footer-contact-area {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    align-self: end !important;
+    justify-self: start !important;
+    width: 100% !important;
+  }
+
+  /* keep contacts stacked, push policy row to bottom */
+  footer .footer-contact-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+  footer .contact-row-policy {
+    margin-top: auto !important;
+  }
+
+  /* keep TEL/FAX in one row on desktop */
+  footer .contact-row-tel {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+  }
+  footer .contact-row-tel .divider {
+    margin: 0 12px !important;
+  }
+
+  /* copyright: right, own row */
+  footer .copyright {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    justify-self: end !important;
+    margin: 0 !important;
+    text-align: right !important;
+    line-height: 1.4 !important;
+  }
+}
