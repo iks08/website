@@ -4,16 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
-
   <title>株式会社iK</title>
-
+  
   <!-- ファビコン -->
   <link rel="icon" href="picmov/iK-logo.png" type="image/png">
-
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
-
+  
   <!-- CSS -->
   <link rel="stylesheet" href="style.css?v=20260122-1">
 </head>
@@ -27,6 +26,7 @@
     <div id="splash-logo">iK相談支援センター</div>
   </div>
 
+  <!-- ヘッダー -->
   <header>
     <div class="logo">
       <a href="#top">iK相談支援センター</a>
@@ -41,7 +41,6 @@
       </ul>
     </nav>
 
-    <!-- ハンバーガー（CSS描画：span + 擬似要素） -->
     <div class="menu-btn" id="menu-toggle" aria-label="メニューを開閉" role="button" tabindex="0">
       <span></span>
     </div>
@@ -61,77 +60,70 @@
 
     <div class="hero-content">
       <h1>障がいのある方も<br>ご家族にも</h1>
-
       <p>
         相談支援事業では、障がいのある方<br class="sp-br">だけではなく、<br class="pc-br">
         ご家族や関係機関の<br class="sp-br">さまざまなお悩みや<br class="pc-br">
         お困りごとに<br class="sp-br">ついてご相談を受け付けております。<br class="pc-br"><br class="sp-br">
         誰もがより豊かな生活を送れるように<br class="sp-br">支援させていただきます。
       </p>
-
       <a href="#contact" class="btn-main">お問い合わせはこちら</a>
     </div>
   </section>
 
-  <!-- サービス案内 -->
-  
   <!-- 対象者案内 -->
   <section class="target-users section">
     <div class="container">
       <h2 class="target-title">対象の方</h2>
-
       <ul class="target-list">
         <li>心身に障がいがある方</li>
         <li>心身に障いがある児童（支給決定は保護者の方）</li>
       </ul>
-
-      <p class="target-note">
-        ※ 御自身が対象者であるか不明な場合は御相談下さい。
-      </p>
+      <p class="target-note">※ 御自身が対象者であるか不明な場合は御相談下さい。</p>
     </div>
   </section>
 
-<section id="services" class="services-bg fade-in section">
+  <!-- サービス案内 -->
+  <section id="services" class="services-bg fade-in section">
     <div class="container">
-        <div class="section-title">
-            <h2>お困りではありませんか？</h2>
-            <span>相談内容</span>
-        </div>
+      <div class="section-title">
+        <h2>お困りではありませんか？</h2>
+        <span>相談内容</span>
+      </div>
 
-        <div class="services-grid">
+      <div class="services-grid">
         <div class="service-card">
-            <img src="picmov/health.png" alt="健康" loading="lazy" width="300" height="180">
-            <h3>健康に暮らしたい</h3>
-        </div>
-        <div class="service-card">
-            <img src="picmov/illness.png" alt="病気" loading="lazy" width="300" height="180">
-            <h3>病気のことが心配</h3>
+          <img src="picmov/health.png" alt="健康" loading="lazy" width="300" height="180">
+          <h3>健康に暮らしたい</h3>
         </div>
         <div class="service-card">
-            <img src="picmov/house.png" alt="住まい" loading="lazy" width="300" height="180">
-            <h3>住むところを探してほしい</h3>
+          <img src="picmov/illness.png" alt="病気" loading="lazy" width="300" height="180">
+          <h3>病気のことが心配</h3>
         </div>
         <div class="service-card">
-            <img src="picmov/counseling.png" alt="相談" loading="lazy" width="300" height="180">
-            <h3>悩みや相談を聞いてほしい</h3>
+          <img src="picmov/house.png" alt="住まい" loading="lazy" width="300" height="180">
+          <h3>住むところを探してほしい</h3>
         </div>
         <div class="service-card">
-            <img src="picmov/hikky.png" alt="引きこもり" loading="lazy" width="300" height="180">
-            <h3>引きこもりから脱出したい</h3>
+          <img src="picmov/counseling.png" alt="相談" loading="lazy" width="300" height="180">
+          <h3>悩みや相談を聞いてほしい</h3>
         </div>
         <div class="service-card">
-            <img src="picmov/cityoffice.png" alt="手続き" loading="lazy" width="300" height="180">
-            <h3>役所などの手続きが分からない</h3>
+          <img src="picmov/hikky.png" alt="引きこもり" loading="lazy" width="300" height="180">
+          <h3>引きこもりから脱出したい</h3>
         </div>
         <div class="service-card">
-            <img src="picmov/job.png" alt="就職" loading="lazy" width="300" height="180">
-            <h3>就職のことや将来のことを相談したい</h3>
+          <img src="picmov/cityoffice.png" alt="手続き" loading="lazy" width="300" height="180">
+          <h3>役所などの手続きが分からない</h3>
         </div>
+        <div class="service-card">
+          <img src="picmov/job.png" alt="就職" loading="lazy" width="300" height="180">
+          <h3>就職のことや将来のことを相談したい</h3>
         </div>
+      </div>
     </div>
   </section>
 
-  <!-- 流れ -->
+  <!-- 相談の流れ -->
   <section id="flow" class="fade-in section">
     <div class="section-title">
       <h2>Flow</h2>
@@ -242,6 +234,7 @@
       <a href="about.html" class="btn-sub">事業所案内（運営方針・職員配置・加算体制）を見る</a>
     </div>
 
+    <!-- 会社概要 -->
     <div class="company-info-area">
       <div class="company-header">
         <h3 class="company-title">Company Info</h3>
@@ -287,7 +280,7 @@
     </div>
   </section>
 
-  <!-- フォーム部分 -->
+  <!-- お問い合わせ -->
   <section id="contact" class="fade-in section">
     <div class="section-title">
       <h2>CONTACT</h2>
@@ -312,8 +305,8 @@
         <textarea name="message" rows="5" placeholder="ご質問やご相談内容をご記入ください" required></textarea>
       </div>
       <button type="submit" class="submit-btn">送信する</button>
-        <!-- 送信結果表示（ページ遷移なし送信の結果を表示） -->
-        <div id="form-result" class="form-result" aria-live="polite"></div>
+      
+      <div id="form-result" class="form-result" aria-live="polite"></div>
 
       <p class="form-note">
         <span class="form-note-line">※ 通常1〜2営業日以内に返信いたします。</span>
@@ -325,7 +318,6 @@
         </a>
       </p>
     </form>
-
   </section>
 
   <!-- フッター -->
@@ -341,7 +333,6 @@
       </div>
 
       <div class="footer-contact-area">
-        
         <div class="footer-contact-grid" aria-label="連絡先">
           <div class="contact-row contact-row-tel">
             <span class="contact-label">TEL</span>
@@ -370,6 +361,7 @@
   <!-- TOPへ戻るボタン -->
   <button id="to-top" aria-label="トップへ戻る">▲</button>
 
+  <!-- JavaScript -->
   <script src="script.js?v=20260119-1" defer></script>
 </body>
 </html>

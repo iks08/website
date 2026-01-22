@@ -1,92 +1,69 @@
 @charset "UTF-8";
 
-/* === 基本設定 === */
-/* =========================================================
-   Brand Colors (FINAL) - ロゴ準拠（入れ替え版）
-   水色基調＋紺ワンポイント
-========================================================= */
+/* ========================================
+   CSS変数定義
+======================================== */
 :root {
-  --ik-blue-dark: #0B2F8A;   /* ワンポイント（見出し/引き締め） */
-  --ik-blue-light: #07A0E5;  /* 基調（ヘッダー/フッター/CTA） */
-  --ik-blue-light-2: #0586C2; /* 水色の深み（グラデ下側） */
-
-  /* 既存変数の接続（重要：可読性のため primary は濃い紺のまま） */
-  --primary-color: var(--ik-blue-dark);    /* 見出し・重要語の色（紺） */
-  --accent-color: var(--ik-blue-light);    /* UIアクセント（水色） */
-
+  /* カラー */
+  --ik-blue-dark: #0B2F8A;
+  --ik-blue-light: #07A0E5;
+  --ik-blue-light-2: #0586C2;
+  --primary-color: var(--ik-blue-dark);
+  --accent-color: var(--ik-blue-light);
   --bg-color: #F0F9FF;
   --text-color: #333333;
   --white: #ffffff;
   --transition: all 0.3s ease;
 
-  /* === Layout Tokens (A-1) === */
+  /* レイアウト */
   --container-max: 1200px;
   --container-pad-x: 5%;
-
   --section-pad-top: 52px;
   --section-pad-bottom: 96px;
-
   --section-pad-top-sp: 34px;
   --section-pad-bottom-sp: 76px;
-
   --header-h: 70px;
 
-  /* =========================================
-     Typography Tokens
-  ========================================= */
+  /* タイポグラフィ */
   --font-base-pc: 16px;
   --font-base-sp: 15px;
-
   --lh-base: 1.85;
   --lh-tight: 1.35;
   --lh-lead: 2.00;
-
   --ls-base: 0.02em;
   --ls-lead: 0.04em;
   --ls-title: 0.06em;
-
   --h2-size-pc: 2.45rem;
   --h2-size-sp: 2.00rem;
-
   --h3-size-pc: 1.55rem;
   --h3-size-sp: 1.35rem;
-
   --p-size-pc: 1.05rem;
   --p-size-sp: 0.95rem;
 
-  /* =========================================
-     Spacing Tokens
-  ========================================= */
+  /* スペーシング */
   --gap-lg: 40px;
   --gap-md: 28px;
   --gap-sm: 18px;
-
   --title-mb: 56px;
   --block-mb: 60px;
   --cta-mt: 56px;
 
-  /* =========================================================
-     Header Tone - ブランド色へ統一（FINAL）
-  ========================================================= */
-  --header-bg: var(--ik-blue-dark);
-  --header-bg-2: var(--ik-blue-deep);
-  --header-border: rgba(255,255,255,0.15);
-  --header-shadow: 0 2px 14px rgba(0,0,0,0.10);
-
+  /* ヘッダー用 */
   --header-link-opacity: 0.92;
   --header-link-hover: 1;
-
-  /* TELピル（ヘッダー/フッターで統一感） */
   --header-pill-bg: rgba(255,255,255,0.12);
   --header-pill-bg-hover: rgba(255,255,255,0.20);
 }
 
-/* === 全体のスクロール設定 === */
+/* ========================================
+   基本設定
+======================================== */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   overflow-x: hidden;
   width: 100%;
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -99,12 +76,12 @@ body {
   overflow-x: hidden;
   width: 100%;
   font-feature-settings: "palt" 1;
-
   font-size: var(--font-base-pc);
   letter-spacing: var(--ls-base);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
 }
 
 @media (max-width: 768px) {
@@ -115,19 +92,42 @@ a { text-decoration: none; color: inherit; }
 ul { list-style: none; padding: 0; margin: 0; }
 img, video { max-width: 100%; height: auto; display: block; }
 
-/* === 改行の制御 (PC用初期値) === */
 .pc-br { display: block; }
 .sp-br { display: none; }
+.nowrap { white-space: nowrap; }
 
-/* === ヘッダー === */
+/* ========================================
+   レイアウトコンポーネント
+======================================== */
+.section {
+  padding-top: var(--section-pad-top);
+  padding-bottom: var(--section-pad-bottom);
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--section-pad-top-sp);
+    padding-bottom: var(--section-pad-bottom-sp);
+  }
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-pad-x);
+  padding-right: var(--container-pad-x);
+  box-sizing: border-box;
+}
+
+/* ========================================
+   ヘッダー
+======================================== */
 header {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-
-  /* ここだけ差し替え */
   background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
   border-bottom: 1px solid rgba(255,255,255,0.22);
   box-shadow: 0 2px 14px rgba(0,0,0,0.10);
-
   position: fixed;
   width: 100%;
   top: 0;
@@ -149,39 +149,37 @@ header {
   letter-spacing: 0.03em;
   line-height: 1.15;
 }
+
 .logo a { display: block; height: 100%; opacity: 0.96; }
 .logo a:hover { opacity: 1; }
 
-/* PCナビ */
+.pc-nav,
+.pc-nav a {
+  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+}
+
 .pc-nav ul { display: flex; gap: 26px; }
+
 .pc-nav a {
   font-weight: 600;
   transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
   color: var(--white);
   letter-spacing: 0.06em;
   opacity: var(--header-link-opacity);
-
   padding: 10px 12px;
   border-radius: 10px;
 }
+
 .pc-nav a:hover {
   opacity: var(--header-link-hover);
   background-color: rgba(255,255,255,0.10);
   transform: translateY(-1px);
 }
 
-/* ヘッダー右側メニュー文字をOSAKAに */
-.pc-nav,
-.pc-nav a {
-  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-}
-
-/* PCのみ：右側メニュー文字サイズ */
 @media (min-width: 769px) {
   .pc-nav a { font-size: 1.08rem; }
 }
 
-/* ハンバーガー（基本はPC非表示） */
 .menu-btn {
   display: none;
   cursor: pointer;
@@ -189,7 +187,110 @@ header {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
 }
 
-/* === ヒーロー === */
+@media (max-width: 768px) {
+  #menu-toggle {
+    transform: scale(0.8) translateX(5mm);
+    transform-origin: center;
+  }
+}
+
+.header-contact {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+}
+
+.header-tel {
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.08em;
+  opacity: 0.94;
+  white-space: nowrap;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--header-pill-bg);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: opacity 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+.header-tel:hover {
+  opacity: 1;
+  background: var(--header-pill-bg-hover);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .header-contact { display: none; }
+}
+
+/* ========================================
+   オープニングアニメーション
+======================================== */
+#opening-splash {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background: #f4f6f8 !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+  gap: 4px !important;
+}
+
+#splash-mark {
+  width: clamp(120px, 12vw, 180px) !important;
+  height: auto;
+  display: block;
+  margin: 0 !important;
+}
+
+@media (min-width: 769px) {
+  #splash-mark {
+    width: 180px !important;
+    height: auto !important;
+  }
+}
+
+#splash-logo {
+  position: static !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif !important;
+  font-size: clamp(2.0rem, 5vw, 7.0rem) !important;
+  opacity: 0;
+  animation: splashFadeIn 0.8s ease forwards;
+  display: block !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0.02em !important;
+}
+
+@keyframes splashFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body.start-animation #opening-splash {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ========================================
+   ヒーローセクション
+======================================== */
 .hero {
   height: 100vh;
   background: #ffffff;
@@ -203,12 +304,16 @@ header {
 
 .hero-video-container {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   overflow: hidden;
   opacity: 1;
   background-color: #000000;
 }
+
 .hero-video-container video {
   width: 100%;
   height: 100%;
@@ -224,11 +329,14 @@ header {
   width: 90%;
   max-width: 800px;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.85);
-  padding: 58px 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  background-color: rgba(255, 255, 255, 0.92);
+  padding: 64px 46px;
+  border-radius: 22px;
+  box-shadow: 0 16px 44px rgba(0,0,0,0.14);
   text-align: center;
+  border: 1px solid rgba(11,47,138,0.10);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .hero-content h1 {
@@ -236,28 +344,64 @@ header {
   color: var(--primary-color);
   line-height: 1.35;
   letter-spacing: var(--ls-title);
-  margin-bottom: 34px;
+  margin-bottom: 28px;
 }
 
 .hero-content p {
-  margin: 0 auto 10px;
+  margin: 0 auto 6px;
   text-align: center;
   letter-spacing: var(--ls-lead);
-  line-height: var(--lh-lead);
-  font-size: 1.22rem;
+  line-height: 2.05;
+  font-size: 1.24rem;
 }
 
-/* =========================================================
-   CTA Buttons（ブランド統一：水色アクセントのグラデ）
-========================================================= */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 0 !important;
+    margin-top: var(--header-h) !important;
+    height: calc(100vh - var(--header-h)) !important;
+  }
+
+  @supports (height: 100dvh) {
+    .hero { height: calc(100dvh - var(--header-h)) !important; }
+  }
+
+  .hero-video-container { height: 100% !important; }
+  .hero-video-container video { object-position: 50% 50% !important; }
+
+  .hero-content {
+    background-color: rgba(255,255,255,0.68) !important;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.12) !important;
+    padding: 28px 16px !important;
+    border-radius: 16px !important;
+    max-width: 92vw !important;
+  }
+
+  .hero-content h1 {
+    font-size: 2.15rem !important;
+    margin-bottom: 18px !important;
+  }
+
+  .hero-content p {
+    font-size: 1.00rem !important;
+    line-height: 1.90 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .btn-main {
+    margin-top: 26px !important;
+  }
+}
+
+/* ========================================
+   ボタン
+======================================== */
 .btn-main {
   font-size: 1.05rem;
   letter-spacing: 0.08em;
   line-height: 1.2;
   padding: 16px 44px;
-
   background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
-
   border-radius: 50px;
   font-weight: 700;
   transition: var(--transition);
@@ -268,19 +412,40 @@ header {
   border: 1px solid rgba(255,255,255,0.18);
   color: var(--white);
 }
+
 .btn-main:hover {
   background: linear-gradient(180deg, #10B0F5 0%, #067FBA 100%);
   box-shadow: 0 10px 26px rgba(11,47,138,0.20);
   transform: translateY(-3px);
 }
 
-/* セクションタイトル */
+.btn-sub {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: 1px solid rgba(11,47,138,0.22);
+  color: var(--primary-color);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  background: #ffffff;
+  transition: var(--transition);
+}
+
+.btn-sub:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+/* ========================================
+   セクションタイトル
+======================================== */
 .section-title {
   text-align: center;
   margin-bottom: var(--title-mb);
   position: relative;
   padding-bottom: 20px;
 }
+
 .section-title h2 {
   font-size: var(--h2-size-pc);
   color: var(--primary-color);
@@ -288,30 +453,79 @@ header {
   letter-spacing: 0.04em;
   line-height: var(--lh-tight);
 }
+
 .section-title span {
   color: #888;
   font-size: 0.95rem;
   letter-spacing: 2px;
 }
 
-/* フェードイン */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--primary-color);
+  margin: 20px auto 0;
+  border-radius: 2px;
+}
+
+/* ========================================
+   フェードインアニメーション
+======================================== */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* === Services === */
+/* ========================================
+   対象者案内
+======================================== */
+.target-users {
+  background: #ffffff;
+  padding: 60px 0 40px;
+}
+
+.target-title {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.target-list {
+  list-style: disc;
+  padding-left: 1.2em;
+  margin-bottom: 26px;
+  line-height: 2.0;
+  color: #333;
+  font-size: 1.05rem;
+}
+
+.target-note {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+/* ========================================
+   サービス
+======================================== */
 .services-bg { background-color: var(--bg-color); }
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--gap-md);
 }
+
 .service-card {
   background: var(--white);
   padding: 30px;
@@ -320,18 +534,18 @@ header {
   transition: var(--transition);
   border-bottom: 4px solid transparent;
   overflow: hidden;
+  cursor: default !important;
 }
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  border-bottom: 4px solid var(--primary-color);
-}
+
 .service-card img {
   width: 100%;
   height: 180px;
   object-fit: contain;
   margin: 0 auto 18px;
+  cursor: default !important;
+  transition: none !important;
 }
+
 .service-card h3 {
   font-size: 1.22rem;
   margin: 0;
@@ -341,7 +555,15 @@ header {
   line-height: 1.45;
 }
 
-/* === Flow（タイムライン風） === */
+#services .service-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-bottom: 4px solid transparent !important;
+}
+
+/* ========================================
+   相談の流れ
+======================================== */
 .flow-container {
   width: 100%;
   max-width: 800px;
@@ -350,16 +572,19 @@ header {
   box-sizing: border-box;
   position: relative;
 }
+
 .flow-container::before {
   content: '';
   position: absolute;
-  top: 20px; bottom: 20px;
+  top: 20px;
+  bottom: 20px;
   left: 50%;
   width: 1px;
   background: #ccc;
   transform: translateX(-50%);
   z-index: 0;
 }
+
 .flow-step {
   display: flex;
   justify-content: space-between;
@@ -368,18 +593,26 @@ header {
   position: relative;
   z-index: 1;
 }
+
 .flow-step::after {
   content: '';
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 12px; height: 12px;
+  width: 12px;
+  height: 12px;
   background-color: var(--primary-color);
   border: 4px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 0 1px #ccc;
 }
-.step-header { width: 45%; text-align: right; }
+
+.step-header {
+  width: 45%;
+  text-align: right;
+}
+
 .step-num {
   display: block;
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -389,6 +622,7 @@ header {
   letter-spacing: 0.12em;
   margin-bottom: 6px;
 }
+
 .step-name {
   font-size: 1.72rem;
   font-weight: 700;
@@ -397,7 +631,12 @@ header {
   letter-spacing: 0.02em;
   line-height: 1.3;
 }
-.step-body { width: 45%; text-align: left; }
+
+.step-body {
+  width: 45%;
+  text-align: left;
+}
+
 .step-desc {
   font-size: 1.03rem;
   line-height: 1.9;
@@ -406,7 +645,14 @@ header {
   letter-spacing: 0.02em;
 }
 
-/* === About === */
+.flow-cta {
+  text-align: center;
+  margin-top: var(--cta-mt);
+}
+
+/* ========================================
+   About Us
+======================================== */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -415,6 +661,7 @@ header {
   align-items: center;
   margin: 0 auto var(--block-mb);
 }
+
 .about-text h3 {
   font-size: var(--h3-size-pc);
   margin-bottom: 18px;
@@ -423,29 +670,45 @@ header {
   letter-spacing: 0.03em;
   line-height: 1.35;
 }
+
 .about-text p {
   font-size: var(--p-size-pc);
   line-height: 1.95;
   margin-bottom: 10px;
   letter-spacing: 0.02em;
 }
+
 .about-img img {
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   width: 100%;
 }
 
-/* === Company Info === */
+.about-page-cta {
+  text-align: center;
+  margin: 40px auto 56px !important;
+}
+
+.about-page-cta .btn-sub {
+  padding: 14px 34px !important;
+  line-height: 1.35 !important;
+}
+
+/* ========================================
+   会社概要
+======================================== */
 .company-info-area {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 28px auto 0 !important;
   border-top: 1px solid #ddd;
   padding-top: 56px;
 }
+
 .company-header {
   text-align: center;
   margin-bottom: 36px;
 }
+
 .company-title {
   font-size: 1.92rem;
   color: var(--primary-color);
@@ -454,6 +717,7 @@ header {
   letter-spacing: 0.04em;
   line-height: 1.25;
 }
+
 .company-subtitle {
   display: block;
   color: #888;
@@ -475,6 +739,7 @@ header {
   gap: 14px 20px;
   margin: 0;
 }
+
 .company-details dt {
   font-weight: bold;
   color: var(--primary-color);
@@ -483,6 +748,7 @@ header {
   padding-bottom: 5px;
   letter-spacing: 0.02em;
 }
+
 .company-details dd {
   margin: 0;
   border-bottom: 1px solid #f0f0f0;
@@ -491,7 +757,48 @@ header {
   line-height: 1.85;
 }
 
-.company-map { text-align: center; }
+.company-details dd.license-list {
+  margin: 0;
+}
+
+@media (min-width: 769px) {
+  .company-details dd.license-list {
+    max-width: 380px;
+  }
+}
+
+.company-details dd.license-list .license-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 12ch;
+  column-gap: 8px;
+  align-items: baseline;
+  width: 100%;
+  min-width: 0;
+}
+
+.company-details dd.license-list .license-title {
+  text-wrap: balance;
+  letter-spacing: -0.01em;
+}
+
+.company-details dd.license-list .license-num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 768px) {
+  .company-details dd.license-list .license-title {
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+}
+
+.company-map {
+  text-align: center;
+}
+
 .company-map img {
   width: 100%;
   max-width: 300px;
@@ -501,26 +808,9 @@ header {
   border: 1px solid #eee;
 }
 
-/* 許認可：2行の番号右端揃え */
-.company-details dd.license-list { margin: 0; }
-@media (min-width: 769px) {
-  .company-details dd.license-list { max-width: 380px; }
-}
-.company-details dd.license-list .license-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 12ch;
-  column-gap: 8px;
-  align-items: baseline;
-  width: 100%;
-}
-.company-details dd.license-list .license-num {
-  text-align: right;
-  white-space: nowrap;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.06em;
-}
-
-/* === Contact（フォーム） === */
+/* ========================================
+   お問い合わせフォーム
+======================================== */
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
@@ -528,7 +818,11 @@ header {
   padding: 44px;
   border-radius: 10px;
 }
-.form-group { margin-bottom: 20px; }
+
+.form-group {
+  margin-bottom: 20px;
+}
+
 .form-group label {
   display: block;
   margin-bottom: 6px;
@@ -536,6 +830,7 @@ header {
   letter-spacing: 0.03em;
   font-size: 0.98rem;
 }
+
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -559,17 +854,76 @@ header {
   cursor: pointer;
   transition: var(--transition);
   letter-spacing: 0.06em;
-
-  /* ブランド統一：水色グラデ */
   background: linear-gradient(180deg, var(--ik-blue-light) 0%, #0586C2 100%);
   box-shadow: 0 6px 18px rgba(7,160,229,0.25);
 }
+
 .submit-btn:hover {
   background: linear-gradient(180deg, #10B0F5 0%, #067FBA 100%);
   transform: translateY(-1px);
 }
 
-/* === Footer === */
+.form-result {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #fff0f0;
+  color: #c00000;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.03em;
+  display: none;
+  border: 1px solid #f3b3b3;
+}
+
+.form-result.error {
+  background: #ffecec;
+  color: #b00020;
+}
+
+.form-note {
+  margin-top: 20px;
+  font-size: 0.88rem;
+  color: #666;
+  line-height: 1.75;
+  text-align: center;
+  text-wrap: balance;
+  letter-spacing: 0.02em;
+}
+
+.form-note-line {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .form-note {
+    font-size: 0.82rem;
+  }
+}
+
+.form-privacy {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.form-privacy-link {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  letter-spacing: 0.02em;
+  overflow-wrap: normal;
+  word-break: normal;
+  line-break: strict;
+}
+
+.form-privacy-link:hover {
+  opacity: 0.85;
+}
+
+/* ========================================
+   フッター
+======================================== */
 footer {
   font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
   background: linear-gradient(180deg, var(--ik-blue-light) 0%, var(--ik-blue-light-2) 100%);
@@ -591,7 +945,6 @@ footer {
   align-items: start;
 }
 
-/* 左側：社名と住所 */
 .footer-logo-area {
   text-align: left;
 }
@@ -618,9 +971,9 @@ footer {
   text-decoration: underline;
 }
 
-/* 右側：TEL・FAX・Policy */
 .footer-contact-area {
   text-align: left;
+  margin-top: 0;
 }
 
 .footer-contact-grid {
@@ -664,7 +1017,6 @@ footer {
   margin: 0 6px;
 }
 
-/* コピーライト：下段中央 */
 .footer-copyright {
   grid-column: 1 / -1;
   text-align: center;
@@ -675,165 +1027,46 @@ footer {
   opacity: 0.60;
 }
 
-/* スマホ版 */
 @media (max-width: 768px) {
   .footer-container {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 20px;
   }
-  
+
   .footer-logo-area,
   .footer-contact-area {
     text-align: center;
   }
-  
+
+  .footer-contact-area {
+    max-width: 360px;
+    margin: 0 auto 18px;
+    text-align: left !important;
+  }
+
   .contact-row {
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     gap: 5px;
   }
-  
+
   .divider {
     display: none;
   }
-  
+
   .tel-number {
     font-size: 1.2rem;
   }
-  
+
   .footer-copyright {
     text-align: center;
   }
 }
 
-
-/* =========================
-   OPENING (A) - FINAL FIX
-========================= */
-#opening-splash{
-  position: fixed !important;
-  inset: 0 !important;
-  width: 100% !important;
-
-  height: 100vh !important;
-  height: 100dvh !important;
-
-  background: #f4f6f8 !important;
-  z-index: 9999 !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-
-  text-align: center !important;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
-
-  gap: 4px !important;
-  row-gap: 4px !important;
-}
-
-#splash-mark{
-  width: clamp(120px, 12vw, 180px) !important;
-  height: auto;
-  display: block;
-  margin: 0 !important;
-}
-
-#splash-logo{
-  position: static !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  transform: none !important;
-
-  margin-top: 0 !important;
-  padding: 0 !important;
-
-  color: var(--primary-color) !important;
-  font-weight: 700 !important;
-
-  white-space: nowrap !important;
-  font-family: "Osaka", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif !important;
-
-  font-size: clamp(2.0rem, 5vw, 7.0rem) !important;
-
-  opacity: 0;
-  animation: splashFadeIn 0.8s ease forwards;
-
-  display: block !important;
-  line-height: 1.05 !important;
-  letter-spacing: 0.02em !important;
-  margin: 0 !important;
-}
-
-@keyframes splashFadeIn{
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-body.start-animation #opening-splash{
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* =========================================================
-   Section - Vertical spacing responsibility (A-2)
-========================================================= */
-.section {
-  padding-top: var(--section-pad-top);
-  padding-bottom: var(--section-pad-bottom);
-  box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding-top: var(--section-pad-top-sp);
-    padding-bottom: var(--section-pad-bottom-sp);
-  }
-}
-
-/* =========================================================
-   Container - Layout Responsibility (A-2)
-========================================================= */
-.container {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding-left: var(--container-pad-x);
-  padding-right: var(--container-pad-x);
-  box-sizing: border-box;
-}
-
-/* =========================================================
-   OVERRIDE PACK (2026-01-19)
-========================================================= */
-
-/* 1) ハンバーガーを0.8倍＋右寄せ */
-@media (max-width: 768px) {
-  #menu-toggle {
-    transform: scale(0.8) translateX(5mm);
-    transform-origin: center;
-  }
-}
-
-/* 3) Services：押せそう感を消す */
-#services .service-card { cursor: default !important; }
-#services .service-card img { cursor: default !important; }
-#services .service-card:hover {
-  transform: none !important;
-  box-shadow: none !important;
-  border-bottom: 4px solid transparent !important;
-}
-#services .service-card img { transition: none !important; }
-
-/* =========================================================
-   To Top Button
-========================================================= */
+/* ========================================
+   TOPへ戻るボタン
+======================================== */
 #to-top {
   position: fixed;
   right: 20px;
@@ -852,14 +1085,17 @@ body.start-animation #opening-splash{
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 #to-top.visible {
   opacity: 1;
   pointer-events: auto;
 }
+
 #to-top:hover {
   background: linear-gradient(180deg, #10B0F5 0%, #067FBA 100%);
   transform: translateY(-4px);
 }
+
 @media (max-width: 768px) {
   #to-top {
     right: 16px;
@@ -870,372 +1106,61 @@ body.start-animation #opening-splash{
   }
 }
 
-/* =========================================================
-   SP HERO - FINAL (unified)
-========================================================= */
-@media (max-width: 768px) {
-  .hero {
-    padding-top: 0 !important;
-    margin-top: var(--header-h) !important;
-    height: calc(100vh - var(--header-h)) !important;
-  }
-
-  @supports (height: 100dvh) {
-    .hero { height: calc(100dvh - var(--header-h)) !important; }
-  }
-
-  .hero-video-container { height: 100% !important; }
-  .hero-video-container video { object-position: 50% 50% !important; }
-}
-
-/* =========================================================
-   iOS pull-to-refresh / overscroll - minimal
-========================================================= */
-html, body {
-  overscroll-behavior-y: none;
-}
-
-/* =========================================================
-   Contact Form - Trust Note
-========================================================= */
-.form-note {
-  margin-top: 20px;
-  font-size: 0.88rem;
-  color: #666;
-  line-height: 1.75;
-  text-align: center;
-  text-wrap: balance;
-  letter-spacing: 0.02em;
-}
-
-.form-note-line { display: block; }
-
-@media (max-width: 768px) {
-  .form-note { font-size: 0.82rem; }
-}
-
-/* =========================================================
-   Contact Form - Privacy Link
-========================================================= */
-.form-privacy {
-  margin-top: 14px;
-  text-align: center;
-}
-
-.form-privacy-link {
-  color: var(--primary-color);
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  letter-spacing: 0.02em;
-}
-
-.form-privacy-link:hover {
-  opacity: 0.85;
-}
-
-/* =========================================================
-   Contact Form - Submit Result Message
-========================================================= */
-.form-result {
-  margin-top: 12px;
-  padding: 10px 14px;
-  border-radius: 6px;
-  background: #fff0f0;
-  color: #c00000;          /* 赤字 */
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: 0.03em;
-  display: none;
-  border: 1px solid #f3b3b3;
-}
-
-.form-result.error {
-  background: #ffecec;
-  color: #b00020;
-}
-
-/* =========================================================
-   Section Title Enhancement
-========================================================= */
-.section-title::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: var(--primary-color);
-  margin: 20px auto 0;
-  border-radius: 2px;
-}
-
-/* =========================================================
-   Flow CTA
-========================================================= */
-.flow-cta {
-  text-align: center;
-  margin-top: var(--cta-mt);
-}
-
-/* =========================================================
-   Footer Layout Improvement
-========================================================= */
-.footer-logo-area h3 { margin-bottom: 0; }
-.footer-contact-area { margin-top: 0; }
-
-/* =========================================================
-   Header Contact CTA - TEL only
-========================================================= */
-.header-contact {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-}
-.header-tel {
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.98rem;
-  letter-spacing: 0.08em;
-  opacity: 0.94;
-
-  white-space: nowrap;
-  padding: 10px 12px;
-  border-radius: 10px;
-
-  background: var(--header-pill-bg);
-  border: 1px solid rgba(255,255,255,0.18);
-
-  transition: opacity 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
-}
-.header-tel:hover {
-  opacity: 1;
-  background: var(--header-pill-bg-hover);
-  transform: translateY(-1px);
-}
-
-/* スマホでは非表示 */
-@media (max-width: 768px) {
-  .header-contact { display: none; }
-}
-
-/* =========================================================
-   Anchor Scroll Position
-========================================================= */
+/* ========================================
+   アンカースクロール位置調整
+======================================== */
 #services, #flow, #about, #contact {
   scroll-margin-top: calc(-1 * var(--header-h) + 10px);
 }
 
-/* footer 住所リンクの見た目制御 */
-.footer-address a {
-  color: inherit;
-  text-decoration: none;
-}
-.footer-address a:hover {
-  text-decoration: underline;
-}
-
-/* =========================================================
-   OPENING ロゴサイズ確定（PC 180px）
-========================================================= */
-@media (min-width: 769px) {
-  #opening-splash #splash-mark{
-    width: 180px !important;
-    height: auto !important;
-  }
-}
-/* ここから下を追加 */
-/* ===== Hero Display Option A : 安心パネル化 ===== */
-.hero-content{
-  background-color: rgba(255,255,255,0.92);   /* 既存0.85 → 0.92 */
-  border: 1px solid rgba(11,47,138,0.10);
-  box-shadow: 0 16px 44px rgba(0,0,0,0.14);
-  border-radius: 22px;
-  padding: 64px 46px;                         /* 少し余白を増やす */
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.hero-content h1{
-  margin-bottom: 28px;                        /* 少し詰めて読みやすく */
-}
-
-.hero-content p{
-  font-size: 1.24rem;                         /* ほぼ同等だが読みやすく */
-  line-height: 2.05;
-  margin-bottom: 6px;
-}
-
-@media (max-width: 768px){
-  .hero-content{
-    padding: 44px 18px;
-    border-radius: 18px;
-  }
-  .hero-content h1{ font-size: 2.35rem; }
-  .hero-content p{ font-size: 1.03rem; }
-}
-
-
-/* =========================================================
-   Utility
-========================================================= */
-.nowrap{ white-space: nowrap; }
-
-/* =========================================================
-   FIX: プライバシーリンクが「ー」だけ改行されないように
-========================================================= */
-.form-privacy-link{ overflow-wrap: normal; word-break: normal; line-break: strict; }
-
-
-/* =========================================================
-   SP HERO: 背景（海・空）をしっかり見せる（B案・最終固定）
-   - パネルを透かす
-   - パネル面積を減らす
-========================================================= */
-@media (max-width: 768px){
-  .hero-content{
-    background-color: rgba(255,255,255,0.68) !important;
-    box-shadow: 0 12px 34px rgba(0,0,0,0.12) !important;
-    padding: 28px 16px !important;
-    border-radius: 16px !important;
-    max-width: 92vw !important;
-  }
-  .hero-content h1{
-    font-size: 2.15rem !important;
-    margin-bottom: 18px !important;
-  }
-  .hero-content p{
-    font-size: 1.00rem !important;
-    line-height: 1.90 !important;
-    margin-bottom: 4px !important;
-  }
-  .btn-main{
-    margin-top: 26px !important;
-  }
-}
-
-/* =========================================================
-   FIX: 1文字だけ改行（許認可） / SPフッター連絡先ブロックの中央寄せ
-========================================================= */
-
-/* --- ① 許認可：1文字落ち防止（行末だけ落ちるのを抑える） --- */
-.company-details dd.license-list .license-row{
-  min-width: 0; /* 念のため（flex絡みの潰れ対策） */
-}
-
-.company-details dd.license-list .license-title{
-  text-wrap: balance;           /* 対応ブラウザでは自然にバランス改行 */
-  letter-spacing: -0.01em;      /* 1文字落ちを防ぐためにほんの少し詰める */
-}
-
-@media (max-width: 768px){
-  .company-details dd.license-list .license-title{
-    font-size: 0.95rem;         /* SPだけ僅かに下げて"最後の1文字"を吸収 */
-    line-height: 1.75;
-  }
-}
-
-/* --- ② SPフッター：TEL〜Policyブロック自体を中央に寄せる（中身は左揃え） --- */
-@media (max-width: 768px){
-  .footer-contact-area{
-    max-width: 360px;           /* ブロック幅を制限して */
-    margin: 0 auto 18px;        /* ブロックを中央へ */
-    text-align: left !important;/* 中身は左揃え（読みやすさ優先） */
-  }
-
-  .footer-contact-area .contact-row{
-    justify-content: flex-start; /* 行内は左起点でOK */
-  }
-
-  /* Policy行も同じブロック内で揃える（万一のズレ防止） */
-  .footer-contact-area .footer-policy{
-    text-align: left !important;
-  }
-}
-/* =========================================================
-   FIX: 1文字だけ改行（許認可） / SPフッター連絡先ブロックの中央寄せ
-   ※末尾追記で上書き勝ちさせる
-========================================================= */
-
-/* --- ① 許認可：1文字落ち防止（行末だけ落ちるのを抑える） --- */
-.company-details dd.license-list .license-row{
-  min-width: 0; /* 念のため（潰れ対策） */
-}
-
-.company-details dd.license-list .license-title{
-  text-wrap: balance;      /* 対応ブラウザでは自然にバランス改行 */
-  letter-spacing: -0.01em; /* 1文字落ち対策：ごく僅かに詰める */
-}
-
-@media (max-width: 768px){
-  .company-details dd.license-list .license-title{
-    font-size: 0.95rem;    /* SPだけ僅かに下げて"最後の1文字"を吸収 */
-    line-height: 1.75;
-  }
-}
-
-/* --- ② SPフッター：TEL〜Policyブロック自体を中央に寄せる（中身は左揃え） --- */
-@media (max-width: 768px){
-  .footer-contact-area{
-    max-width: 360px;            /* ブロック幅を制限 */
-    margin: 0 auto 18px;         /* ブロックを中央へ */
-    text-align: left !important; /* 中身は左揃えに戻す */
-  }
-
-  .footer-contact-area .contact-row{
-    justify-content: flex-start; /* 行内は左起点でOK */
-  }
-
-  /* Policy行も同じブロック内で揃える（万一のズレ防止） */
-  .footer-contact-area .footer-policy{
-    text-align: left !important;
-  }
-}
-
-
-/* =========================================================
-   About Page (about.html) - minimal additions
-========================================================= */
-.page-hero{
+/* ========================================
+   About ページ用スタイル
+======================================== */
+.page-hero {
   padding-top: calc(var(--section-pad-top) + var(--header-h));
   padding-bottom: 44px;
   background: #ffffff;
 }
 
-.page-hero-lead{
+.page-hero-lead {
   max-width: 820px;
   margin: -20px auto 0;
   text-align: center;
 }
-.page-hero-lead p{
+
+.page-hero-lead p {
   margin: 0;
   font-size: 1.05rem;
   line-height: 1.9;
   color: #555;
 }
 
-.section-title-left{
+.section-title-left {
   text-align: left;
 }
-.section-title-left::after{
+
+.section-title-left::after {
   margin-left: 0;
   margin-right: auto;
 }
 
-.policy-block{
+.policy-block {
   max-width: 1000px;
   margin: 0 auto;
 }
-.policy-list{
+
+.policy-list {
   list-style: disc;
   padding-left: 1.2em;
   line-height: 2.0;
   color: #444;
 }
-.policy-list li{
+
+.policy-list li {
   margin-bottom: 14px;
 }
 
-.staffing-card{
+.staffing-card {
   max-width: 720px;
   margin: 0 auto;
   background: #ffffff;
@@ -1244,18 +1169,21 @@ html, body {
   box-shadow: 0 10px 24px rgba(0,0,0,0.05);
   border: 1px solid rgba(11,47,138,0.08);
 }
-.staffing-date{
+
+.staffing-date {
   margin: 0 0 14px;
   font-weight: 700;
   color: var(--primary-color);
   letter-spacing: 0.03em;
 }
-.staffing-dl{
+
+.staffing-dl {
   display: grid;
   gap: 12px;
   margin: 0;
 }
-.staffing-row{
+
+.staffing-row {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: baseline;
@@ -1263,130 +1191,68 @@ html, body {
   border-bottom: 1px solid #f0f0f0;
   padding-bottom: 10px;
 }
-.staffing-row dt{
+
+.staffing-row dt {
   font-weight: 700;
   color: #333;
 }
-.staffing-row dd{
+
+.staffing-row dd {
   margin: 0;
   font-weight: 700;
   color: #333;
   font-variant-numeric: tabular-nums;
 }
 
-.additions{
+.additions {
   display: grid;
   gap: 18px;
   max-width: 1000px;
   margin: 0 auto;
 }
-.addition-card{
+
+.addition-card {
   background: #ffffff;
   border-radius: 12px;
   padding: 22px 22px;
   border: 1px solid rgba(11,47,138,0.08);
   box-shadow: 0 10px 24px rgba(0,0,0,0.04);
 }
-.addition-card h3{
+
+.addition-card h3 {
   margin: 0 0 10px;
   font-size: 1.25rem;
   color: var(--primary-color);
   letter-spacing: 0.02em;
 }
-.addition-card p{
+
+.addition-card p {
   margin: 0;
   line-height: 1.95;
   color: #444;
 }
-.addition-card .muted{
+
+.addition-card .muted {
   color: #666;
 }
 
-.page-bottom-actions{
+.page-bottom-actions {
   display: grid;
   gap: 14px;
   justify-items: center;
 }
-.btn-sub{
-  display: inline-block;
-  padding: 12px 26px;
-  border-radius: 999px;
-  border: 1px solid rgba(11,47,138,0.22);
-  color: var(--primary-color);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  background: #ffffff;
-  transition: var(--transition);
-}
-.btn-sub:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-}
 
-.about-page-cta{
-  text-align: center;
-  margin: 22px auto 0;
-}
-
-@media (max-width: 768px){
-  .page-hero{
+@media (max-width: 768px) {
+  .page-hero {
     padding-top: calc(var(--section-pad-top-sp) + var(--header-h));
   }
-  .page-hero-lead{
+
+  .page-hero-lead {
     padding: 0 2%;
     text-align: left;
   }
-  .staffing-card{
+
+  .staffing-card {
     padding: 22px 16px;
   }
-}
-/* =========================================================
-   FIX: トップAbout内「事業所案内」ボタンの窮屈さ解消
-   - ボタンの上下に余白を追加
-   - Company Info の区切り線と距離を取る
-========================================================= */
-.about-page-cta{
-  margin: 40px auto 56px !important;  /* 下をしっかり空ける */
-}
-
-.about-page-cta .btn-sub{
-  padding: 14px 34px !important;
-  line-height: 1.35 !important;
-}
-
-/* CTA直下に来る Company Info の border-top が近すぎるため距離を追加 */
-.company-info-area{
-  margin-top: 28px !important;
-}
-
-
-/* =========================================================
-   対象者案内ブロック
-========================================================= */
-.target-users{
-  background: #ffffff;
-  padding: 60px 0 40px;
-}
-
-.target-title{
-  font-size: 1.8rem;
-  color: var(--primary-color);
-  margin-bottom: 28px;
-  text-align: left;
-}
-
-.target-list{
-  list-style: disc;
-  padding-left: 1.2em;
-  margin-bottom: 26px;
-  line-height: 2.0;
-  color: #333;
-  font-size: 1.05rem;
-}
-
-.target-note{
-  font-size: 1rem;
-  color: #333;
-  font-weight: 700;
-  letter-spacing: 0.03em;
 }
