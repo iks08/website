@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
 
-  <title>個人情報保護方針 | 株式会社iK</title>
+  <title>プライバシーポリシー｜iK相談支援センター</title>
 
   <!-- ファビコン -->
   <link rel="icon" href="picmov/iK-logo.png" type="image/png">
@@ -18,30 +18,23 @@
   <link rel="stylesheet" href="style.css?v=20260122-1">
 </head>
 
-<body>
+<body class="page-about">
   <div id="top"></div>
-
-  <!-- オープニングアニメーション -->
-  <div id="opening-splash">
-    <img src="picmov/iK-logo.png" alt="株式会社iK ロゴ" id="splash-mark">
-    <div id="splash-logo">iK相談支援センター</div>
-  </div>
 
   <header>
     <div class="logo">
-      <a href="#top">iK相談支援センター</a>
+      <a href="index.html#top">iK相談支援センター</a>
     </div>
 
     <nav class="pc-nav" id="nav-menu">
       <ul>
-        <li><a href="#services">相談内容</a></li>
-        <li><a href="#flow">相談の流れ</a></li>
-        <li><a href="about.html">事業所案内</a></li>
-        <li><a href="#contact">お問い合わせ</a></li>
+        <li><a href="index.html#services">相談内容</a></li>
+        <li><a href="index.html#flow">相談の流れ</a></li>
+        <li><a href="about.html" aria-current="page">事業所案内</a></li>
+        <li><a href="index.html#contact">お問い合わせ</a></li>
       </ul>
     </nav>
 
-    <!-- ハンバーガー（CSS描画：span + 擬似要素） -->
     <div class="menu-btn" id="menu-toggle" aria-label="メニューを開閉" role="button" tabindex="0">
       <span></span>
     </div>
@@ -105,7 +98,8 @@
         <p>・担当: 伊藤</p>       
   </div>
 </section>
-<footer>
+  <!-- フッター -->
+  <footer>
     <div class="footer-container">
       <div class="footer-logo-area">
         <h3>株式会社iK</h3>
@@ -117,6 +111,7 @@
       </div>
 
       <div class="footer-contact-area">
+        
         <div class="footer-contact-grid" aria-label="連絡先">
           <div class="contact-row contact-row-tel">
             <span class="contact-label">TEL</span>
@@ -133,7 +128,7 @@
 
           <div class="contact-row contact-row-policy">
             <span class="contact-label">Policy</span>
-            <a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>
+            <a href="privacypolicy.html" target="_blank" rel="noopener">プライバシーポリシー</a>
           </div>
         </div>
       </div>
@@ -141,6 +136,9 @@
       <p class="footer-copyright">&copy; 2026 株式会社iK All Rights Reserved.</p>
     </div>
   </footer>
+
+  <!-- TOPへ戻るボタン -->
+  <button id="to-top" aria-label="トップへ戻る">▲</button>
 
   <script src="script.js?v=20260119-1" defer></script>
 </body>
