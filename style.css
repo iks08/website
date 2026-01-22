@@ -1316,3 +1316,22 @@ html, body {
     text-align: left !important;
   }
 }
+/* =========================================================
+   FIX: SPの左右余白（Company Info）を恒久的に確保
+   影響範囲：#about 内の .company-info-area のみ
+========================================================= */
+.company-info-area{
+  box-sizing: border-box;
+  padding-left: var(--container-pad-x);
+  padding-right: var(--container-pad-x);
+}
+/* =========================================================
+   FIX: SPの左右余白を恒久保証（Company Info専用）
+   影響範囲：#about 内 .company-info-area のみ
+========================================================= */
+
+.company-info-area{
+  box-sizing: border-box;
+  padding-left: var(--container-pad-x);
+  padding-right: var(--container-pad-x);
+}
