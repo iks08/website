@@ -1358,3 +1358,35 @@ html, body {
 .company-info-area{
   margin-top: 28px !important;
 }
+
+
+/* =========================================================
+   対象者案内ブロック
+========================================================= */
+.target-users{
+  background: #ffffff;
+  padding: 60px 0 40px;
+}
+
+.target-title{
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.target-list{
+  list-style: disc;
+  padding-left: 1.2em;
+  margin-bottom: 26px;
+  line-height: 2.0;
+  color: #333;
+  font-size: 1.05rem;
+}
+
+.target-note{
+  font-size: 1rem;
+  color: #333;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
