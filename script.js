@@ -1,3 +1,25 @@
+// === Mobile: disable hero video to reduce load ===
+(() => {
+  try {
+    if (!window.matchMedia || !window.matchMedia("(max-width: 768px)").matches) return;
+    const v = document.getElementById("bg-video");
+    if (!v) return;
+
+    // Stop playback and prevent loading on mobile
+    v.pause();
+    v.removeAttribute("autoplay");
+    v.removeAttribute("loop");
+
+    const srcEl = v.querySelector("source");
+    if (srcEl) srcEl.removeAttribute("src");
+
+    // Force the browser to drop any pending resource load
+    v.load();
+  } catch (e) {
+    // no-op
+  }
+})();
+
 /**
  * iK相談支援センター - メインスクリプト
  */
