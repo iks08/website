@@ -1636,18 +1636,3 @@ footer {
     margin: 0 auto;
   }
 }
-/* ===============================
-   スマホ：ハンバーガーメニューの暴走防止
-=============================== */
-@media screen and (max-width: 768px) {
-  nav ul {
-    display: none;           /* 初期は非表示 */
-    width: 100%;
-    writing-mode: horizontal-tb;
-  }
-
-  nav ul.active {
-    display: flex;
-    flex-direction: column;
-  }
-}

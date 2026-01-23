@@ -42,7 +42,7 @@ if (menuBtn && navMenu) {
   menuBtn.addEventListener('click', () => {
     const isOpen = navMenu.classList.toggle('active');
     menuBtn.classList.toggle('is-open', isOpen);
-    menuBtn.setAttribute('aria-expanded', isOpen);
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
   });
 
   // キーボード操作対応
@@ -51,7 +51,7 @@ if (menuBtn && navMenu) {
       e.preventDefault();
       const isOpen = navMenu.classList.toggle('active');
       menuBtn.classList.toggle('is-open', isOpen);
-      menuBtn.setAttribute('aria-expanded', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
     }
   });
 
@@ -60,6 +60,8 @@ if (menuBtn && navMenu) {
     link.addEventListener('click', () => {
       navMenu.classList.remove('active');
       menuBtn.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-expanded', 'false');
     });
   });
 
@@ -68,6 +70,7 @@ if (menuBtn && navMenu) {
     if (window.matchMedia('(min-width: 769px)').matches) {
       navMenu.classList.remove('active');
       menuBtn.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
     }
   });
 }
