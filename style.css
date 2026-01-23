@@ -1607,3 +1607,18 @@ footer {
     line-height: 1.8;
   }
 }
+
+
+/* ========================================
+   相談内容 見出し（スマホでの不自然な改行防止）
+   - 「お困りではありませんか？」の「か？」だけ改行になるケースを抑止
+======================================== */
+#services .section-title h2 { word-break: keep-all; }
+
+@media (max-width: 430px) {
+  #services .section-title h2 {
+    white-space: nowrap;
+    font-size: 1.85rem; /* 画面幅が狭い端末で1行を維持 */
+    letter-spacing: 0.02em;
+  }
+}
