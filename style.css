@@ -1088,13 +1088,21 @@ body.start-animation #opening-splash {
     font-size: 0.9rem;
   }
 
+  /* 許認可：スマホでも「名称 + 番号」を同一行に寄せる（折り返しは名称側で吸収） */
   .company-details dd.license-list .license-row {
-    grid-template-columns: 1fr;
-    gap: 4px;
+    grid-template-columns: minmax(0, 1fr) 12ch;
+    column-gap: 8px;
+    row-gap: 0;
   }
 
   .company-details dd.license-list .license-num {
-    text-align: left;
+    text-align: right;
+  }
+
+  /* 地図：スマホで確実に中央寄せ（画像サイズは既存の max-width を維持） */
+  .company-map {
+    display: flex;
+    justify-content: center;
   }
 
   .company-map img {
