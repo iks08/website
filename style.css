@@ -1639,12 +1639,68 @@ footer {
   }
 }
 
+/* === スマホ：ヒーロー背景を画像クロスフェード（動画軽量化） === */
+@media (max-width: 768px) {
+  /* 動画はスマホで表示/再生しない（CSS側） */
+  .hero-video-container video { display: none !important; }
+
+  /* 背景を2枚画像でクロスフェード */
+  .hero-video-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .hero-video-container::before,
+  .hero-video-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    will-change: opacity;
+    pointer-events: none;
+  }
+
+  /* 海 */
+  .hero-video-container::before {
+    background-image: url("picmov/sea.png");
+    animation: heroFade12s 12s infinite;
+  }
+
+  /* 空 */
+  .hero-video-container::after {
+    background-image: url("picmov/sky.png");
+    animation: heroFade12s 12s infinite;
+    animation-delay: 6s;
+  }
+
+  /* 12秒サイクル：フェード1.2秒 → 静止5秒 → フェード1.2秒 */
+  @keyframes heroFade12s {
+    0%    { opacity: 0; }
+    10%   { opacity: 1; }    /* fade in 1.2s */
+    51.7% { opacity: 1; }    /* hold ~5.0s */
+    61.7% { opacity: 0; }    /* fade out 1.2s */
+    100%  { opacity: 0; }
+  }
+
+  /* 端末設定で“動きを減らす”場合は固定表示 */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video-container::after { display: none; }
+    .hero-video-container::before { animation: none; opacity: 1; }
+  }
+}
+
 /* === スマホ軽量化A：fade-in無効 + backdrop-filter無効 === */
 @media (max-width: 768px) {
 
   /* ② fade-in を無効化（JS/IO負荷削減） */
   .fade-in,
-  .fade-in.active {
+  .fade-in.active,
+  .fade-in.visible {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
