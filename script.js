@@ -12,26 +12,11 @@ window.addEventListener('load', () => {
     return;
   }
 
-  const KEY = 'ik_opening_done';
-
-  try {
-    // 同一タブ（同一セッション）では2回目以降はスキップ
-    if (sessionStorage.getItem(KEY) === '1') {
-      document.body.classList.add('start-animation');
-      return;
-    }
-  } catch (e) {
-    // sessionStorage が使えない環境でも安全に継続
-  }
-
+  // すべてのページ遷移で必ず再生（分岐なしで構造を単純化）
   setTimeout(() => {
     document.body.classList.add('start-animation');
-    try {
-      sessionStorage.setItem(KEY, '1');
-    } catch (e) {}
   }, 1800);
 });
-
 
 // ===== ハンバーガーメニュー =====
 const menuBtn = document.getElementById('menu-toggle');
