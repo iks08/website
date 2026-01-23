@@ -378,5 +378,20 @@
 
   <!-- JavaScript -->
   <script src="script.js?v=20260119-1" defer></script>
+
+<script>
+(function(){
+  try{
+    if(!sessionStorage.getItem('ik_opening_seen')){
+      window.addEventListener('load', function(){
+        setTimeout(function(){
+          sessionStorage.setItem('ik_opening_seen','1');
+        }, 1200);
+      });
+    }
+  }catch(e){}
+})();
+</script>
+
 </body>
 </html>

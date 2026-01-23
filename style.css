@@ -1088,21 +1088,13 @@ body.start-animation #opening-splash {
     font-size: 0.9rem;
   }
 
-  /* 許認可：スマホでも「名称 + 番号」を同一行に寄せる（折り返しは名称側で吸収） */
   .company-details dd.license-list .license-row {
-    grid-template-columns: minmax(0, 1fr) 12ch;
-    column-gap: 8px;
-    row-gap: 0;
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 
   .company-details dd.license-list .license-num {
-    text-align: right;
-  }
-
-  /* 地図：スマホで確実に中央寄せ（画像サイズは既存の max-width を維持） */
-  .company-map {
-    display: flex;
-    justify-content: center;
+    text-align: left;
   }
 
   .company-map img {
@@ -1609,16 +1601,8 @@ footer {
 }
 
 
-/* ========================================
-   相談内容 見出し（スマホでの不自然な改行防止）
-   - 「お困りではありませんか？」の「か？」だけ改行になるケースを抑止
-======================================== */
-#services .section-title h2 { word-break: keep-all; }
-
-@media (max-width: 430px) {
-  #services .section-title h2 {
-    white-space: nowrap;
-    font-size: 1.85rem; /* 画面幅が狭い端末で1行を維持 */
-    letter-spacing: 0.02em;
-  }
+/* プライバシーポリシー 箇条書きインデント */
+.policy-bullet {
+  display: inline-block;
+  margin-left: 1.2em;
 }
