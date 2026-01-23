@@ -1606,3 +1606,33 @@ footer {
   display: inline-block;
   margin-left: 1.2em;
 }
+/* ヘッダー電話番号：表示専用（非リンク・非ホバー） */
+.header-tel {
+  pointer-events: none;   /* クリック不可 */
+  cursor: default;
+}
+
+.header-tel:hover {
+  color: inherit;
+  opacity: 1;
+  text-decoration: none;
+}
+/* スマホ：見出しの不自然な改行防止 */
+@media screen and (max-width: 768px) {
+  .services-bg .section-title h2 {
+    white-space: nowrap;
+    font-size: 1.6rem; /* 既存より微調整のみ */
+  }
+}
+/* スマホ：会社概要の地図を中央寄せ */
+@media screen and (max-width: 768px) {
+  .company-map {
+    display: flex;
+    justify-content: center;
+  }
+
+  .company-map img {
+    display: block;
+    margin: 0 auto;
+  }
+}
