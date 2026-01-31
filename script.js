@@ -173,6 +173,13 @@ if (contactForm && contactForm.action && contactForm.action.includes('formsubmit
 
 if (useAjax) {
   contactForm.addEventListener('submit', async (e) => {
+
+    // 送信前にメニューが開いているとスクロール不可に見えることがあるため閉じる
+    if (navMenu) navMenu.classList.remove('active');
+    if (menuBtn) {
+      menuBtn.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
     e.preventDefault();
 
     // 結果表示をリセット
