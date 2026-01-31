@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
 <title>株式会社iK</title>
-  
+
   <!-- ファビコン -->
   <link rel="icon" href="picmov/iK-logo.png" type="image/png">
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
-  
+
   <!-- CSS -->
   <link rel="stylesheet" href="style.css?v=20260122-1">
 </head>
@@ -216,7 +216,7 @@
       <div class="about-text">
         <h3>相談員のサポート力が<br class="sp-br">自慢です！</h3>
         <p>支援方法を学ぶ下記研修を修了した<br>相談支援専門員を配置しております。</p>
-        
+
         <ul class="training-list" aria-label="研修一覧">
           <li>主任相談支援専門員研修</li>
           <li>相談支援従事者現任研修</li>
@@ -289,7 +289,11 @@
       <span>お問い合わせ</span>
     </div>
 
-    <form class="contact-form" action="https://formspree.io/f/xbddrwlj" method="POST">
+    <form class="contact-form" action="https://formsubmit.co/ik.soudan@gmail.com" method="POST">
+
+      <input type="hidden" name="_next" value="https://iks08.github.io/#contact">
+      <input type="hidden" name="_subject" value="【iK相談支援センター】お問い合わせ">
+
       <div class="form-group">
         <label>お名前</label>
         <input type="text" name="name" placeholder="例：山田 太郎" required>
@@ -307,7 +311,7 @@
         <textarea name="message" rows="5" placeholder="ご質問やご相談内容をご記入ください" required></textarea>
       </div>
       <button type="submit" class="submit-btn">送信する</button>
-      
+
       <div id="form-result" class="form-result" aria-live="polite"></div>
 
       <p class="form-note">
@@ -364,7 +368,7 @@
   <button id="to-top" aria-label="トップへ戻る">▲</button>
 
   <!-- JavaScript -->
-  <script src="script.js?v=20260131-4" defer></script>
+  <script src="script.js?v=20260131-6" defer></script>
 
 <script>
 (function(){

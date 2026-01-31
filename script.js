@@ -38,20 +38,25 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     document.body.classList.add('start-animation');
 
-    // Chrome対策：visibility/opacityだけだと固定レイヤーが残り、スクロールを塞ぐ場合があるため
-    // トランジション完了後に opening-splash を確実に無効化（pointer-events無効 + display:none）
-    const hardHide = () => {
+    // Chrome対策：opacity/visibilityだけだと fixed レイヤーが残りスクロールが効かない場合があるため
+    // フェード完了後に opening-splash を DOM上でも無効化する（pointer-events:none + display:none）
+    const hardHideSplash = () => {
       try {
         splash.style.pointerEvents = 'none';
         splash.style.display = 'none';
         splash.setAttribute('aria-hidden', 'true');
       } catch (e) {}
     };
+
     try {
-      splash.style.pointerEvents = 'none'; // 先に入力を遮らない
-      splash.addEventListener('transitionend', hardHide, { once: true });
+      // 先に入力を遮らない
+      splash.style.pointerEvents = 'none';
+      // transitionend が来る場合はそれを優先
+      splash.addEventListener('transitionend', hardHideSplash, { once: true });
     } catch (e) {}
-    setTimeout(hardHide, 2600); // transitionendが来ない環境の保険
+
+    // transitionend が来ない環境の保険（十分待ってから強制）
+    setTimeout(hardHideSplash, 2600);
   }, 1800);
 });
 
@@ -214,3 +219,19 @@ if (useAjax) {
     }
   });
 }
+
+// ===== スクロール安全弁（保険） =====
+window.addEventListener('load', () => {
+  const s = document.getElementById('opening-splash');
+  if (!s) return;
+  setTimeout(() => {
+    try {
+      const cs = getComputedStyle(s);
+      if (cs.display !== 'none') {
+        s.style.pointerEvents = 'none';
+        s.style.display = 'none';
+        s.setAttribute('aria-hidden', 'true');
+      }
+    } catch (e) {}
+  }, 6000);
+});
