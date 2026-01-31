@@ -221,15 +221,48 @@ window.addEventListener('load', () => {
   const s = document.getElementById('opening-splash');
   if (!s) return;
 
+  const forceStyle = (el, prop, value) => {
+    try { el.style.setProperty(prop, value, 'important'); } catch (e) {}
+  };
+
   const hardHide = () => {
     try {
+      // クラス（CSS側の最終保険）
       document.body.classList.add('splash-removed');
-      s.style.pointerEvents = 'none';
-      s.style.display = 'none';
+      document.documentElement.classList.add('splash-removed');
+
+      // まずは非表示
+      forceStyle(s, 'pointer-events', 'none');
+      forceStyle(s, 'display', 'none');
       s.setAttribute('aria-hidden', 'true');
-      // 念のためスクロールロック解除
-      document.documentElement.style.overflowY = 'auto';
-      document.body.style.overflowY = 'auto';
+
+      // 可能ならDOMから除去（Chromeの残留レイヤー対策）
+      try {
+        if (s.parentNode) s.parentNode.removeChild(s);
+      } catch (e) {}
+
+      // スクロール強制解除（root/ body の両方に強制）
+      forceStyle(document.documentElement, 'overflow-y', 'auto');
+      forceStyle(document.body, 'overflow-y', 'auto');
+      forceStyle(document.documentElement, 'position', 'static');
+      forceStyle(document.body, 'position', 'static');
+      forceStyle(document.documentElement, 'height', 'auto');
+      forceStyle(document.body, 'height', 'auto');
+      forceStyle(document.documentElement, 'overscroll-behavior-y', 'auto');
+      forceStyle(document.body, 'overscroll-behavior-y', 'auto');
+
+      // scroll-behavior が干渉するケースの保険
+      forceStyle(document.documentElement, 'scroll-behavior', 'auto');
+
+      // JSでスクロールできない場合の最終保険（overflow-y: scroll）
+      const se = document.scrollingElement || document.documentElement;
+      const before = se ? (se.scrollTop || 0) : 0;
+      window.scrollTo(0, before + 1);
+      const after = se ? (se.scrollTop || 0) : 0;
+      if (after === before) {
+        forceStyle(document.documentElement, 'overflow-y', 'scroll');
+        forceStyle(document.body, 'overflow-y', 'scroll');
+      }
     } catch (e) {}
   };
 

@@ -1726,3 +1726,17 @@ body.splash-removed #opening-splash {
   display: none !important;
   pointer-events: none !important;
 }
+
+/* SPLASH_SCROLL_FIX_V4 */
+html.splash-removed,
+body.splash-removed {
+  overflow-y: auto !important;
+  position: static !important;
+  height: auto !important;
+  overscroll-behavior-y: auto !important;
+  scroll-behavior: auto !important;
+}
+body.splash-removed #opening-splash {
+  display: none !important;
+  pointer-events: none !important;
+}
