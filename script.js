@@ -28,37 +28,47 @@
 window.addEventListener('load', () => {
   const splash = document.getElementById('opening-splash');
 
-  // オープニング要素がないページでは即開始（他要素への影響を最小化）
-  if (!splash) {
-    document.body.classList.add('start-animation');
-    return;
-  }
+  // オープニング要素がないページは何もしない
+  if (!splash) return;
 
-  // 既存CSSに display:flex !important があるため、JSの display:none は打ち消され得る。
-  // 対策：body に splash-removed を付与し、CSS側で display:none !important を強制。
-  // さらに Chrome での固定レイヤー残留を根絶するため DOM から remove する。
+  // 表示 → フェード → 完全撤去（Chromeのスクロール阻害を根絶）
+  // ※ style.css 側に display:flex !important があるため、inline display:none は信用しない
+  //    body.splash-removed #opening-splash { display:none !important; } を最終勝利条件にする
+
+  const FADE_MS = 650;      // CSS: 0.6s に合わせる
+  const SHOW_MS = 1200;     // ロゴ見せ時間
+
   const hardRemove = () => {
     try {
-      document.body.classList.add('splash-removed');
-      splash.setAttribute('aria-hidden', 'true');
-      splash.style.pointerEvents = 'none';
+      document.body.classList.add('splash-removed'); // CSSで強制display:none
+    } catch (e) {}
+    try {
+      // DOMからも削除（fixed全画面が残る事故を完全封鎖）
       if (splash.parentNode) splash.parentNode.removeChild(splash);
     } catch (e) {}
+    // 念のためスクロールを解放
+    try { document.documentElement.style.overflowY = 'auto'; } catch (e) {}
+    try { document.body.style.overflowY = 'auto'; } catch (e) {}
   };
 
-  // 先に入力を遮らない（表示中でも操作が必要ないため）
-  try { splash.style.pointerEvents = 'none'; } catch (e) {}
+  // 表示中はスクロール停止（意図通り）
+  try { document.documentElement.style.overflowY = 'hidden'; } catch (e) {}
+  try { document.body.style.overflowY = 'hidden'; } catch (e) {}
 
-  // 表示 → フェードアウト → 完全撤去
+  // 既存CSSのフェード条件：body.start-animation
   setTimeout(() => {
-    document.body.classList.add('start-animation');
+    try { document.body.classList.add('start-animation'); } catch (e) {}
 
-    // CSS: opacity 0.6s + visibility遅延 0.6s に合わせて少し余裕
-    setTimeout(hardRemove, 650);
-  }, 1800);
+    // フェード完了後に撤去
+    setTimeout(hardRemove, FADE_MS);
+
+    // transitionendが来ない環境の保険（最終）
+    setTimeout(hardRemove, 2600);
+  }, SHOW_MS);
 });
 
 // ===== ハンバーガーメニュー =====
+
 const menuBtn = document.getElementById('menu-toggle');
 const navMenu = document.getElementById('nav-menu');
 
