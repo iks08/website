@@ -385,6 +385,11 @@ body.start-animation #opening-splash {
   pointer-events: none;
 }
 
+/* Chrome対策：#opening-splash の display:flex !important を確実に解除（スクロール阻害を防ぐ） */
+body.splash-removed #opening-splash {
+  display: none !important;
+}
+
 /* ========================================
    ヒーローセクション
 ======================================== */
@@ -1719,13 +1724,4 @@ footer {
 .training-list li {
   word-break: keep-all;
   line-break: strict;
-}
-/* Chrome対策：opening-splash が opacity/visibility だけで残るとスクロールが死ぬことがあるため、
-   start-animation 後はレイヤー自体を“物理的に退避”させる */
-body.start-animation #opening-splash{
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  z-index: -1 !important;
 }
