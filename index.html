@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
 <title>株式会社iK</title>
-
+  
   <!-- ファビコン -->
   <link rel="icon" href="picmov/iK-logo.png" type="image/png">
-
+  
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
-
+  
   <!-- CSS -->
   <link rel="stylesheet" href="style.css?v=20260122-1">
 </head>
@@ -216,7 +216,7 @@
       <div class="about-text">
         <h3>相談員のサポート力が<br class="sp-br">自慢です！</h3>
         <p>支援方法を学ぶ下記研修を修了した<br>相談支援専門員を配置しております。</p>
-
+        
         <ul class="training-list" aria-label="研修一覧">
           <li>主任相談支援専門員研修</li>
           <li>相談支援従事者現任研修</li>
@@ -290,30 +290,35 @@
     </div>
 
     <form class="contact-form" action="https://formspree.io/f/xbddrwlj" method="POST">
-
-      <input type="hidden" name="_subject" value="【iK相談支援センター】お問い合わせ">
-
       <div class="form-group">
         <label>お名前</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name" placeholder="例：山田 太郎" required>
       </div>
-
       <div class="form-group">
         <label>電話番号</label>
-        <input type="tel" name="phone">
+        <input type="tel" name="phone" placeholder="例：090-1234-5678">
       </div>
-
       <div class="form-group">
         <label>メールアドレス</label>
-        <input type="email" name="email" required>
+        <input type="email" name="email" placeholder="例：example@mail.com" required>
       </div>
-
       <div class="form-group">
         <label>お問い合わせ内容</label>
-        <textarea name="message" rows="5" required></textarea>
+        <textarea name="message" rows="5" placeholder="ご質問やご相談内容をご記入ください" required></textarea>
       </div>
+      <button type="submit" class="submit-btn">送信する</button>
+      
+      <div id="form-result" class="form-result" aria-live="polite"></div>
 
-      <button type="submit">送信する</button>
+      <p class="form-note">
+        <span class="form-note-line">※ 通常1〜2営業日以内に返信いたします。</span>
+      </p>
+
+      <p class="form-privacy">
+        <a href="contact_policy.html" class="form-privacy-link">
+          お問い合わせに関する個人情報の取り扱いについて
+        </a>
+      </p>
     </form>
   </section>
 
@@ -359,7 +364,7 @@
   <button id="to-top" aria-label="トップへ戻る">▲</button>
 
   <!-- JavaScript -->
-  <script src="script.js?v=20260131-2" defer></script>
+  <script src="script.js?v=20260119-1" defer></script>
 
 <script>
 (function(){
