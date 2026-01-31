@@ -1720,3 +1720,12 @@ footer {
   word-break: keep-all;
   line-break: strict;
 }
+/* Chrome対策：opening-splash が opacity/visibility だけで残るとスクロールが死ぬことがあるため、
+   start-animation 後はレイヤー自体を“物理的に退避”させる */
+body.start-animation #opening-splash{
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  z-index: -1 !important;
+}
