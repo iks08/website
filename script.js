@@ -145,7 +145,8 @@ if (window.visualViewport) {
 
 // ===== お問い合わせフォーム送信（AJAX） =====
 const contactForm = document.querySelector('.contact-form');
-const formResult = document.getElementById('form-result');
+// FormSubmitは通常送信が安定。JS送信をスキップする
+if (contactForm && contactForm.action.includes('formsubmit.co')) return;
 
 if (contactForm && formResult) {
   contactForm.addEventListener('submit', async (e) => {
