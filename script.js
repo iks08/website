@@ -1,291 +1,103 @@
-// === Mobile: disable hero video to reduce load ===
-(() => {
-  try {
-    if (!window.matchMedia || !window.matchMedia("(max-width: 768px)").matches) return;
-    const v = document.getElementById("bg-video");
-    if (!v) return;
-
-    // Stop playback and prevent loading on mobile
-    v.pause();
-    v.removeAttribute("autoplay");
-    v.removeAttribute("loop");
-
-    const srcEl = v.querySelector("source");
-    if (srcEl) srcEl.removeAttribute("src");
-
-    // Force the browser to drop any pending resource load
-    v.load();
-  } catch (e) {
-    // no-op
-  }
-})();
-
 /**
  * iK相談支援センター - メインスクリプト
+ * scroll fix v6: オープニングは「初回だけ」確実に再生し、終了後は完全撤去してスクロール阻害を残さない
  */
 
-// ===== オープニングアニメーション =====
-window.addEventListener('load', () => {
-  const splash = document.getElementById('opening-splash');
+(function () {
+  'use strict';
 
-  // オープニング要素がないページでは即開始（他要素への影響を最小化）
-  if (!splash) {
-    document.body.classList.add('start-animation');
-    return;
+  const SPLASH_ID = 'opening-splash';
+  const SEEN_KEY = 'ik_opening_seen';
+  const ANIM_CLASS = 'start-animation';
+  const REMOVED_CLASS = 'splash-removed';
+
+  const SHOW_MS = 1200;      // 表示（ロゴ見せ時間）
+  const FADE_MS = 650;       // CSSのフェード時間に合わせる（0.6s + 余裕）
+  const TOTAL_MS = SHOW_MS + FADE_MS;
+
+  function qs(id){ return document.getElementById(id); }
+
+  function lockScroll() {
+    try {
+      document.documentElement.style.overflowY = 'hidden';
+      document.body.style.overflowY = 'hidden';
+      document.body.style.touchAction = 'none';
+    } catch (e) {}
   }
 
-  // すべてのページ遷移で必ず再生（分岐なしで構造を単純化）
-  setTimeout(() => {
-    document.body.classList.add('start-animation');
-
-    // Chrome対策：visibility/opacityだけだと固定レイヤーが残り、スクロールを塞ぐ場合があるため
-    // トランジション完了後に opening-splash を確実に無効化（pointer-events無効 + display:none）
-    const hardHide = () => {
-      try {
-        splash.style.pointerEvents = 'none';
-        splash.style.display = 'none';
-        splash.setAttribute('aria-hidden', 'true');
-      } catch (e) {}
-    };
+  function unlockScroll() {
     try {
-      splash.style.pointerEvents = 'none'; // 先に入力を遮らない
-      splash.addEventListener('transitionend', hardHide, { once: true });
+      document.documentElement.style.overflowY = 'auto';
+      document.body.style.overflowY = 'auto';
+      document.body.style.touchAction = '';
     } catch (e) {}
-    setTimeout(hardHide, 2600); // transitionendが来ない環境の保険
-  }, 1800);
-});
+  }
 
-// ===== ハンバーガーメニュー =====
-const menuBtn = document.getElementById('menu-toggle');
-const navMenu = document.getElementById('nav-menu');
+  function hardHideSplash(splash) {
+    try {
+      // CSS側の強制非表示（display:none !important）を有効化
+      document.body.classList.add(REMOVED_CLASS);
 
-if (menuBtn && navMenu) {
-  // クリックでメニュー開閉
-  menuBtn.addEventListener('click', () => {
-    const isOpen = navMenu.classList.toggle('active');
-    menuBtn.classList.toggle('is-open', isOpen);
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
-  });
+      // DOM上でも確実に撤去（Chromeでのスクロール阻害を根絶）
+      if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+    } catch (e) {}
+    unlockScroll();
+  }
 
-  // キーボード操作対応
-  menuBtn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      const isOpen = navMenu.classList.toggle('active');
-      menuBtn.classList.toggle('is-open', isOpen);
-      menuBtn.setAttribute('aria-expanded', String(isOpen));
+  function playSplashOnce() {
+    const splash = qs(SPLASH_ID);
+    if (!splash) {
+      unlockScroll();
+      return;
     }
-  });
 
-  // メニュー内リンククリックでメニューを閉じる
-  document.querySelectorAll('.pc-nav a').forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      menuBtn.classList.remove('is-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    });
-  });
+    // 表示中はスクロールを確実に止める（スプラッシュの目的どおり）
+    lockScroll();
 
-  // PC幅に戻ったらメニュー状態をリセット
-  window.addEventListener('resize', () => {
-    if (window.matchMedia('(min-width: 769px)').matches) {
-      navMenu.classList.remove('active');
-      menuBtn.classList.remove('is-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
+    // 念のため表示状態を明示（CSSにdisplay:flex!importantがある）
+    try {
+      splash.style.visibility = 'visible';
+      splash.style.opacity = '1';
+      splash.style.pointerEvents = 'auto';
+    } catch (e) {}
+
+    // 一定時間表示 → フェードアウト開始 → 完全撤去
+    window.setTimeout(() => {
+      try { document.body.classList.add(ANIM_CLASS); } catch (e) {}
+      window.setTimeout(() => {
+        hardHideSplash(splash);
+        try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (e) {}
+      }, FADE_MS);
+    }, SHOW_MS);
+  }
+
+  function skipSplash() {
+    const splash = qs(SPLASH_ID);
+    if (!splash) {
+      unlockScroll();
+      return;
     }
-  });
-}
+    hardHideSplash(splash);
+  }
 
-// ===== フェードインアニメーション =====
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
+  // DOMが組み上がった時点で判定（load待ちにすると一瞬チラつく場合がある）
+  document.addEventListener('DOMContentLoaded', () => {
+    let seen = false;
+    try { seen = sessionStorage.getItem(SEEN_KEY) === '1'; } catch (e) {}
 
-document.querySelectorAll('.fade-in').forEach(section => {
-  observer.observe(section);
-});
-
-// ===== TOPへ戻るボタン =====
-const toTopBtn = document.getElementById('to-top');
-const heroSection = document.querySelector('.hero');
-
-if (toTopBtn) {
-  // スクロール位置で表示制御
-  window.addEventListener('scroll', () => {
-    if (heroSection) {
-      const heroBottom = heroSection.getBoundingClientRect().bottom;
-      if (heroBottom <= 0) {
-        toTopBtn.classList.add('visible');
-      } else {
-        toTopBtn.classList.remove('visible');
-      }
+    if (seen) {
+      skipSplash();
     } else {
-      // heroがないページでは常に表示
-      if (window.scrollY > 300) {
-        toTopBtn.classList.add('visible');
-      } else {
-        toTopBtn.classList.remove('visible');
-      }
+      playSplashOnce();
     }
   });
 
-  // クリックでトップへスムーズスクロール
-  toTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-}
-
-// ===== viewport高さ補正（iOS Safari対策） =====
-function setVhVar() {
-  const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-  document.documentElement.style.setProperty('--vh', `${h * 0.01}px`);
-}
-
-setVhVar();
-window.addEventListener('resize', setVhVar);
-window.addEventListener('orientationchange', setVhVar);
-
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', setVhVar);
-  window.visualViewport.addEventListener('scroll', setVhVar);
-}
-
-// ===== お問い合わせフォーム送信（AJAX） =====
-const contactForm = document.querySelector('.contact-form');
-const formResult = document.getElementById('form-result');
-
-// FormSubmitは「通常のフォーム送信」が安定するため、JS(AJAX)送信は使わない
-// ※ ここでreturnしない（returnは関数外だとSyntaxErrorになるため）
-const useAjax = !!(contactForm && formResult && !contactForm.action.includes('formsubmit.co'));
-
-if (useAjax) {
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // 結果表示をリセット
-    formResult.style.display = 'none';
-    formResult.classList.remove('error');
-
-    const formData = new FormData(contactForm);
-
-    try {
-      const response = await fetch(contactForm.action, {
-        method: contactForm.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      let data = null;
-      try {
-        data = await response.json();
-      } catch (_) {
-        // JSON解析失敗時は無視
-      }
-
-      // 成功判定
-      if (response.ok && (!data || !data.errors)) {
-        contactForm.reset();
-        formResult.textContent = '送信が完了しました。内容を確認し、担当者よりご連絡いたします。';
-        formResult.style.display = 'block';
-        formResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-      }
-
-      // エラー処理
-      const msg = (data && data.errors && Array.isArray(data.errors))
-        ? data.errors.map(e => e.message).join(' / ')
-        : '送信に失敗しました。入力内容をご確認のうえ再度お試しください。';
-
-      formResult.textContent = msg;
-      formResult.classList.add('error');
-      formResult.style.display = 'block';
-
-    } catch (err) {
-      formResult.textContent = '送信に失敗しました。通信状況をご確認のうえ再度お試しください。';
-      formResult.classList.add('error');
-      formResult.style.display = 'block';
+  // bfcache復帰対策：復帰時はスプラッシュを残さない
+  window.addEventListener('pageshow', (e) => {
+    if (e && e.persisted) {
+      try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (err) {}
+      skipSplash();
     }
   });
-}
 
-/* SPLASH_SCROLL_FIX_V3 */
-// 最終保険：Chromeで #opening-splash が invisible のまま残りスクロールが死ぬケースを強制解消
-window.addEventListener('load', () => {
-  const s = document.getElementById('opening-splash');
-  if (!s) return;
-
-  const forceStyle = (el, prop, value) => {
-    try { el.style.setProperty(prop, value, 'important'); } catch (e) {}
-  };
-
-  const hardHide = () => {
-    try {
-      // クラス（CSS側の最終保険）
-      document.body.classList.add('splash-removed');
-      document.documentElement.classList.add('splash-removed');
-
-      // 非表示（display はCSSで !important があるため念押し）
-      forceStyle(s, 'pointer-events', 'none');
-      forceStyle(s, 'display', 'none');
-      s.setAttribute('aria-hidden', 'true');
-
-      // 可能ならDOMから除去（Chromeの残留レイヤー対策）
-      try { if (s.parentNode) s.parentNode.removeChild(s); } catch (e) {}
-
-      // スクロール強制解除（root/body 両方）
-      const de = document.documentElement;
-      const b  = document.body;
-      forceStyle(de, 'overflow-y', 'auto');
-      forceStyle(b,  'overflow-y', 'auto');
-      forceStyle(de, 'position', 'static');
-      forceStyle(b,  'position', 'static');
-      forceStyle(de, 'height', 'auto');
-      forceStyle(b,  'height', 'auto');
-    } catch (e) {}
-  };
-
-  const runOpeningOnce = () => {
-    // 開始状態の保険：表示
-    try {
-      document.body.classList.remove('splash-removed');
-      document.documentElement.classList.remove('splash-removed');
-      forceStyle(s, 'display', 'flex');
-      forceStyle(s, 'pointer-events', 'auto');
-      s.removeAttribute('aria-hidden');
-    } catch (e) {}
-
-    // 既存CSSのフェードアウト（body.start-animation）を使う
-    const FADE_START_MS = 800;   // ロゴ表示時間
-    const FADE_DUR_MS   = 650;   // CSS transition 0.6s + 余裕
-    setTimeout(() => {
-      try { document.body.classList.add('start-animation'); } catch (e) {}
-    }, FADE_START_MS);
-
-    setTimeout(() => {
-      hardHide();
-      try { sessionStorage.setItem('ik_opening_seen', '1'); } catch (e) {}
-    }, FADE_START_MS + FADE_DUR_MS);
-
-    // 念押し（Chrome対策）
-    setTimeout(hardHide, FADE_START_MS + FADE_DUR_MS + 1500);
-  };
-
-  // 2回目以降は即撤去（スクロール最優先）
-  let seen = false;
-  try { seen = sessionStorage.getItem('ik_opening_seen') === '1'; } catch (e) {}
-
-  if (seen) {
-    hardHide();
-    setTimeout(hardHide, 1500);
-    return;
-  }
-
-  runOpeningOnce();
-});
+})();
