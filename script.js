@@ -150,6 +150,27 @@ const formResult = document.getElementById('form-result');
 // ※ ここでreturnしない（returnは関数外だとSyntaxErrorになるため）
 const useAjax = !!(contactForm && formResult && !contactForm.action.includes('formsubmit.co'));
 
+
+// ===== FormSubmit向けの補助（リダイレクトURLの確実化／メニュー閉） =====
+if (contactForm && contactForm.action && contactForm.action.includes('formsubmit.co')) {
+  // _next が GitHub Pages のルート(/)に飛ぶと 404 になる環境があるため、
+  // 現在ページの絶対URL + #contact を必ずセットする
+  const nextInput = contactForm.querySelector('input[name="_next"]');
+  if (nextInput) {
+    const nextUrl = `${window.location.origin}${window.location.pathname}#contact`;
+    nextInput.value = nextUrl;
+  }
+
+  // 送信前にメニューが開いているとスクロール不可に見えることがあるため閉じる
+  contactForm.addEventListener('submit', () => {
+    if (navMenu) navMenu.classList.remove('active');
+    if (menuBtn) {
+      menuBtn.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
 if (useAjax) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
