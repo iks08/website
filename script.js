@@ -1,103 +1,243 @@
+// === Mobile: disable hero video to reduce load ===
+(() => {
+  try {
+    if (!window.matchMedia || !window.matchMedia("(max-width: 768px)").matches) return;
+    const v = document.getElementById("bg-video");
+    if (!v) return;
+
+    // Stop playback and prevent loading on mobile
+    v.pause();
+    v.removeAttribute("autoplay");
+    v.removeAttribute("loop");
+
+    const srcEl = v.querySelector("source");
+    if (srcEl) srcEl.removeAttribute("src");
+
+    // Force the browser to drop any pending resource load
+    v.load();
+  } catch (e) {
+    // no-op
+  }
+})();
+
 /**
  * iK相談支援センター - メインスクリプト
- * scroll fix v6: オープニングは「初回だけ」確実に再生し、終了後は完全撤去してスクロール阻害を残さない
  */
 
-(function () {
-  'use strict';
+// ===== オープニングアニメーション =====
+window.addEventListener('load', () => {
+  const splash = document.getElementById('opening-splash');
 
-  const SPLASH_ID = 'opening-splash';
-  const SEEN_KEY = 'ik_opening_seen';
-  const ANIM_CLASS = 'start-animation';
-  const REMOVED_CLASS = 'splash-removed';
-
-  const SHOW_MS = 1200;      // 表示（ロゴ見せ時間）
-  const FADE_MS = 650;       // CSSのフェード時間に合わせる（0.6s + 余裕）
-  const TOTAL_MS = SHOW_MS + FADE_MS;
-
-  function qs(id){ return document.getElementById(id); }
-
-  function lockScroll() {
-    try {
-      document.documentElement.style.overflowY = 'hidden';
-      document.body.style.overflowY = 'hidden';
-      document.body.style.touchAction = 'none';
-    } catch (e) {}
+  // オープニング要素がないページでは即開始（他要素への影響を最小化）
+  if (!splash) {
+    document.body.classList.add('start-animation');
+    return;
   }
 
-  function unlockScroll() {
+  // 既存CSSに display:flex !important があるため、JSの display:none は打ち消され得る。
+  // 対策：body に splash-removed を付与し、CSS側で display:none !important を強制。
+  // さらに Chrome での固定レイヤー残留を根絶するため DOM から remove する。
+  const hardRemove = () => {
     try {
+      document.body.classList.add('splash-removed');
+      splash.setAttribute('aria-hidden', 'true');
+      splash.style.pointerEvents = 'none';
+      if (splash.parentNode) splash.parentNode.removeChild(splash);
+    } catch (e) {}
+  };
+
+  // 先に入力を遮らない（表示中でも操作が必要ないため）
+  try { splash.style.pointerEvents = 'none'; } catch (e) {}
+
+  // 表示 → フェードアウト → 完全撤去
+  setTimeout(() => {
+    document.body.classList.add('start-animation');
+
+    // CSS: opacity 0.6s + visibility遅延 0.6s に合わせて少し余裕
+    setTimeout(hardRemove, 650);
+  }, 1800);
+});
+
+// ===== ハンバーガーメニュー =====
+const menuBtn = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+
+if (menuBtn && navMenu) {
+  // クリックでメニュー開閉
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('active');
+    menuBtn.classList.toggle('is-open', isOpen);
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // キーボード操作対応
+  menuBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const isOpen = navMenu.classList.toggle('active');
+      menuBtn.classList.toggle('is-open', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    }
+  });
+
+  // メニュー内リンククリックでメニューを閉じる
+  document.querySelectorAll('.pc-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+      menuBtn.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // PC幅に戻ったらメニュー状態をリセット
+  window.addEventListener('resize', () => {
+    if (window.matchMedia('(min-width: 769px)').matches) {
+      navMenu.classList.remove('active');
+      menuBtn.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+// ===== フェードインアニメーション =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(section => {
+  observer.observe(section);
+});
+
+// ===== TOPへ戻るボタン =====
+const toTopBtn = document.getElementById('to-top');
+const heroSection = document.querySelector('.hero');
+
+if (toTopBtn) {
+  // スクロール位置で表示制御
+  window.addEventListener('scroll', () => {
+    if (heroSection) {
+      const heroBottom = heroSection.getBoundingClientRect().bottom;
+      if (heroBottom <= 0) {
+        toTopBtn.classList.add('visible');
+      } else {
+        toTopBtn.classList.remove('visible');
+      }
+    } else {
+      // heroがないページでは常に表示
+      if (window.scrollY > 300) {
+        toTopBtn.classList.add('visible');
+      } else {
+        toTopBtn.classList.remove('visible');
+      }
+    }
+  });
+
+  // クリックでトップへスムーズスクロール
+  toTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// ===== viewport高さ補正（iOS Safari対策） =====
+function setVhVar() {
+  const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  document.documentElement.style.setProperty('--vh', `${h * 0.01}px`);
+}
+
+setVhVar();
+window.addEventListener('resize', setVhVar);
+window.addEventListener('orientationchange', setVhVar);
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', setVhVar);
+  window.visualViewport.addEventListener('scroll', setVhVar);
+}
+
+// ===== お問い合わせフォーム送信（AJAX） =====
+const contactForm = document.querySelector('.contact-form');
+const formResult = document.getElementById('form-result');
+
+// FormSubmitは「通常のフォーム送信」が安定するため、JS(AJAX)送信は使わない
+// ※ ここでreturnしない（returnは関数外だとSyntaxErrorになるため）
+const useAjax = !!(contactForm && formResult && !contactForm.action.includes('formsubmit.co'));
+
+if (useAjax) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // 結果表示をリセット
+    formResult.style.display = 'none';
+    formResult.classList.remove('error');
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: contactForm.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      let data = null;
+      try {
+        data = await response.json();
+      } catch (_) {
+        // JSON解析失敗時は無視
+      }
+
+      // 成功判定
+      if (response.ok && (!data || !data.errors)) {
+        contactForm.reset();
+        formResult.textContent = '送信が完了しました。内容を確認し、担当者よりご連絡いたします。';
+        formResult.style.display = 'block';
+        formResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // エラー処理
+      const msg = (data && data.errors && Array.isArray(data.errors))
+        ? data.errors.map(e => e.message).join(' / ')
+        : '送信に失敗しました。入力内容をご確認のうえ再度お試しください。';
+
+      formResult.textContent = msg;
+      formResult.classList.add('error');
+      formResult.style.display = 'block';
+
+    } catch (err) {
+      formResult.textContent = '送信に失敗しました。通信状況をご確認のうえ再度お試しください。';
+      formResult.classList.add('error');
+      formResult.style.display = 'block';
+    }
+  });
+}
+
+/* SPLASH_SCROLL_FIX_V3 */
+// 最終保険：Chromeで #opening-splash が invisible のまま残りスクロールが死ぬケースを強制解消
+window.addEventListener('load', () => {
+  const s = document.getElementById('opening-splash');
+  if (!s) return;
+
+  const hardHide = () => {
+    try {
+      document.body.classList.add('splash-removed');
+      s.style.pointerEvents = 'none';
+      s.style.display = 'none';
+      s.setAttribute('aria-hidden', 'true');
+      // 念のためスクロールロック解除
       document.documentElement.style.overflowY = 'auto';
       document.body.style.overflowY = 'auto';
-      document.body.style.touchAction = '';
     } catch (e) {}
-  }
+  };
 
-  function hardHideSplash(splash) {
-    try {
-      // CSS側の強制非表示（display:none !important）を有効化
-      document.body.classList.add(REMOVED_CLASS);
-
-      // DOM上でも確実に撤去（Chromeでのスクロール阻害を根絶）
-      if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
-    } catch (e) {}
-    unlockScroll();
-  }
-
-  function playSplashOnce() {
-    const splash = qs(SPLASH_ID);
-    if (!splash) {
-      unlockScroll();
-      return;
-    }
-
-    // 表示中はスクロールを確実に止める（スプラッシュの目的どおり）
-    lockScroll();
-
-    // 念のため表示状態を明示（CSSにdisplay:flex!importantがある）
-    try {
-      splash.style.visibility = 'visible';
-      splash.style.opacity = '1';
-      splash.style.pointerEvents = 'auto';
-    } catch (e) {}
-
-    // 一定時間表示 → フェードアウト開始 → 完全撤去
-    window.setTimeout(() => {
-      try { document.body.classList.add(ANIM_CLASS); } catch (e) {}
-      window.setTimeout(() => {
-        hardHideSplash(splash);
-        try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (e) {}
-      }, FADE_MS);
-    }, SHOW_MS);
-  }
-
-  function skipSplash() {
-    const splash = qs(SPLASH_ID);
-    if (!splash) {
-      unlockScroll();
-      return;
-    }
-    hardHideSplash(splash);
-  }
-
-  // DOMが組み上がった時点で判定（load待ちにすると一瞬チラつく場合がある）
-  document.addEventListener('DOMContentLoaded', () => {
-    let seen = false;
-    try { seen = sessionStorage.getItem(SEEN_KEY) === '1'; } catch (e) {}
-
-    if (seen) {
-      skipSplash();
-    } else {
-      playSplashOnce();
-    }
-  });
-
-  // bfcache復帰対策：復帰時はスプラッシュを残さない
-  window.addEventListener('pageshow', (e) => {
-    if (e && e.persisted) {
-      try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (err) {}
-      skipSplash();
-    }
-  });
-
-})();
+  // すぐ実行 + 念押し
+  hardHide();
+  setTimeout(hardHide, 1500);
+  setTimeout(hardHide, 6000);
+});
