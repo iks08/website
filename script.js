@@ -68,7 +68,6 @@ if (menuBtn && navMenu) {
       navMenu.classList.remove('active');
       menuBtn.classList.remove('is-open');
       menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.setAttribute('aria-expanded', 'false');
     });
   });
 
@@ -145,10 +144,13 @@ if (window.visualViewport) {
 
 // ===== お問い合わせフォーム送信（AJAX） =====
 const contactForm = document.querySelector('.contact-form');
-// FormSubmitは通常送信が安定。JS送信をスキップする
-if (contactForm && contactForm.action.includes('formsubmit.co')) return;
+const formResult = document.getElementById('form-result');
 
-if (contactForm && formResult) {
+// FormSubmitは「通常のフォーム送信」が安定するため、JS(AJAX)送信は使わない
+// ※ ここでreturnしない（returnは関数外だとSyntaxErrorになるため）
+const useAjax = !!(contactForm && formResult && !contactForm.action.includes('formsubmit.co'));
+
+if (useAjax) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
