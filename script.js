@@ -37,6 +37,21 @@ window.addEventListener('load', () => {
   // すべてのページ遷移で必ず再生（分岐なしで構造を単純化）
   setTimeout(() => {
     document.body.classList.add('start-animation');
+
+    // Chrome対策：visibility/opacityだけだと固定レイヤーが残り、スクロールを塞ぐ場合があるため
+    // トランジション完了後に opening-splash を確実に無効化（pointer-events無効 + display:none）
+    const hardHide = () => {
+      try {
+        splash.style.pointerEvents = 'none';
+        splash.style.display = 'none';
+        splash.setAttribute('aria-hidden', 'true');
+      } catch (e) {}
+    };
+    try {
+      splash.style.pointerEvents = 'none'; // 先に入力を遮らない
+      splash.addEventListener('transitionend', hardHide, { once: true });
+    } catch (e) {}
+    setTimeout(hardHide, 2600); // transitionendが来ない環境の保険
   }, 1800);
 });
 
@@ -150,36 +165,8 @@ const formResult = document.getElementById('form-result');
 // ※ ここでreturnしない（returnは関数外だとSyntaxErrorになるため）
 const useAjax = !!(contactForm && formResult && !contactForm.action.includes('formsubmit.co'));
 
-
-// ===== FormSubmit向けの補助（リダイレクトURLの確実化／メニュー閉） =====
-if (contactForm && contactForm.action && contactForm.action.includes('formsubmit.co')) {
-  // _next が GitHub Pages のルート(/)に飛ぶと 404 になる環境があるため、
-  // 現在ページの絶対URL + #contact を必ずセットする
-  const nextInput = contactForm.querySelector('input[name="_next"]');
-  if (nextInput) {
-    const nextUrl = `${window.location.origin}${window.location.pathname}#contact`;
-    nextInput.value = nextUrl;
-  }
-
-  // 送信前にメニューが開いているとスクロール不可に見えることがあるため閉じる
-  contactForm.addEventListener('submit', () => {
-    if (navMenu) navMenu.classList.remove('active');
-    if (menuBtn) {
-      menuBtn.classList.remove('is-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
-
 if (useAjax) {
   contactForm.addEventListener('submit', async (e) => {
-
-    // 送信前にメニューが開いているとスクロール不可に見えることがあるため閉じる
-    if (navMenu) navMenu.classList.remove('active');
-    if (menuBtn) {
-      menuBtn.classList.remove('is-open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
     e.preventDefault();
 
     // 結果表示をリセット
