@@ -231,43 +231,61 @@ window.addEventListener('load', () => {
       document.body.classList.add('splash-removed');
       document.documentElement.classList.add('splash-removed');
 
-      // まずは非表示
+      // 非表示（display はCSSで !important があるため念押し）
       forceStyle(s, 'pointer-events', 'none');
       forceStyle(s, 'display', 'none');
       s.setAttribute('aria-hidden', 'true');
 
       // 可能ならDOMから除去（Chromeの残留レイヤー対策）
-      try {
-        if (s.parentNode) s.parentNode.removeChild(s);
-      } catch (e) {}
+      try { if (s.parentNode) s.parentNode.removeChild(s); } catch (e) {}
 
-      // スクロール強制解除（root/ body の両方に強制）
-      forceStyle(document.documentElement, 'overflow-y', 'auto');
-      forceStyle(document.body, 'overflow-y', 'auto');
-      forceStyle(document.documentElement, 'position', 'static');
-      forceStyle(document.body, 'position', 'static');
-      forceStyle(document.documentElement, 'height', 'auto');
-      forceStyle(document.body, 'height', 'auto');
-      forceStyle(document.documentElement, 'overscroll-behavior-y', 'auto');
-      forceStyle(document.body, 'overscroll-behavior-y', 'auto');
-
-      // scroll-behavior が干渉するケースの保険
-      forceStyle(document.documentElement, 'scroll-behavior', 'auto');
-
-      // JSでスクロールできない場合の最終保険（overflow-y: scroll）
-      const se = document.scrollingElement || document.documentElement;
-      const before = se ? (se.scrollTop || 0) : 0;
-      window.scrollTo(0, before + 1);
-      const after = se ? (se.scrollTop || 0) : 0;
-      if (after === before) {
-        forceStyle(document.documentElement, 'overflow-y', 'scroll');
-        forceStyle(document.body, 'overflow-y', 'scroll');
-      }
+      // スクロール強制解除（root/body 両方）
+      const de = document.documentElement;
+      const b  = document.body;
+      forceStyle(de, 'overflow-y', 'auto');
+      forceStyle(b,  'overflow-y', 'auto');
+      forceStyle(de, 'position', 'static');
+      forceStyle(b,  'position', 'static');
+      forceStyle(de, 'height', 'auto');
+      forceStyle(b,  'height', 'auto');
     } catch (e) {}
   };
 
-  // すぐ実行 + 念押し
-  hardHide();
-  setTimeout(hardHide, 1500);
-  setTimeout(hardHide, 6000);
+  const runOpeningOnce = () => {
+    // 開始状態の保険：表示
+    try {
+      document.body.classList.remove('splash-removed');
+      document.documentElement.classList.remove('splash-removed');
+      forceStyle(s, 'display', 'flex');
+      forceStyle(s, 'pointer-events', 'auto');
+      s.removeAttribute('aria-hidden');
+    } catch (e) {}
+
+    // 既存CSSのフェードアウト（body.start-animation）を使う
+    const FADE_START_MS = 800;   // ロゴ表示時間
+    const FADE_DUR_MS   = 650;   // CSS transition 0.6s + 余裕
+    setTimeout(() => {
+      try { document.body.classList.add('start-animation'); } catch (e) {}
+    }, FADE_START_MS);
+
+    setTimeout(() => {
+      hardHide();
+      try { sessionStorage.setItem('ik_opening_seen', '1'); } catch (e) {}
+    }, FADE_START_MS + FADE_DUR_MS);
+
+    // 念押し（Chrome対策）
+    setTimeout(hardHide, FADE_START_MS + FADE_DUR_MS + 1500);
+  };
+
+  // 2回目以降は即撤去（スクロール最優先）
+  let seen = false;
+  try { seen = sessionStorage.getItem('ik_opening_seen') === '1'; } catch (e) {}
+
+  if (seen) {
+    hardHide();
+    setTimeout(hardHide, 1500);
+    return;
+  }
+
+  runOpeningOnce();
 });
