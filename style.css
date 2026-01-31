@@ -385,11 +385,6 @@ body.start-animation #opening-splash {
   pointer-events: none;
 }
 
-/* Chrome対策：#opening-splash の display:flex !important を確実に解除（スクロール阻害を防ぐ） */
-body.splash-removed #opening-splash {
-  display: none !important;
-}
-
 /* ========================================
    ヒーローセクション
 ======================================== */
@@ -1724,4 +1719,10 @@ footer {
 .training-list li {
   word-break: keep-all;
   line-break: strict;
+}
+
+/* SPLASH_SCROLL_FIX_V3 */
+body.splash-removed #opening-splash {
+  display: none !important;
+  pointer-events: none !important;
 }

@@ -37,6 +37,21 @@ window.addEventListener('load', () => {
   // すべてのページ遷移で必ず再生（分岐なしで構造を単純化）
   setTimeout(() => {
     document.body.classList.add('start-animation');
+
+    // Chrome対策：visibility/opacityだけだと固定レイヤーが残り、スクロールを塞ぐ場合があるため
+    // トランジション完了後に opening-splash を確実に無効化（pointer-events無効 + display:none）
+    const hardHide = () => {
+      try {
+        splash.style.pointerEvents = 'none';
+        splash.style.display = 'none';
+        splash.setAttribute('aria-hidden', 'true');
+      } catch (e) {}
+    };
+    try {
+      splash.style.pointerEvents = 'none'; // 先に入力を遮らない
+      splash.addEventListener('transitionend', hardHide, { once: true });
+    } catch (e) {}
+    setTimeout(hardHide, 2600); // transitionendが来ない環境の保険
   }, 1800);
 });
 
@@ -199,3 +214,27 @@ if (useAjax) {
     }
   });
 }
+
+/* SPLASH_SCROLL_FIX_V3 */
+// 最終保険：Chromeで #opening-splash が invisible のまま残りスクロールが死ぬケースを強制解消
+window.addEventListener('load', () => {
+  const s = document.getElementById('opening-splash');
+  if (!s) return;
+
+  const hardHide = () => {
+    try {
+      document.body.classList.add('splash-removed');
+      s.style.pointerEvents = 'none';
+      s.style.display = 'none';
+      s.setAttribute('aria-hidden', 'true');
+      // 念のためスクロールロック解除
+      document.documentElement.style.overflowY = 'auto';
+      document.body.style.overflowY = 'auto';
+    } catch (e) {}
+  };
+
+  // すぐ実行 + 念押し
+  hardHide();
+  setTimeout(hardHide, 1500);
+  setTimeout(hardHide, 6000);
+});
