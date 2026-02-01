@@ -34,10 +34,23 @@ window.addEventListener('load', () => {
     return;
   }
 
-  // すべてのページ遷移で必ず再生（分岐なしで構造を単純化）
+  // 仕様：
+  // - 開始：一定時間表示（SHOW_MS）
+  // - フェード：start-animation 付与（CSSのopacity/visibilityでフェード）
+  // - 完了：DOM remove + splash-removed（Chromeのスクロール阻害をゼロに）
+  const SHOW_MS = 1800;   // 表示時間（現行挙動維持）
+  const FADE_MS = 650;    // CSS transition(0.6s) + 余裕
+
   setTimeout(() => {
     document.body.classList.add('start-animation');
-  }, 1800);
+
+    // フェード後に完全撤去（スクロール阻害の温床を残さない）
+    setTimeout(() => {
+      document.documentElement.classList.add('splash-removed');
+      document.body.classList.add('splash-removed');
+      try { splash.remove(); } catch (e) { /* no-op */ }
+    }, FADE_MS);
+  }, SHOW_MS);
 });
 
 // ===== ハンバーガーメニュー =====
