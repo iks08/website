@@ -25,78 +25,22 @@
  */
 
 // ===== オープニングアニメーション =====
-// 仕様：
-// - 初回のみ一定時間表示（SHOW_MS）→フェード（FADE_MS）→完全撤去（DOM remove + splash-removed）
-// - 2回目以降 / bfcache復帰は即撤去（スクロール阻害ゼロ）
-(() => {
-  const KEY = "ik_opening_seen";
-  const SHOW_MS = 1200; // 表示維持
-  const FADE_MS = 650;  // CSS transition(0.6s)より少し長め
-  const FAILSAFE_MS = 6000; // 何かあっても必ず撤去
+window.addEventListener('load', () => {
+  const splash = document.getElementById('opening-splash');
 
-  let ran = false;
-
-  function unlockScroll() {
-    try { document.documentElement.style.overflowY = "auto"; } catch (_) {}
-    try { document.body.style.overflowY = "auto"; } catch (_) {}
+  // オープニング要素がないページでは即開始（他要素への影響を最小化）
+  if (!splash) {
+    document.body.classList.add('start-animation');
+    return;
   }
 
-  function hardRemove(splash) {
-    if (!splash) return;
-    document.body.classList.add("splash-removed");
-    splash.setAttribute("aria-hidden", "true");
-    splash.style.pointerEvents = "none";
-    try { splash.remove(); } catch (_) { if (splash.parentNode) splash.parentNode.removeChild(splash); }
-    unlockScroll();
-  }
-
-  function run(forceInstant) {
-    if (ran) return;
-    ran = true;
-
-    const splash = document.getElementById("opening-splash");
-    if (!splash) { unlockScroll(); return; }
-
-    if (forceInstant) {
-      hardRemove(splash);
-      return;
-    }
-
-    // スプラッシュ表示中のみスクロールをロック
-    try { document.documentElement.style.overflowY = "hidden"; } catch (_) {}
-    try { document.body.style.overflowY = "hidden"; } catch (_) {}
-
-    // 以降は「見た扱い」にする（同一タブ内の2回目以降は即スキップ）
-    try { sessionStorage.setItem(KEY, "1"); } catch (_) {}
-
-    // 表示→フェード→撤去
-    setTimeout(() => {
-      document.body.classList.add("start-animation");
-      setTimeout(() => hardRemove(splash), FADE_MS);
-    }, SHOW_MS);
-
-    // 保険：何があっても一定時間後に撤去（スクロール阻害を絶対に残さない）
-    setTimeout(() => hardRemove(splash), FAILSAFE_MS);
-  }
-
-  // bfcache復帰は即撤去（Chromeのスクロール不具合再発防止）
-  window.addEventListener("pageshow", (e) => {
-    if (!e.persisted) return;
-    const splash = document.getElementById("opening-splash");
-    if (splash) hardRemove(splash);
-    document.body.classList.add("splash-removed");
-    unlockScroll();
-  });
-
-  window.addEventListener("load", () => {
-    let seen = false;
-    try { seen = sessionStorage.getItem(KEY) === "1"; } catch (_) {}
-    run(seen);
-  }, { once: true });
-})();
+  // すべてのページ遷移で必ず再生（分岐なしで構造を単純化）
+  setTimeout(() => {
+    document.body.classList.add('start-animation');
+  }, 1800);
+});
 
 // ===== ハンバーガーメニュー =====
-
 const menuBtn = document.getElementById('menu-toggle');
 const navMenu = document.getElementById('nav-menu');
 
@@ -123,6 +67,7 @@ if (menuBtn && navMenu) {
     link.addEventListener('click', () => {
       navMenu.classList.remove('active');
       menuBtn.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
       menuBtn.setAttribute('aria-expanded', 'false');
     });
   });
@@ -202,11 +147,7 @@ if (window.visualViewport) {
 const contactForm = document.querySelector('.contact-form');
 const formResult = document.getElementById('form-result');
 
-// FormSubmitは「通常のフォーム送信」が安定するため、JS(AJAX)送信は使わない
-// ※ ここでreturnしない（returnは関数外だとSyntaxErrorになるため）
-const useAjax = !!(contactForm && formResult && !contactForm.action.includes('formsubmit.co'));
-
-if (useAjax) {
+if (contactForm && formResult) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
