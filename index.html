@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
   
   <!-- CSS -->
-  <link rel="stylesheet" href="style.css?v=20260131-4">
+  <link rel="stylesheet" href="style.css?v=20260122-1">
 </head>
 
 <body>
@@ -364,6 +364,21 @@
   <button id="to-top" aria-label="トップへ戻る">▲</button>
 
   <!-- JavaScript -->
-  <script src="script.js?v=20260201-01" defer></script>
+  <script src="script.js?v=20260119-1" defer></script>
+
+<script>
+(function(){
+  try{
+    if(!sessionStorage.getItem('ik_opening_seen')){
+      window.addEventListener('load', function(){
+        setTimeout(function(){
+          sessionStorage.setItem('ik_opening_seen','1');
+        }, 1200);
+      });
+    }
+  }catch(e){}
+})();
+</script>
+
 </body>
 </html>
