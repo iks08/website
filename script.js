@@ -25,47 +25,75 @@
  */
 
 // ===== オープニングアニメーション =====
-window.addEventListener('load', () => {
-  const splash = document.getElementById('opening-splash');
+// 仕様：
+// - 初回のみ一定時間表示（SHOW_MS）→フェード（FADE_MS）→完全撤去（DOM remove + splash-removed）
+// - 2回目以降 / bfcache復帰は即撤去（スクロール阻害ゼロ）
+(() => {
+  const KEY = "ik_opening_seen";
+  const SHOW_MS = 1200; // 表示維持
+  const FADE_MS = 650;  // CSS transition(0.6s)より少し長め
+  const FAILSAFE_MS = 6000; // 何かあっても必ず撤去
 
-  // オープニング要素がないページは何もしない
-  if (!splash) return;
+  let ran = false;
 
-  // 表示 → フェード → 完全撤去（Chromeのスクロール阻害を根絶）
-  // ※ style.css 側に display:flex !important があるため、inline display:none は信用しない
-  //    body.splash-removed #opening-splash { display:none !important; } を最終勝利条件にする
+  function unlockScroll() {
+    try { document.documentElement.style.overflowY = "auto"; } catch (_) {}
+    try { document.body.style.overflowY = "auto"; } catch (_) {}
+  }
 
-  const FADE_MS = 650;      // CSS: 0.6s に合わせる
-  const SHOW_MS = 1200;     // ロゴ見せ時間
+  function hardRemove(splash) {
+    if (!splash) return;
+    document.body.classList.add("splash-removed");
+    splash.setAttribute("aria-hidden", "true");
+    splash.style.pointerEvents = "none";
+    try { splash.remove(); } catch (_) { if (splash.parentNode) splash.parentNode.removeChild(splash); }
+    unlockScroll();
+  }
 
-  const hardRemove = () => {
-    try {
-      document.body.classList.add('splash-removed'); // CSSで強制display:none
-    } catch (e) {}
-    try {
-      // DOMからも削除（fixed全画面が残る事故を完全封鎖）
-      if (splash.parentNode) splash.parentNode.removeChild(splash);
-    } catch (e) {}
-    // 念のためスクロールを解放
-    try { document.documentElement.style.overflowY = 'auto'; } catch (e) {}
-    try { document.body.style.overflowY = 'auto'; } catch (e) {}
-  };
+  function run(forceInstant) {
+    if (ran) return;
+    ran = true;
 
-  // 表示中はスクロール停止（意図通り）
-  try { document.documentElement.style.overflowY = 'hidden'; } catch (e) {}
-  try { document.body.style.overflowY = 'hidden'; } catch (e) {}
+    const splash = document.getElementById("opening-splash");
+    if (!splash) { unlockScroll(); return; }
 
-  // 既存CSSのフェード条件：body.start-animation
-  setTimeout(() => {
-    try { document.body.classList.add('start-animation'); } catch (e) {}
+    if (forceInstant) {
+      hardRemove(splash);
+      return;
+    }
 
-    // フェード完了後に撤去
-    setTimeout(hardRemove, FADE_MS);
+    // スプラッシュ表示中のみスクロールをロック
+    try { document.documentElement.style.overflowY = "hidden"; } catch (_) {}
+    try { document.body.style.overflowY = "hidden"; } catch (_) {}
 
-    // transitionendが来ない環境の保険（最終）
-    setTimeout(hardRemove, 2600);
-  }, SHOW_MS);
-});
+    // 以降は「見た扱い」にする（同一タブ内の2回目以降は即スキップ）
+    try { sessionStorage.setItem(KEY, "1"); } catch (_) {}
+
+    // 表示→フェード→撤去
+    setTimeout(() => {
+      document.body.classList.add("start-animation");
+      setTimeout(() => hardRemove(splash), FADE_MS);
+    }, SHOW_MS);
+
+    // 保険：何があっても一定時間後に撤去（スクロール阻害を絶対に残さない）
+    setTimeout(() => hardRemove(splash), FAILSAFE_MS);
+  }
+
+  // bfcache復帰は即撤去（Chromeのスクロール不具合再発防止）
+  window.addEventListener("pageshow", (e) => {
+    if (!e.persisted) return;
+    const splash = document.getElementById("opening-splash");
+    if (splash) hardRemove(splash);
+    document.body.classList.add("splash-removed");
+    unlockScroll();
+  });
+
+  window.addEventListener("load", () => {
+    let seen = false;
+    try { seen = sessionStorage.getItem(KEY) === "1"; } catch (_) {}
+    run(seen);
+  }, { once: true });
+})();
 
 // ===== ハンバーガーメニュー =====
 
@@ -227,27 +255,3 @@ if (useAjax) {
     }
   });
 }
-
-/* SPLASH_SCROLL_FIX_V3 */
-// 最終保険：Chromeで #opening-splash が invisible のまま残りスクロールが死ぬケースを強制解消
-window.addEventListener('load', () => {
-  const s = document.getElementById('opening-splash');
-  if (!s) return;
-
-  const hardHide = () => {
-    try {
-      document.body.classList.add('splash-removed');
-      s.style.pointerEvents = 'none';
-      s.style.display = 'none';
-      s.setAttribute('aria-hidden', 'true');
-      // 念のためスクロールロック解除
-      document.documentElement.style.overflowY = 'auto';
-      document.body.style.overflowY = 'auto';
-    } catch (e) {}
-  };
-
-  // すぐ実行 + 念押し
-  hardHide();
-  setTimeout(hardHide, 1500);
-  setTimeout(hardHide, 6000);
-});
