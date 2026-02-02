@@ -1740,3 +1740,10 @@ body.splash-removed #opening-splash {
   display: none !important;
   pointer-events: none !important;
 }
+/* 3. 主任相談支援専門員配置加算：本文インデント */
+section .container h2 + h3 + p,
+section .container h2 + h3 + p + h3 + p,
+section .container h2 + h3 + p + h3 + p + h3 + p,
+section .container h2 + h3 + p + h3 + p + h3 + p + h3 + p {
+  text-indent: 1em;
+}
