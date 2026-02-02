@@ -1750,10 +1750,18 @@ section .container > h2 + h3 + p + h3 + p + h3 + p + h3 {
   margin-left: 1.5em;
 }
 
-/* その直下の本文 p を2段インデント */
+/* 各本文pを2段インデント */
 section .container > h2 + h3 + p,
 section .container > h2 + h3 + p + h3 + p,
 section .container > h2 + h3 + p + h3 + p + h3 + p,
 section .container > h2 + h3 + p + h3 + p + h3 + p + h3 + p {
   margin-left: 3em;
+}
+
+/* 最後の注意文（＊なお、これらの…）も2段インデント＋行間拡張 */
+section .container > h2 + h3 + p + h3 + p + h3 + p + h3 + p + p {
+  margin-left: 3em;
+  margin-top: 2.5em;   /* 上に約2行分 */
+  margin-bottom: 2.5em;/* 下に約2行分 */
+  line-height: 2.2;    /* 行間も少し広げる */
 }
