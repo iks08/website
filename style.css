@@ -1765,3 +1765,8 @@ section .container > h2 + h3 + p + h3 + p + h3 + p + h3 + p + p {
   margin-bottom: 2.5em;/* 下に約2行分 */
   line-height: 2.2;    /* 行間も少し広げる */
 }
+/* 2. 職員配置状況：日付・人数行を2段インデント */
+section .container > h2 + p,
+section .container > h2 + p + p {
+  margin-left: 3em;
+}
