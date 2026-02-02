@@ -1740,10 +1740,20 @@ body.splash-removed #opening-splash {
   display: none !important;
   pointer-events: none !important;
 }
-/* 3. 主任相談支援専門員配置加算：本文インデント */
-section .container h2 + h3 + p,
-section .container h2 + h3 + p + h3 + p,
-section .container h2 + h3 + p + h3 + p + h3 + p,
-section .container h2 + h3 + p + h3 + p + h3 + p + h3 + p {
-  text-indent: 1em;
+/* 3. 主任相談支援専門員配置加算：2段階インデント */
+
+/* h3（各加算名）を1段インデント */
+section .container > h2 + h3,
+section .container > h2 + h3 + p + h3,
+section .container > h2 + h3 + p + h3 + p + h3,
+section .container > h2 + h3 + p + h3 + p + h3 + p + h3 {
+  margin-left: 1.5em;
+}
+
+/* その直下の本文 p を2段インデント */
+section .container > h2 + h3 + p,
+section .container > h2 + h3 + p + h3 + p,
+section .container > h2 + h3 + p + h3 + p + h3 + p,
+section .container > h2 + h3 + p + h3 + p + h3 + p + h3 + p {
+  margin-left: 3em;
 }
