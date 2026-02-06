@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet">
   
   <!-- CSS -->
-  <link rel="stylesheet" href="style.css?v=20260122-1">
+  <link rel="stylesheet" href="style.css?v=20260206-1">
 </head>
 
 <body>
@@ -67,7 +67,7 @@
         お困りごとに<br class="sp-br">ついてご相談を受け付けております。<br class="pc-br"><br class="sp-br">
         誰もがより豊かな生活を送れるように<br class="sp-br">支援させていただきます。
       </p>
-      <a href="#contact" class="btn-main">お問い合わせはこちら</a>
+      
     </div>
   </section>
 
@@ -276,7 +276,14 @@
         </div>
 
         <div class="company-map">
-          <img src="picmov/地図.png" alt="アクセスマップ" loading="lazy" width="300" height="300" decoding="async">
+          <iframe
+            class="company-map-iframe"
+            src="https://www.google.com/maps?q=〒802-0831%20北九州市小倉南区八重洲町11-20&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            aria-label="Googleマップ（株式会社iK 所在地）"
+            title="Googleマップ（株式会社iK 所在地）"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -296,7 +303,7 @@
       </div>
       <div class="form-group">
         <label>電話番号</label>
-        <input type="tel" name="phone" placeholder="例：090-1234-5678">
+        <input type="tel" name="phone" placeholder="例：090-1234-5678" required>
       </div>
       <div class="form-group">
         <label>メールアドレス</label>
@@ -305,6 +312,16 @@
       <div class="form-group">
         <label>お問い合わせ内容</label>
         <textarea name="message" rows="5" placeholder="ご質問やご相談内容をご記入ください" required></textarea>
+      </div>
+
+      <div class="form-group form-agree">
+        <label class="agree-label">
+          <input type="checkbox" name="privacy_agree" value="agree" required>
+          <span>
+            <a href="contact_policy.html" target="_blank" rel="noopener" class="agree-link">お問い合わせに関する個人情報の取り扱いについて</a>
+            に同意します
+          </span>
+        </label>
       </div>
       <button type="submit" class="submit-btn">送信する</button>
       
