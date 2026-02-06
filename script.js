@@ -209,3 +209,27 @@ if (contactForm && formResult) {
     }
   });
 }
+
+// === メールアドレス確認用チェック ===
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector(".contact-form");
+  if (!form) return;
+
+  const email = document.getElementById("email");
+  const emailConfirm = document.getElementById("email-confirm");
+  const result = document.getElementById("form-result");
+
+  form.addEventListener("submit", (e) => {
+    if (!email || !emailConfirm) return;
+
+    if (email.value !== emailConfirm.value) {
+      e.preventDefault();
+      if (result) {
+        result.textContent = "メールアドレスが一致していません。ご確認ください。";
+        result.style.display = "block";
+        result.classList.add("error");
+      }
+      emailConfirm.focus();
+    }
+  });
+});
