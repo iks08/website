@@ -160,6 +160,33 @@ if (window.visualViewport) {
 const contactForm = document.querySelector('.contact-form');
 const formResult = document.getElementById('form-result');
 
+// ===== メールアドレス（確認用）一致チェック =====
+const emailEl = contactForm ? contactForm.querySelector('#email') : null;
+const emailConfirmEl = contactForm ? contactForm.querySelector('#email-confirm') : null;
+
+function normalizeEmail(v) {
+  return (v || '').trim();
+}
+
+function setEmailMismatchValidity() {
+  if (!emailEl || !emailConfirmEl) return true; // フィールド未設置時はスキップ
+  const a = normalizeEmail(emailEl.value);
+  const b = normalizeEmail(emailConfirmEl.value);
+
+  if (a && b && a !== b) {
+    emailConfirmEl.setCustomValidity('メールアドレスが一致しません');
+    return false;
+  }
+  emailConfirmEl.setCustomValidity('');
+  return true;
+}
+
+if (emailEl && emailConfirmEl) {
+  const onInput = () => { setEmailMismatchValidity(); };
+  emailEl.addEventListener('input', onInput);
+  emailConfirmEl.addEventListener('input', onInput);
+}
+
 if (contactForm && formResult) {
   contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -167,6 +194,22 @@ if (contactForm && formResult) {
     // 結果表示をリセット
     formResult.style.display = 'none';
     formResult.classList.remove('error');
+
+    // HTML5バリデーション（required等）を優先
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+
+    // メール（確認用）一致チェック
+    if (!setEmailMismatchValidity()) {
+      formResult.textContent = 'メールアドレスが一致しません。入力内容をご確認ください。';
+      formResult.classList.add('error');
+      formResult.style.display = 'block';
+      try { emailConfirmEl.reportValidity(); } catch (e2) {}
+      try { emailConfirmEl.focus(); } catch (e3) {}
+      return;
+    }
 
     const formData = new FormData(contactForm);
 
@@ -209,27 +252,3 @@ if (contactForm && formResult) {
     }
   });
 }
-
-// === メールアドレス確認用チェック ===
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".contact-form");
-  if (!form) return;
-
-  const email = document.getElementById("email");
-  const emailConfirm = document.getElementById("email-confirm");
-  const result = document.getElementById("form-result");
-
-  form.addEventListener("submit", (e) => {
-    if (!email || !emailConfirm) return;
-
-    if (email.value !== emailConfirm.value) {
-      e.preventDefault();
-      if (result) {
-        result.textContent = "メールアドレスが一致していません。ご確認ください。";
-        result.style.display = "block";
-        result.classList.add("error");
-      }
-      emailConfirm.focus();
-    }
-  });
-});
