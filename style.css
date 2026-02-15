@@ -1823,3 +1823,10 @@ section .container > h2 + p + p {
   text-underline-offset: 3px;
 }
 
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-top: 10px;
+  letter-spacing: 0.06em;
+}
