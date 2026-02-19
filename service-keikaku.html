@@ -8,19 +8,22 @@
   <meta name="description" content="北九州市小倉南区で計画相談支援をお探しの方へ。iK相談支援センターでは、福祉サービス利用計画（サービス等利用計画）の作成をサポートします。北九州市内対応。" />
   <link rel="canonical" href="https://iks08.github.io/website/service-keikaku.html" />
 
-  <!-- フォント（index.htmlと同一） -->
+  <!-- indexと同一 -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet" />
-
-  <!-- CSS（index.htmlと同一・キャッシュ統一） -->
   <link rel="stylesheet" href="style.css?v=20260122-1" />
+
+  <!-- このページだけ折り返し復活（style.cssの p{nowrap;} を打ち消す） -->
+  <style>
+    p, li { white-space: normal; }
+  </style>
 </head>
 
 <body id="top">
 
-  <!-- header（index.htmlと同一構造） -->
+  <!-- header：index.htmlと同一構造 -->
   <header>
     <div class="logo">
       <a href="index.html#top">iK相談支援センター</a>
@@ -36,4 +39,112 @@
       </ul>
     </nav>
 
-    <div class="menu-btn" id="menu-toggle" aria-label="メニューを開閉" ari
+    <div class="menu-btn" id="menu-toggle" aria-label="メニューを開閉" aria-expanded="false" role="button" tabindex="0" aria-controls="nav-menu">
+      <span></span>
+    </div>
+
+    <div class="header-contact">
+      <p class="header-tel">TEL. 093-383-1327</p>
+    </div>
+  </header>
+
+  <!-- ページ用ヒーロー（style.cssに定義済み .page-hero を使う） -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="page-hero-breadcrumb"><a href="index.html">トップ</a> / 計画相談支援</p>
+      <h1 class="page-hero-title">北九州市小倉南区の計画相談支援</h1>
+      <p class="page-hero-lead">
+        北九州市小倉南区を中心に、北九州市内で計画相談支援（サービス等利用計画の作成）をサポートします。
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">計画相談支援とは</h2>
+      <p>
+        計画相談支援とは、障がい福祉サービスを利用するために必要な「サービス等利用計画」を作成する支援です。
+        利用者様の状況や希望を丁寧にお伺いし、関係機関と連携しながら計画を作成します。
+      </p>
+
+      <h3>このようなご相談に対応します</h3>
+      <ul>
+        <li>福祉サービスを利用したいが、手続きや流れが分からない</li>
+        <li>サービス等利用計画を作成・見直ししたい</li>
+        <li>生活状況に合わせて、利用するサービスを整理したい</li>
+        <li>関係機関との連携を含めて相談したい</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">ご利用の流れ</h2>
+      <ol>
+        <li><strong>お問い合わせ・ご相談</strong>：状況をお伺いします</li>
+        <li><strong>面談</strong>：希望や生活状況を確認します</li>
+        <li><strong>計画案の作成</strong>：必要な支援・サービスを整理します</li>
+        <li><strong>関係機関との調整</strong>：連携しながら計画を整えます</li>
+        <li><strong>計画の作成・提出</strong>：サービス利用に向けて進めます</li>
+      </ol>
+      <p>※手続きや必要書類は状況により異なるため、詳細はご相談時にご案内します。</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">対応エリア</h2>
+      <p>
+        北九州市小倉南区を中心に、北九州市内全域に対応しております。<br>
+        「小倉南区で計画相談支援を探している」「北九州市内で相談支援事業所を探している」など、
+        まずはお気軽にご相談ください。
+      </p>
+
+      <p>
+        電話：<a href="tel:0933831327">093-383-1327</a>　
+        <a href="index.html#contact">お問い合わせフォームへ</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- footer：index.htmlと同一 -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-logo-area">
+        <h3>株式会社iK</h3>
+        <p class="footer-address">
+          <a href="https://maps.google.com/?q=〒802-0831 北九州市小倉南区八重洲町11-20" target="_blank" rel="noopener">
+            〒802-0831 北九州市小倉南区八重洲町11-20 2階
+          </a>
+        </p>
+      </div>
+
+      <div class="footer-contact-area">
+        <div class="footer-contact-grid" aria-label="連絡先">
+          <div class="contact-row contact-row-tel">
+            <span class="contact-label">TEL</span>
+            <a href="tel:093-383-1327" class="tel-number">093-383-1327</a>
+            <span class="divider">/</span>
+            <span class="contact-label">FAX</span>
+            <span class="fax-number">093-383-1328</span>
+          </div>
+
+          <div class="contact-row contact-row-mail">
+            <span class="contact-label">Mail</span>
+            <a href="mailto:iks.080101.iks@gmail.com">iks.080101.iks@gmail.com</a>
+          </div>
+
+          <div class="contact-row contact-row-policy">
+            <span class="contact-label">Policy</span>
+            <a href="privacypolicy.html">運営方針</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer-copyright">&copy; 2026 株式会社iK All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=20260206-1" defer></script>
+</body>
+</html>
