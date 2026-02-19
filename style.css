@@ -1830,3 +1830,15 @@ section .container > h2 + p + p {
   margin-top: 10px;
   letter-spacing: 0.06em;
 }
+
+.local-seo {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.local-seo-text {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.9;
+}

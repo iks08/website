@@ -239,7 +239,7 @@ if (contactForm && formResult) {
       // エラー処理
       const msg = (data && data.errors && Array.isArray(data.errors))
         ? data.errors.map(e => e.message).join(' / ')
-        : '送信に失敗しました。入力内容をご確認のうえ再度お試しください。';
+        : '送信に失敗しま した。入力内容をご確認のうえ再度お試しください。';
 
       formResult.textContent = msg;
       formResult.classList.add('error');
