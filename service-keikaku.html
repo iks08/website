@@ -19,9 +19,38 @@
   <style>
     p, li { white-space: normal; }
   </style>
+  <style>
+  /* このページだけ「余白過多」と「真っ白感」を抑える */
+  body.page-service section { padding-top: 56px; padding-bottom: 56px; }
+  body.page-service .page-hero { padding-bottom: 24px; }
+
+  /* ヒーローのリード文：センター感を弱めて読みやすく */
+  body.page-service .page-hero-lead {
+    text-align: left;
+    margin: 14px auto 0;
+    max-width: 760px;
+    line-height: 1.9;
+  }
+
+  /* 本文の行幅を固定（真ん中に寄せつつ読みやすく） */
+  body.page-service .container p,
+  body.page-service .container ul,
+  body.page-service .container ol {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 「真っ白」対策：セクションの背景を交互に薄く色付け */
+  body.page-service section:nth-of-type(even) { background: #f6f8ff; }
+
+  /* リストを見やすく */
+  body.page-service ul, body.page-service ol { padding-left: 1.2em; }
+  body.page-service li { margin: 0.45em 0; }
+</style>
 </head>
 
-<body id="top">
+<body id="top" class="page-service">
 
   <!-- header：index.htmlと同一構造 -->
   <header>
