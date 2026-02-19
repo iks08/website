@@ -3,56 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
 
-  <title>北九州市小倉南区の計画相談支援｜iK相談支援センター</title>
-  <meta name="description" content="北九州市小倉南区で計画相談支援をお探しの方へ。iK相談支援センターでは、福祉サービス利用計画（サービス等利用計画）の作成をサポートします。北九州市内対応。" />
+  <title>北九州市小倉南区の計画相談支援（サービス等利用計画）｜iK相談支援センター（株式会社iK）</title>
+  <meta name="description" content="北九州市小倉南区の相談支援事業所「iK相談支援センター（株式会社iK）」。計画相談支援（サービス等利用計画の作成・見直し）を北九州市内でサポート。指定特定相談支援事業 4037 700 608。TEL 093-383-1327" />
   <link rel="canonical" href="https://iks08.github.io/website/service-keikaku.html" />
 
-  <!-- indexと同一 -->
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="北九州市小倉南区の計画相談支援｜iK相談支援センター（株式会社iK）" />
+  <meta property="og:description" content="計画相談支援（サービス等利用計画の作成・見直し）を北九州市小倉南区から北九州市内へ。指定特定相談支援事業 4037 700 608。TEL 093-383-1327" />
+  <meta property="og:url" content="https://iks08.github.io/website/service-keikaku.html" />
+  <meta property="og:site_name" content="iK相談支援センター" />
+  <meta property="og:image" content="https://iks08.github.io/website/picmov/iK-logo.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="picmov/iK-logo.png" type="image/png" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- CSS（既存と統一） -->
   <link rel="stylesheet" href="style.css?v=20260122-1" />
 
-  <!-- このページだけ折り返し復活（style.cssの p{nowrap;} を打ち消す） -->
-  <style>
-    p, li { white-space: normal; }
-  </style>
-  <style>
-  /* このページだけ「余白過多」と「真っ白感」を抑える */
-  body.page-service section { padding-top: 56px; padding-bottom: 56px; }
-  body.page-service .page-hero { padding-bottom: 24px; }
-
-  /* ヒーローのリード文：センター感を弱めて読みやすく */
-  body.page-service .page-hero-lead {
-    text-align: left;
-    margin: 14px auto 0;
-    max-width: 760px;
-    line-height: 1.9;
+  <!-- 構造化データ（Breadcrumb + Service + FAQ + LocalBusiness参照） -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://iks08.github.io/website/service-keikaku.html#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "トップ", "item": "https://iks08.github.io/website/" },
+          { "@type": "ListItem", "position": 2, "name": "計画相談支援", "item": "https://iks08.github.io/website/service-keikaku.html" }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://iks08.github.io/website/service-keikaku.html#service",
+        "name": "計画相談支援（サービス等利用計画の作成・見直し）",
+        "serviceType": "計画相談支援",
+        "areaServed": ["北九州市小倉南区", "北九州市", "北九州エリア"],
+        "provider": { "@id": "https://iks08.github.io/website/#ik" },
+        "url": "https://iks08.github.io/website/service-keikaku.html"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://iks08.github.io/website/service-keikaku.html#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "計画相談支援（サービス等利用計画）とは何ですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "障がい福祉サービスを利用するために必要な「サービス等利用計画」を作成・見直しする支援です。生活状況や希望を伺い、関係機関と連携しながら計画作成や手続きをサポートします。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "北九州市小倉南区以外でも相談できますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "小倉南区を中心に、北九州市内（小倉北区・戸畑区・若松区・八幡東区・八幡西区など）に対応しています。詳細は状況により異なるため、まずはお問い合わせください。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "相談は電話でもできますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "可能です。お電話（093-383-1327）でご相談を受け付けています。来所・訪問なども状況に応じてご案内します。"
+            }
+          }
+        ]
+      }
+    ]
   }
-
-  /* 本文の行幅を固定（真ん中に寄せつつ読みやすく） */
-  body.page-service .container p,
-  body.page-service .container ul,
-  body.page-service .container ol {
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* 「真っ白」対策：セクションの背景を交互に薄く色付け */
-  body.page-service section:nth-of-type(even) { background: #f6f8ff; }
-
-  /* リストを見やすく */
-  body.page-service ul, body.page-service ol { padding-left: 1.2em; }
-  body.page-service li { margin: 0.45em 0; }
-</style>
+  </script>
 </head>
 
-<body id="top" class="page-service">
+<body>
+  <div id="top"></div>
 
-  <!-- header：index.htmlと同一構造 -->
+  <!-- ヘッダー（indexと統一） -->
   <header>
     <div class="logo">
       <a href="index.html#top">iK相談支援センター</a>
@@ -77,66 +117,151 @@
     </div>
   </header>
 
-  <!-- ページ用ヒーロー（style.cssに定義済み .page-hero を使う） -->
-  <section class="page-hero">
+  <!-- ヒーロー（検索意図：どこに相談すればいい？に即答） -->
+  <section class="local-seo">
     <div class="container">
-      <p class="page-hero-breadcrumb"><a href="index.html">トップ</a> / 計画相談支援</p>
-      <h1 class="page-hero-title">北九州市小倉南区の計画相談支援</h1>
-      <p class="page-hero-lead">
-        北九州市小倉南区を中心に、北九州市内で計画相談支援（サービス等利用計画の作成）をサポートします。
+      <p class="local-seo-text">
+        <a href="index.html">トップ</a> / 計画相談支援
+      </p>
+      <h1 style="margin-top: 10px;">北九州市小倉南区の計画相談支援（サービス等利用計画）</h1>
+      <p>
+        <strong>iK相談支援センター（株式会社iK）</strong>は、北九州市小倉南区に拠点を置く相談支援事業所です。<br />
+        北九州市内で、<strong>計画相談支援（サービス等利用計画の作成・見直し）</strong>のご相談を承ります。
+      </p>
+      <p>
+        お電話：<a href="tel:0933831327">093-383-1327</a>　
+        <a href="index.html#contact">お問い合わせフォーム</a>
       </p>
     </div>
   </section>
 
-  <section>
+  <!-- まず刺す：悩み → 解決 -->
+  <section class="services-bg section">
     <div class="container">
-      <h2 class="section-title">計画相談支援とは</h2>
-      <p>
-        計画相談支援とは、障がい福祉サービスを利用するために必要な「サービス等利用計画」を作成する支援です。
-        利用者様の状況や希望を丁寧にお伺いし、関係機関と連携しながら計画を作成します。
-      </p>
+      <div class="section-title">
+        <h2>こんなお困りごと、ありませんか？</h2>
+        <span>計画相談のよくあるご相談</span>
+      </div>
 
-      <h3>このようなご相談に対応します</h3>
       <ul>
         <li>福祉サービスを利用したいが、手続きや流れが分からない</li>
         <li>サービス等利用計画を作成・見直ししたい</li>
         <li>生活状況に合わせて、利用するサービスを整理したい</li>
-        <li>関係機関との連携を含めて相談したい</li>
+        <li>区役所や事業所との調整も含めて相談したい</li>
+      </ul>
+
+      <p>
+        iK相談支援センターでは、状況を丁寧にお伺いし、必要な支援・サービスを整理して
+        <strong>「サービス等利用計画」</strong>の作成をサポートします。
+      </p>
+    </div>
+  </section>
+
+  <!-- 制度説明：SEOの芯 -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>計画相談支援とは</h2>
+        <span>サービス等利用計画</span>
+      </div>
+
+      <p>
+        計画相談支援は、障がい福祉サービスを利用するために必要な
+        <strong>「サービス等利用計画」</strong>を作成・見直しする支援です。
+        利用者様の状況や希望を伺い、関係機関と連携しながら計画作成や手続きを進めます。
+      </p>
+
+      <h3>対象の方</h3>
+      <ul>
+        <li>心身に障がいがある方</li>
+        <li>支援が必要な児童（支給決定は保護者の方）</li>
+      </ul>
+
+      <p>
+        ※ご自身が対象か不明な場合も、まずはご相談ください。
+      </p>
+    </div>
+  </section>
+
+  <!-- 流れ：検索者の不安解消 -->
+  <section class="section" id="flow">
+    <div class="container">
+      <div class="section-title">
+        <h2>ご利用の流れ</h2>
+        <span>支援開始まで</span>
+      </div>
+
+      <ol>
+        <li><strong>ご相談</strong>（電話／来所／訪問など）</li>
+        <li><strong>面談</strong>（状況・希望の確認）</li>
+        <li><strong>計画作成</strong>（必要な支援・サービスの整理、計画案作成）</li>
+        <li><strong>調整・申請</strong>（関係機関と連携しながら手続きを進めます）</li>
+        <li><strong>利用開始</strong>（受給者証の交付後、サービス利用へ）</li>
+      </ol>
+
+      <p>※手続きや必要書類は状況により異なるため、詳細はご相談時にご案内します。</p>
+
+      <div class="flow-cta" style="margin-top: 24px;">
+        <a href="index.html#contact" class="btn-main">まずはお気軽にご相談ください</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 地域：網羅性 -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>対応エリア</h2>
+        <span>北九州市内</span>
+      </div>
+
+      <p>
+        <strong>北九州市小倉南区</strong>を中心に、<strong>北九州市全域</strong>に対応しております。<br />
+        小倉北区・戸畑区・若松区・八幡東区・八幡西区など、北九州市内で計画相談支援をお探しの方はご相談ください。
+      </p>
+    </div>
+  </section>
+
+  <!-- 信頼：許認可番号を明示（上位に効く） -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>事業所情報（許認可）</h2>
+        <span>株式会社iK</span>
+      </div>
+
+      <p><strong>iK相談支援センター（株式会社iK）</strong></p>
+      <p>〒802-0831 北九州市小倉南区八重洲町11-20 2階</p>
+      <p>TEL：<a href="tel:0933831327">093-383-1327</a> / FAX：093-383-1328</p>
+      <p>Mail：<a href="mailto:iks.080101.iks@gmail.com">iks.080101.iks@gmail.com</a></p>
+
+      <ul>
+        <li>指定特定相談支援事業：<strong>4037 700 608</strong></li>
+        <li>指定障がい児相談支援事業：<strong>4077 700 179</strong></li>
       </ul>
     </div>
   </section>
 
-  <section>
+  <!-- FAQ（本文にも置いて、検索に強く） -->
+  <section class="section">
     <div class="container">
-      <h2 class="section-title">ご利用の流れ</h2>
-      <ol>
-        <li><strong>お問い合わせ・ご相談</strong>：状況をお伺いします</li>
-        <li><strong>面談</strong>：希望や生活状況を確認します</li>
-        <li><strong>計画案の作成</strong>：必要な支援・サービスを整理します</li>
-        <li><strong>関係機関との調整</strong>：連携しながら計画を整えます</li>
-        <li><strong>計画の作成・提出</strong>：サービス利用に向けて進めます</li>
-      </ol>
-      <p>※手続きや必要書類は状況により異なるため、詳細はご相談時にご案内します。</p>
+      <div class="section-title">
+        <h2>よくある質問</h2>
+        <span>FAQ</span>
+      </div>
+
+      <h3>計画相談支援（サービス等利用計画）とは何ですか？</h3>
+      <p>障がい福祉サービスを利用するために必要な「サービス等利用計画」を作成・見直しする支援です。</p>
+
+      <h3>北九州市小倉南区以外でも相談できますか？</h3>
+      <p>小倉南区を中心に、北九州市内（小倉北区・戸畑区・若松区・八幡東区・八幡西区など）に対応しています。</p>
+
+      <h3>まず何を準備すればいいですか？</h3>
+      <p>状況により異なります。まずはお電話またはお問い合わせフォームからご相談ください。</p>
     </div>
   </section>
 
-  <section>
-    <div class="container">
-      <h2 class="section-title">対応エリア</h2>
-      <p>
-        北九州市小倉南区を中心に、北九州市内全域に対応しております。<br>
-        「小倉南区で計画相談支援を探している」「北九州市内で相談支援事業所を探している」など、
-        まずはお気軽にご相談ください。
-      </p>
-
-      <p>
-        電話：<a href="tel:0933831327">093-383-1327</a>　
-        <a href="index.html#contact">お問い合わせフォームへ</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- footer：index.htmlと同一 -->
+  <!-- フッター（indexと統一） -->
   <footer>
     <div class="footer-container">
       <div class="footer-logo-area">
